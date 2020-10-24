@@ -1,0 +1,47 @@
+header {
+    display: flex;
+    padding: 3%;
+    background-color: grey;
+}
+
+nav {
+    margin-left: 50%;
+    
+}
+
+.link {
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+h1 {
+    margin: 10%;
+    text-align: center;
+}
+
+hr {
+    margin: 10%;
+}
+
+.accounts, .logs, .milestones {
+    border: solid;
+    margin: 10%;
+    padding: 10%;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+@media all and (min-width: 800px) {
+    .wrapper {
+        flex-direction: row;
+    }
+
+    .accounts, .logs, .milestones {
+        margin: 1%;
+        padding: 1%;
+    }
+    
+}
