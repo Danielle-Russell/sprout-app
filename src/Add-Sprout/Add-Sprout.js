@@ -34,12 +34,9 @@ export default class AddSprout extends React.Component {
       STORE.pics.push(newPicture);
   }
 
-  onBeforeFileLoad = (elem) => {
-    if (elem.target.files[0].size > 71680) {
-      alert("File is too large. Please make another selection");
-      elem.target.value = "";
-    }
-  };
+  onBeforeFileLoad  = () => {
+      alert('Make sure you close the image before submitting, otherwise it will not be saved')
+  }
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -76,8 +73,7 @@ export default class AddSprout extends React.Component {
           <input name="name" type="text" placeholder="Name" />
           <input name="age" type="text" placeholder="Age" />
           Upload a profile picture
-          <br />
-          Please ensure that you close the image once cropped, in order to save it.
+         
           <div className="avatar">
             <Avatar
               width={200}
