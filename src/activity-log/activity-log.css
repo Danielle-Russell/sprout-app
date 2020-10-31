@@ -5,3 +5,53 @@ form {
 span {
     font-size: 11px;
 }
+
+button {
+    text-align: center;
+    background-color: lightcyan;
+    padding: 15px;
+}
+
+
+.submit {
+    text-align: center;
+    background-color: lightcyan;
+    padding: 5px;
+}
+
+.submit:hover {
+    transform: scale(1.1)
+}
+
+
+button:hover {
+    transform: scale(1.1)
+}
+
+.back {
+    margin-left: 65%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.buttons {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+.date {
+    font-weight: 600;
+    
+    font-size: 15px;
+}
+
+.time {
+    font-weight: 500;
+    font-size: 15px;
+    
+}

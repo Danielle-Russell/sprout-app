@@ -3,9 +3,36 @@
 form {
   text-align: center;
   display: grid;
-  margin: 10%; 
+  margin: 15%; 
 }
 
 input {
   margin: 1%;
+}
+
+.avatar {
+  display: flex;
+  margin: 20px;
+}
+
+.ava {
+  border-radius: 50%;
+}
+
+.preview {
+  height: 50%;
+  margin-left: 100px;
+  margin-top: 50px;
+}
+
+p {
+  font-weight: bold;
+  font-style: italic;
+  text-align: center;
+}
+
+.submit {
+  padding: 5px;
+  font-weight: 600;
+  font-family: arial;
 }

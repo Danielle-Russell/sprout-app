@@ -1,0 +1,24 @@
+.my-sprout {
+    text-decoration: none;
+    border-color: black;
+    color: black;
+    font-weight: 600;
+    font-style: italic
+}
+
+.heading {
+    font-size: 20px;
+    font-family: Arial;
+    font-weight: bold;
+    font-style: italic;
+    margin-top: 20px;
+}
+.header-button {
+    background-color: #ffffff;
+    margin-left: 60%;
+    padding: 5px;
+}
+
+h3 {
+    text-align: center;
+}

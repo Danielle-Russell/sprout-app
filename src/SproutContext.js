@@ -1,10 +1,8 @@
-import React from 'react'
+import React from 'react';
 
-const SproutContext = React.createContext({
-    sprouts: [],
-    activities: [],
-    milestones: [],
-    health: []
+const SproutContext =
+React.createContext({
+    preview: ""
 })
 
 export default SproutContext

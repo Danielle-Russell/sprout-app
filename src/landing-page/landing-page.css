@@ -4,9 +4,22 @@ header {
     background-color: grey;
 }
 
+.heading {
+font-family: arial;
+margin-right: 10px;
+}
+
+
+
 nav {
-    margin-left: 50%;
+    margin-left: 40%;
+    margin-top: 20px;
     
+}
+
+.landing-img {
+    width: 100%;
+    height: 100%;
 }
 
 .link {
