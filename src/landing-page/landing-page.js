@@ -24,29 +24,27 @@ export default class LandingPage extends React.Component {
       } return color
     }
     background()
-    console.log(this.props)
     return (
       <>
-      <div className={color}>
-      <header className="landing-header">
-        <span className="heading">Sprout
-        {" "}
-        <FontAwesomeIcon icon={faLeaf} />
+     
+     <div className={color}>
+
+<header className="landing-header">
+  <span className="heading">Sprout
+  {" "}
+  <FontAwesomeIcon icon={faLeaf} />
 </span>
-        <nav>
-          
-          <button onClick={this.context.showModal}>Sign Up</button>
-          <NavLink className="link" to = "/sign-up">Sign In</NavLink>
-          <NavLink className="link2" to = "/sign-up">Demo</NavLink>
-        </nav>
-        </header>
-<div className="landing-container">
-        <h1 className="landing-title"> SPROUT</h1>
-        <h2>A Baby Tracking App For Busy Moms</h2>
-        <hr />
-</div>
-      </div>
+  <nav>
+    
+    <button className="sign-up" onClick={this.context.showModal}>Sign Up</button>
+  </nav>
+  </header>
+  </div>
+
+
       {this.context.modalShown === true ? <SignUp history={this.props.history} /> : null}
+    
+     
 </>
     );
   }

@@ -75,10 +75,16 @@ window.location.reload()
   render() {
 
     return (
-      <div className="modal">
-<button className="close" onClick={this.context.closeModal}>X</button>
-<form onSubmit={this.handleNewUser}         >
- <p> Create Account:</p>
+      <div className="container">
+
+      <form onSubmit={this.handleNewUser}         >
+      <button className="close" onClick={this.context.closeModal}>X</button>
+
+<div className="imgcontainer">
+<img className="user" src="https://img.icons8.com/fluent/2x/login-rounded-right.png" />
+</div>
+<div className="modal">
+ <b className="log"> Create Account</b>
           <input name="firstname" type="text" placeholder="First Name" />
           <input name="lastname" type="text" placeholder="Last Name" />
           <input name="email" type="email" placeholder="email" />
@@ -87,19 +93,27 @@ window.location.reload()
           <button className="submit" type="submit" onClick={this.back}>
             Submit
           </button>
+          </div>
         </form>
-
+        
         <form onSubmit = {this.handleSubmitJwtAuth}>
+        <b className="log"> Login</b>
+
         {this.state.error ? this.state.error : null}
 
- <p> Login: </p>
+        <label for="email"><b>Email</b></label>
           <input name="email" type="email" placeholder="email" value={localStorage.getItem('new user email')}/>
+          <label for="password"><b>Password</b></label>
+
           <input name="password" type="password" placeholder="password" value={localStorage.getItem('new user password')} />
           <button className="submit" type="submit" >
             Submit
           </button>
           <button className="submit" onClick={this.reset}>Reset</button>
+ <button className="cancelbtn">Cancel</button>
         </form>
+
+     
       </div>
     );
   }
