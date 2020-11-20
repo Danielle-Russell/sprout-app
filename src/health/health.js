@@ -5,8 +5,11 @@ import { faClinicMedical } from "@fortawesome/free-solid-svg-icons";
 import { faSyringe } from "@fortawesome/free-solid-svg-icons";
 import { faPrescriptionBottle } from "@fortawesome/free-solid-svg-icons";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+
 import { faLeaf } from "@fortawesome/free-solid-svg-icons";
-import STORE from "../STORE";
+import SproutContext from '../SproutContext';
+import config from '../config'
 
 export default class Health extends React.Component {
   state = {
@@ -19,17 +22,36 @@ export default class Health extends React.Component {
     this.props.history.goBack();
   };
 
+  addNewHealth = health => {
+
+    fetch(`${config.API_ENDPOINT}/api/health`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(health),
+    })
+      .then(response => {
+        return response.json()
+      })
+      .then(responseJson => this.context.addHealth(responseJson))
+      .catch((error) => {
+        this.setState({hasError: true})
+      });
+  }
+
   handleSubmit = (e) => {
-    e.preventDefault();
     const newHealth = {
-      sproutId: parseInt(this.props.match.params.id),
+      useremail: localStorage.getItem( 'user email'),
+      sproutid: parseInt(this.props.match.params.id),
       title: e.target.title.value,
       notes: e.target.notes.value,
       date: e.target.date.value,
       time: e.target.time.value,
     };
-    STORE.health.push(newHealth);
-    this.props.history.goBack();
+    this.addNewHealth(newHealth);
+    e.preventDefault();
+    window.location.reload()
   };
 
   apt = () => {
@@ -62,15 +84,24 @@ export default class Health extends React.Component {
     });
   };
 
+  static contextType = SproutContext
+
   render() {
+    let health = []
+    const healthArray = () => {
+     for (var key in this.context.health) {
+       health.push(this.context.health[key])
+ }
+     }
+healthArray()
     const { id } = this.props.match.params;
 
-    const sortedArray = STORE.health
+    const sortedArray = health
       .sort((a, b) => new Date(a.date) - new Date(b.date))
       .reverse();
 
-    const apt = STORE.health.map((apt, index) => {
-      if (apt.title === "Appointment" && apt.sproutId === Number(id)) {
+    const apt = health.map((apt, index) => {
+      if (apt.title === "Appointment" && apt.sproutid === Number(id)) {
         return (
           <>
             <span className="date">{apt.date}</span>
@@ -86,8 +117,8 @@ export default class Health extends React.Component {
       return null;
     });
 
-    const vac = STORE.health.map((apt, index) => {
-      if (apt.title === "Vaccination" && apt.sproutId === Number(id)) {
+    const vac = health.map((apt, index) => {
+      if (apt.title === "Vaccination" && apt.sproutid === Number(id)) {
         return (
           <>
             <span className="date">{apt.date}</span>
@@ -103,8 +134,8 @@ export default class Health extends React.Component {
       return null;
     });
 
-    const med = STORE.health.map((apt, index) => {
-      if (apt.title === "Medication" && apt.sproutId === Number(id)) {
+    const med = health.map((apt, index) => {
+      if (apt.title === "Medication" && apt.sproutid === Number(id)) {
         return (
           <>
             <span className="date">{apt.date}</span>
@@ -122,33 +153,65 @@ export default class Health extends React.Component {
 
     return (
       <>
-        <header>
+        <header className="landing-header">
           <span className="heading">
             Sprout <FontAwesomeIcon icon={faLeaf} />
           </span>
-          <button className="home" onClick={this.back}>
-            <FontAwesomeIcon icon={faHome} />
+          <button className="back" onClick={this.back}>
+            <FontAwesomeIcon icon={faChevronLeft} />
           </button>
         </header>
+<div className="wrapper2">
+        <form className="right" onSubmit={this.handleSubmit}>
+          <h2> New Record </h2>
+          <div className="inputs">
 
-        <h1>Health Records</h1>
+          <label htmlFor="apt">
+            <input value="Appointment" id="apt" type="radio" name="title" />
+            Appointment
+          </label>
+          <label htmlFor="Vaccination">
+            <input
+              value="Vaccination"
+              id="Vaccination"
+              type="radio"
+              name="title"
+            />
+            Vaccination
+          </label>
+          <label htmlFor="Medication">
+            <input
+              value="Medication"
+              id="Medication"
+              type="radio"
+              name="title"
+            />
+            Medication
+          </label>
+          </div>
+          <input name="notes" id="notes" type="text" placeholder="Notes" />
+          <input name="date" type="date" />
+          <input name="time" type="time" />
 
+          <input className="submit" type="submit" />
+        </form>
+        
+        <ul className="right">
         <div className="buttons">
-          <button onClick={this.goHome}>
+          <button className="btn" onClick={this.goHome}>
             <FontAwesomeIcon icon={faHome} />
           </button>
-          <button onClick={this.apt}>
+          <button className="btn" onClick={this.apt}>
             <FontAwesomeIcon icon={faClinicMedical} />
           </button>
-          <button onClick={this.vac}>
+          <button  className="btn" onClick={this.vac}>
             <FontAwesomeIcon icon={faSyringe} />
           </button>
-          <button onClick={this.med}>
+          <button  className="btn" onClick={this.med}>
             <FontAwesomeIcon icon={faPrescriptionBottle} />
           </button>
         </div>
 
-        <ul>
           {sortedArray.map((apt, index) => {
             let medical;
             if (apt.title === "Appointment") {
@@ -159,7 +222,7 @@ export default class Health extends React.Component {
               medical = <FontAwesomeIcon icon={faPrescriptionBottle} />;
             }
             if (
-              Number(id) === apt.sproutId &&
+              Number(id) === apt.sproutid &&
               !this.state.aptOpen &&
               !this.state.vacOpen &&
               !this.state.medOpen
@@ -183,37 +246,8 @@ export default class Health extends React.Component {
           {this.state.vacOpen ? vac : null}
           {this.state.medOpen ? med : null}
         </ul>
-
-        <form onSubmit={this.handleSubmit}>
-          <h2> New Record </h2>
-          <label htmlFor="apt">
-            <input value="Appointment" id="apt" type="radio" name="title" />
-            Appointment
-          </label>
-          <label htmlFor="Vaccination">
-            <input
-              value="Vaccination"
-              id="Vaccination"
-              type="radio"
-              name="title"
-            />
-            Vaccination
-          </label>
-          <label htmlFor="Medication">
-            <input
-              value="Medication"
-              id="Medication"
-              type="radio"
-              name="title"
-            />
-            Medication
-          </label>
-          <input name="notes" id="notes" type="text" placeholder="Notes" />
-          <input name="date" type="date" />
-          <input name="time" type="time" />
-
-          <input className="submit" type="submit" />
-        </form>
+</div>
+        
       </>
     );
   }

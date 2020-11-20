@@ -8,14 +8,12 @@ span {
 
 button {
     text-align: center;
-    background-color: lightcyan;
     padding: 15px;
 }
 
 
 .submit {
     text-align: center;
-    background-color: lightcyan;
     padding: 5px;
 }
 
@@ -40,6 +38,11 @@ button:hover {
     text-align: center;
 }
 
+.btn {
+    background-color: inherit;
+    border: none;
+}
+
 h2 {
     text-align: center;
 }
@@ -54,4 +57,48 @@ h2 {
     font-weight: 500;
     font-size: 15px;
     
+}
+
+.right{
+border: none;
+background-color: inherit;
+overflow: auto;
+}
+
+
+.back {
+    background-color: inherit;
+    border: none;
+}
+
+
+.act-list {
+    margin: 0;
+}
+
+.inputs {
+    text-align: center;
+}
+
+@media all and (min-width:800px) {
+    .activity-log {
+        margin-left: 20%;
+        margin-right: 20%;
+
+    }
+    .right {
+        margin: 0;
+        width: 50%;
+    }
+
+    .left {
+        margin: 0;
+        width: 50%;
+    }
+    .wrapper2 {
+        height: 600px;
+        display: flex;
+    }
+
+   
 }

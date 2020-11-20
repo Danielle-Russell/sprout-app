@@ -22,3 +22,25 @@
 h3 {
     text-align: center;
 }
+
+.right-header {
+    margin-left: 80%;
+}
+
+.sprouts {
+display: flex;
+}
+
+.account-info {
+    width: 50%;
+}
+.sprouts-left {
+    width: 50%;
+padding: 100px;
+border: none;
+background-color: inherit;
+}
+.account {
+    font-size: 30px;
+}
+

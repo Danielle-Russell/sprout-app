@@ -1,10 +1,14 @@
 import React from "react";
-import STORE from "./STORE";
+import SproutContext from './SproutContext'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLeaf } from "@fortawesome/free-solid-svg-icons";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { faRuler } from "@fortawesome/free-solid-svg-icons";
 import { faWeight } from "@fortawesome/free-solid-svg-icons";
+import config from './config';
+import { faLongArrowAltLeft } from "@fortawesome/free-solid-svg-icons";
+
+
 
 export default class Growth extends React.Component {
   state = {
@@ -12,23 +16,47 @@ export default class Growth extends React.Component {
     weightOpen: false,
   };
 
+  static contextType = SproutContext;
+
+  
+
   back = () => {
     this.props.history.goBack();
   };
 
+  addNewGrowth = growth => {
+
+    fetch(`${config.API_ENDPOINT}/api/growth`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(growth),
+    })
+      .then(response => {
+        return response.json()
+      })
+      .then(responseJson => this.context.addGrowth(responseJson))
+      .catch((error) => {
+        this.setState({hasError: true})
+      });
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
     const newGrowth = {
-      sproutId: parseInt(this.props.match.params.id),
+      useremail: localStorage.getItem('user email'),
+      sproutid: parseInt(this.props.match.params.id),
       title: e.target.title.value,
       notes: e.target.notes.value,
       date: e.target.date.value,
-      number: parseInt(e.target.number.value),
+      number: e.target.number.value,
       units: e.target.units.value
     };
-    STORE.growth.push(newGrowth);
-    this.props.history.goBack();
-    console.log(newGrowth)
+    this.addNewGrowth(newGrowth);
+    window.location.reload()
+
+    
   };
 
   height = () => {
@@ -54,14 +82,24 @@ export default class Growth extends React.Component {
 
   render() {
 
+    let growth = []
+    const growthArray = () => {
+     for (var key in this.context.growth) {
+       growth.push(this.context.growth[key])
+ }
+     }
+growthArray()
+
+
     const { id } = this.props.match.params;
 
-    const sortedArray = STORE.growth
+    const sortedArray2 = growth
       .sort((a, b) => new Date(a.date) - new Date(b.date))
       .reverse();
 
-    const heights = sortedArray.map((grow, index) => {
-      if (grow.title === "Height" && grow.sproutId === Number(id)) {
+      
+    const heights = sortedArray2.map((grow, index) => {
+      if (grow.title === "Height" && grow.sproutid === Number(id)) {
         return (
           <>
             <span className="date">{grow.date}</span>
@@ -77,8 +115,10 @@ export default class Growth extends React.Component {
       return null;
     });
 
-    const weights = sortedArray.map((grow, index) => {
-      if (grow.title === "Weight" && grow.sproutId === Number(id)) {
+
+    const weights = sortedArray2.map((grow, index) => {
+      if (grow.title === "Weight" && grow.sproutid === Number(id)) {
+      
         return (
           <>
             <span className="date">{grow.date}</span>
@@ -89,27 +129,55 @@ export default class Growth extends React.Component {
             <br />,<span>{grow.notes}</span>]}
             </li>
           </>
-        );
-      }
-      return null;
+        
+        )
+      } return null
     });
 
-  
     return (
       <>
-        <header>
+        <header className="landing-header">
           <span className="heading">
             Sprout 
             {" "}
             <FontAwesomeIcon icon={faLeaf} />
           </span>
+
           <button className="home" onClick={this.back}>
-              <FontAwesomeIcon icon={faHome} />
+ <FontAwesomeIcon icon={faLongArrowAltLeft} />
           </button>
         </header>
+<div className="wrapper2">
+        <form className="left" onSubmit={this.handleSubmit}>
+          <h2> New Growth Record </h2>
+          <div className="inputs">
+          <label htmlFor="height">
+            <input value="Height" type="radio" name="title" />
+Height          </label>
+          <label htmlFor="weight">
+            <input
+              value="Weight"
+              type="radio"
+              name="title"
+            />
+Weight          </label>
+</div>
+         
+          <input name="notes" type="text" placeholder="Notes" />
+          <input name="number" type="text" placeholder="Number" />
+          <select name="units">
+              <option value="lbs">lbs</option>       
+                     <option value="inches">inches</option>
 
-        <h1> Growth </h1>
+          </select>
+          <input name="date" type="date" />
+         
 
+          <input className="submit" type="submit" />
+        </form>
+       
+
+        <ul className="right">
         <div className="buttons">
           <button onClick={this.goHome}>
           <FontAwesomeIcon icon={faHome} />
@@ -123,9 +191,7 @@ export default class Growth extends React.Component {
           </button>
          
         </div>
-
-        <ul>
-          {sortedArray.map((grow, index) => {
+          {sortedArray2.map((grow, index) => {
                 let icon;
                 if (grow.title === "Height") {
                   icon = <FontAwesomeIcon icon={faRuler} />;
@@ -133,7 +199,7 @@ export default class Growth extends React.Component {
                   icon = <FontAwesomeIcon icon={faWeight} />;
                 }
             if (
-              Number(id) === grow.sproutId &&
+              Number(id) === grow.sproutid &&
               !this.state.heightOpen &&
               !this.state.weightOpen 
             ) {
@@ -159,32 +225,7 @@ export default class Growth extends React.Component {
           {this.state.weightOpen ? weights : null}
         
         </ul>
-
-        <form onSubmit={this.handleSubmit}>
-          <h2> New Growth Record </h2>
-          <label htmlFor="height">
-            <input value="Height" type="radio" name="title" />
-Height          </label>
-          <label htmlFor="weight">
-            <input
-              value="Weight"
-              type="radio"
-              name="title"
-            />
-Weight          </label>
-         
-          <input name="notes" type="text" placeholder="Notes" />
-          <input name="number" type="text" placeholder="Number" />
-          <select name="units">
-              <option value="lbs">lbs</option>       
-                     <option value="inches">inches</option>
-
-          </select>
-          <input name="date" type="date" />
-         
-
-          <input className="submit" type="submit" />
-        </form>
+        </div>
       </>
     );
   }
