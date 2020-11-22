@@ -72,13 +72,6 @@ overflow: auto;
 }
 
 
-.act-list {
-    margin: 0;
-}
-
-.inputs {
-    text-align: center;
-}
 
 @media all and (min-width:800px) {
     .activity-log {

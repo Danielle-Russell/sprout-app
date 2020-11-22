@@ -52,9 +52,11 @@ export default class AddSprout extends React.Component {
       age: e.target.age.value,
       image: this.state.preview
     };
+    console.log('new sprout', newSprout)
     this.addNewSprout(newSprout)
-    this.props.history.push(`/account/${newSprout.id}`);
-    window.location.reload()
+
+    this.props.history.push(`/account/${user}`);
+    //window.location.reload()
 
   };
 
@@ -70,7 +72,7 @@ export default class AddSprout extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <h2> ADD SPROUT</h2>
           <input name="name" type="text" placeholder="Name" />
-          <input name="age" type="text" placeholder="Age" />
+          <input name="age" type="text" placeholder="Birthday YYYY-MM-DD" />
           Upload a profile picture
          
           <div className="avatar">

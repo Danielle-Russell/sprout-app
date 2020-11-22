@@ -68,8 +68,13 @@ export default class Dashboard extends React.Component {
     const { id } = this.props.match.params;
 
     const findFinalId = () => {
+      
       for (let i = 0; i < sprouts.length; i++) {
         if (Number(id) === sprouts[i].id) {
+          var years = moment().diff(sprouts[i].age, 'year');
+var months = moment().diff(sprouts[i].age, 'months');
+var age = years < 1 ? months : years 
+var yd = years < 1 ? 'months' : 'years'
           return (
             <div className="profile">
               <img
@@ -78,7 +83,7 @@ export default class Dashboard extends React.Component {
                 alt="profile"
               />
              
-                <p>{sprouts[i].name}</p> <p>{sprouts[i].age}</p>
+                <p>{sprouts[i].name}</p> <p>{age} {yd}</p>
 
             </div>
           );
