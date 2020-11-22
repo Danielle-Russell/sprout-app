@@ -29,18 +29,42 @@ h3 {
 
 .sprouts {
 display: flex;
+flex-direction: column;
 }
 
 .account-info {
-    width: 50%;
+    width: 100%;
 }
 .sprouts-left {
     width: 50%;
 padding: 100px;
 border: none;
 background-color: inherit;
+margin: 5%;
 }
 .account {
     font-size: 30px;
 }
+
+.height {
+    margin-left: 15%;
+    margin-top: 5%;
+}
+
+@media all and (min-width: 800px) {
+
+    .sprouts {
+        flex-direction:row;
+    }
+
+.account-info {
+    width: 50%;
+    margin: 10%;
+}
+.sprouts-left {
+    width: 50%;
+}
+}
+
+
 

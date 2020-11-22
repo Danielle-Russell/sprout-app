@@ -63,17 +63,12 @@ export default class AddSprout extends React.Component {
     return (
       <>
         <header className="landing-header"> 
-            <span className = "heading">
-            Sprout 
-            {" "}
-            <FontAwesomeIcon icon={faLeaf} />
-                </span>
                 <button className="home" onClick={this.back}><FontAwesomeIcon icon={faHome} /></button>
 
                 </header>
-        <h1 className="landing-title"> Add Sprout</h1>
 
         <form onSubmit={this.handleSubmit}>
+          <h2> ADD SPROUT</h2>
           <input name="name" type="text" placeholder="Name" />
           <input name="age" type="text" placeholder="Age" />
           Upload a profile picture

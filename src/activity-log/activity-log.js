@@ -15,6 +15,7 @@ export default class ActivityLog extends React.Component {
     feedOpen: false,
     diaperOpen: false,
     sleepOpen: false,
+    formOpen: false
   };
 
   static contextType = SproutContext;
@@ -61,6 +62,7 @@ this.addNewActivity(newActivity)
       feedOpen: true,
       diaperOpen: false,
       sleepOpen: false,
+      formOpen: false
     });
   };
 
@@ -69,6 +71,8 @@ this.addNewActivity(newActivity)
       diaperOpen: true,
       feedOpen: false,
       sleepOpen: false,
+      formOpen: false
+
     });
   };
   showSleep = () => {
@@ -76,6 +80,8 @@ this.addNewActivity(newActivity)
       sleepOpen: true,
       diaperOpen: false,
       feedOpen: false,
+      formOpen: false
+
     });
   };
 
@@ -84,8 +90,19 @@ this.addNewActivity(newActivity)
       sleepOpen: false,
       diaperOpen: false,
       feedOpen: false,
+      formOpen: false
+
     });
   };
+
+  newActivity = () => {
+    this.setState({
+      sleepOpen: false,
+      diaperOpen: false,
+      feedOpen: false,
+      formOpen: true
+    });
+  }
   render() {
 
     let activities = []
@@ -174,20 +191,26 @@ activityArray()
       .reverse();
     return (
       <div>
-        <header className="landing-header">
-          <span className="heading">
-            {" "}
-            Sprout <FontAwesomeIcon icon={faLeaf} />
-          </span>
-          <button className="back" onClick={this.back}>
-            <FontAwesomeIcon icon={faChevronLeft} />
+        <div className="sidebar">
+          <p onClick={this.back}>Back to Dashboard</p>
+          <button className="btn" onClick={this.goHome}>
+            <FontAwesomeIcon icon={faHome} />
           </button>
-        </header>
-
-<div className="wrapper2">
-        <form className="left" onSubmit={this.handleSubmit}>
+          <button className="btn" onClick={this.showFeeds}>
+            <FontAwesomeIcon icon={faUtensils} />
+          </button>
+          <button className="btn" onClick={this.showDiapers}>
+            <FontAwesomeIcon icon={faPoop} />
+          </button>
+          <button className="btn" onClick={this.showSleep}>
+            <FontAwesomeIcon icon={faBed} />
+          </button>
+          <p onClick={this.newActivity}>New Activity</p>
+        </div>
+        <div className = "container">
+        {this.state.formOpen ? <form className="left" onSubmit={this.handleSubmit}>
           <h2>New Activity</h2>
-          <div className="inputs">
+        
           <label htmlFor="feed">
             <input value="Feed" id="feed" type="radio" name="title" />
             Feed
@@ -200,30 +223,14 @@ activityArray()
             <input value="Sleep" id="sleep" type="radio" name="title" />
             Sleep
           </label>
-          </div>
 
           <input name="notes" id="notes" type="text" placeholder="Notes" />
           <input name="date" type="date" />
           <input name="time" type="time" />
           <input className="submit" type="submit" />
-        </form>
+        </form> : <ul className="right">
         
-
-        <ul className="right">
-        <div className="buttons">
-        <button className="btn" onClick={this.goHome}>
-            <FontAwesomeIcon icon={faHome} />
-          </button>
-          <button className="btn" onClick={this.showFeeds}>
-            <FontAwesomeIcon icon={faUtensils} />
-          </button>
-          <button className="btn" onClick={this.showDiapers}>
-            <FontAwesomeIcon icon={faPoop} />
-          </button>
-          <button className="btn" onClick={this.showSleep}>
-            <FontAwesomeIcon icon={faBed} />
-          </button>
-        </div>
+      
           {sortedArray.map((activity, index) => {
             let element;
             if (activity.title === "Sleep") {
@@ -259,10 +266,9 @@ activityArray()
           {this.state.diaperOpen ? diapers : null}
           {this.state.feedOpen ? feeds : null}
           {this.state.sleepOpen ? sleep : null}
-        </ul>
-
+        </ul>}
+</div>
        </div>
-      </div>
     );
   }
 }

@@ -1,7 +1,4 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
-import { faLeaf } from "@fortawesome/free-solid-svg-icons";
 import config from '../config';
 import SproutContext from '../SproutContext';
 
@@ -10,7 +7,9 @@ import SproutContext from '../SproutContext';
 export default class Milestones extends React.Component {
   
   state = {
-    file: null
+    file: null,
+    showMilestones: true,
+    showLog: false
   }
 
   static contextType = SproutContext;
@@ -63,8 +62,29 @@ export default class Milestones extends React.Component {
   window.location.reload()
   }
 
+  showForm = () => {
+    this.setState({
+      showLog: true,
+      showMilestones: false
+    })
+  }
 
+  showMilestones = () => {
+    this.setState({
+      showLog: false,
+      showMilestones: true
+    })
+  }
   render() {
+    let sprouts = [];
+    const sproutArray = () => {
+      for (var key in this.context.sprouts) {
+        if (key.length) {
+          sprouts.push(this.context.sprouts[key]);
+        }
+      }
+    };
+    sproutArray()
   let milestones = []
     const milestoneArray = () => {
      for (var key in this.context.milestones) {
@@ -78,26 +98,28 @@ milestoneArray()
     const sortedArray = milestones
       .sort((a, b) => new Date(a.date) - new Date(b.date))
       .reverse();
-
-    const specSprout = sortedArray.filter( spr => Number(id) === spr.sproutid)
-
+console.log(sortedArray)
+    const specSprout = sortedArray.filter( spr => Number(id) === spr.sproutid);
+    const sproutImage = sprouts.map( spr => {
+console.log(spr.id)
+      if (spr.id === Number(this.props.match.params.id)) {
+        return spr.image}})
     return (
       <>
-        <header className="landing-header">
-          <span className="heading">
-            Sprout <FontAwesomeIcon icon={faLeaf} />
-          </span>
-          <button className="home" onClick={this.back}><FontAwesomeIcon icon={faHome} /></button>
-        </header>
-        <h1> Milestones </h1>
+<div className="sidebar">
+  <p className="sidebar-nav" onClick={this.back}>Back to Dashboard</p>
+  <p className="sidebar-nav" onClick={this.showMilestones}>Milestone Gallery</p>
+  <p className="sidebar-nav" onClick={this.showForm}>New Milestone</p>
 
-        {specSprout.map( spr => 
-        <div className="gallery">
+
+</div>
+<header><img src={sproutImage} /></header>
+{this.state.showMilestones ? specSprout.map( spr => {
+        return <div className="gallery">
           <img src={spr.image} />
-          <div class="desc">{spr.notes}</div>
+          <div className="desc"><b>{spr.date}</b> <br /> {spr.notes}</div>
 
-          </div>)}
-        <form onSubmit={this.handleSubmit}>
+          </div>}) : <form onSubmit={this.handleSubmit}>
           <h2>New Milestone</h2>
           <input name="title" id="title" type="text" placeholder="Name" />
 
@@ -106,7 +128,7 @@ milestoneArray()
           <input type="file" onChange={this.handleChange}/>
 
           <input className="submit" type="submit" />
-        </form>
+        </form>}
      
       </>
     );

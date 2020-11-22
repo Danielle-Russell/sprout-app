@@ -1,6 +1,8 @@
 export default {
     API_ENDPOINT:
-    'http://localhost:8000',
+    'https://infinite-ocean-02843.herokuapp.com',
     TOKEN_KEY: 'sprout-auth-token',
 
 }
+
+

@@ -80,7 +80,9 @@ position: absolute;
 
   }
 
-
+  .sidebar-nav:hover {
+    color: grey;
+  }
 
   .cancelbtn {
     width: auto;
@@ -123,6 +125,9 @@ position: absolute;
 form {
     border: 3px solid #f1f1f1;
     padding: 10px;
+    background-color: #f1f1f1;
+    width: 80%;
+    margin: 10%;
   }
   
   /* Full-width inputs */
@@ -163,21 +168,24 @@ form {
     opacity: 0.8;
   }
 .gallery {
-    margin: 5px;
+    margin-left: 15%;
     border: 1px solid #ccc;
     float: left;
     width: 180px;
   }
 
   .gallery img {
-    width: 100%;
-    height: auto;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
   }
   
   .desc {
     padding: 15px;
     text-align: center;
     background-color: white;
+    height: 100px;
+    width: 200px;
   }
 
   .gallery:hover {
@@ -190,7 +198,7 @@ form {
   }
 
   @media all and (min-width: 800px) {
-  /*.modal {
+  .modal {
 
   width: 30%; 
   margin-left: 35%;
@@ -199,5 +207,12 @@ form {
   margin-bottom: 5%;
   height: 80%;
 
-}*/
+}
+
+form {
+  width: 50%;
+  margin: auto;
+  margin-top: 10%;
+}
+
   }

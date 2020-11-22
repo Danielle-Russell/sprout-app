@@ -272,13 +272,7 @@ const recent = array.sort((a, b) => new Date(a.date) - new Date(b.date))
           </div>
           </div>
           <div className="wrapper">
-            <div className="milestone">
-             {milestones.map( spr => {
-             if (Number(id) === spr.sproutid) {
-             return <img src ={spr.image} />
-             }
-            })}
-            </div>
+    
         <div className="act-chart">
         <Doughnut
           data={{

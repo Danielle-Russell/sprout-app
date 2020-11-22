@@ -75,7 +75,7 @@ window.location.reload()
   render() {
 
     return (
-      <div className="container">
+<div className="modal">
 
       <form onSubmit={this.handleNewUser}         >
       <button className="close" onClick={this.context.closeModal}>X</button>
@@ -83,7 +83,6 @@ window.location.reload()
 <div className="imgcontainer">
 <img className="user" src="https://img.icons8.com/fluent/2x/login-rounded-right.png" />
 </div>
-<div className="modal">
  <b className="log"> Create Account</b>
           <input name="firstname" type="text" placeholder="First Name" />
           <input name="lastname" type="text" placeholder="Last Name" />
@@ -93,7 +92,7 @@ window.location.reload()
           <button className="submit" type="submit" onClick={this.back}>
             Submit
           </button>
-          </div>
+         
         </form>
         
         <form onSubmit = {this.handleSubmitJwtAuth}>
@@ -112,9 +111,9 @@ window.location.reload()
           <button className="submit" onClick={this.reset}>Reset</button>
  <button className="cancelbtn">Cancel</button>
         </form>
+        </div>
 
      
-      </div>
     );
   }
 }

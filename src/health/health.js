@@ -8,41 +8,41 @@ import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
 import { faLeaf } from "@fortawesome/free-solid-svg-icons";
-import SproutContext from '../SproutContext';
-import config from '../config'
+import SproutContext from "../SproutContext";
+import config from "../config";
 
 export default class Health extends React.Component {
   state = {
     aptOpen: false,
     vacOpen: false,
     medOpen: false,
+    formOpen: false,
   };
 
   back = () => {
     this.props.history.goBack();
   };
 
-  addNewHealth = health => {
-
+  addNewHealth = (health) => {
     fetch(`${config.API_ENDPOINT}/api/health`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(health),
     })
-      .then(response => {
-        return response.json()
+      .then((response) => {
+        return response.json();
       })
-      .then(responseJson => this.context.addHealth(responseJson))
+      .then((responseJson) => this.context.addHealth(responseJson))
       .catch((error) => {
-        this.setState({hasError: true})
+        this.setState({ hasError: true });
       });
-  }
+  };
 
   handleSubmit = (e) => {
     const newHealth = {
-      useremail: localStorage.getItem( 'user email'),
+      useremail: localStorage.getItem("user email"),
       sproutid: parseInt(this.props.match.params.id),
       title: e.target.title.value,
       notes: e.target.notes.value,
@@ -51,7 +51,7 @@ export default class Health extends React.Component {
     };
     this.addNewHealth(newHealth);
     e.preventDefault();
-    window.location.reload()
+    window.location.reload();
   };
 
   apt = () => {
@@ -59,6 +59,8 @@ export default class Health extends React.Component {
       aptOpen: true,
       vacOpen: false,
       medOpen: false,
+      formOpen: false,
+
     });
   };
   vac = () => {
@@ -66,6 +68,8 @@ export default class Health extends React.Component {
       aptOpen: false,
       vacOpen: true,
       medOpen: false,
+      formOpen: false,
+
     });
   };
   med = () => {
@@ -73,6 +77,8 @@ export default class Health extends React.Component {
       aptOpen: false,
       vacOpen: false,
       medOpen: true,
+      formOpen: false,
+
     });
   };
 
@@ -81,19 +87,29 @@ export default class Health extends React.Component {
       aptOpen: false,
       vacOpen: false,
       medOpen: false,
+          formOpen: false,
+
     });
   };
 
-  static contextType = SproutContext
+  newHealth = () => {
+    this.setState({
+      aptOpen: false,
+      vacOpen: false,
+      medOpen: false,
+      formOpen: true,
+    });
+  };
+  static contextType = SproutContext;
 
   render() {
-    let health = []
+    let health = [];
     const healthArray = () => {
-     for (var key in this.context.health) {
-       health.push(this.context.health[key])
- }
-     }
-healthArray()
+      for (var key in this.context.health) {
+        health.push(this.context.health[key]);
+      }
+    };
+    healthArray();
     const { id } = this.props.match.params;
 
     const sortedArray = health
@@ -153,102 +169,91 @@ healthArray()
 
     return (
       <>
-        <header className="landing-header">
-          <span className="heading">
-            Sprout <FontAwesomeIcon icon={faLeaf} />
-          </span>
-          <button className="back" onClick={this.back}>
-            <FontAwesomeIcon icon={faChevronLeft} />
+        <div className="sidebar">
+        <button className="btn" onClick={this.back}>
+          <p> Back to dashboard </p>
           </button>
-        </header>
-<div className="wrapper2">
-        <form className="right" onSubmit={this.handleSubmit}>
-          <h2> New Record </h2>
-          <div className="inputs">
-
-          <label htmlFor="apt">
-            <input value="Appointment" id="apt" type="radio" name="title" />
-            Appointment
-          </label>
-          <label htmlFor="Vaccination">
-            <input
-              value="Vaccination"
-              id="Vaccination"
-              type="radio"
-              name="title"
-            />
-            Vaccination
-          </label>
-          <label htmlFor="Medication">
-            <input
-              value="Medication"
-              id="Medication"
-              type="radio"
-              name="title"
-            />
-            Medication
-          </label>
-          </div>
-          <input name="notes" id="notes" type="text" placeholder="Notes" />
-          <input name="date" type="date" />
-          <input name="time" type="time" />
-
-          <input className="submit" type="submit" />
-        </form>
-        
-        <ul className="right">
-        <div className="buttons">
           <button className="btn" onClick={this.goHome}>
-            <FontAwesomeIcon icon={faHome} />
+          <FontAwesomeIcon icon={faHome} />
           </button>
           <button className="btn" onClick={this.apt}>
             <FontAwesomeIcon icon={faClinicMedical} />
           </button>
-          <button  className="btn" onClick={this.vac}>
+          <button className="btn" onClick={this.vac}>
             <FontAwesomeIcon icon={faSyringe} />
           </button>
-          <button  className="btn" onClick={this.med}>
+          <button className="btn" onClick={this.med}>
             <FontAwesomeIcon icon={faPrescriptionBottle} />
           </button>
+          <button className="btn" onClick={this.newHealth}>
+            New Record
+          </button>
         </div>
+<div className="height">
+{this.state.formOpen ? <form className="right" onSubmit={this.handleSubmit}>
+            <h2> New Record </h2>
+              <label htmlFor="apt">
+                <input value="Appointment" id="apt" type="radio" name="title" />
+                Appointment
+              </label>
+              <label htmlFor="Vaccination">
+                <input
+                  value="Vaccination"
+                  id="Vaccination"
+                  type="radio"
+                  name="title"
+                />
+                Vaccination
+              </label>
+              <label htmlFor="Medication">
+                <input
+                  value="Medication"
+                  id="Medication"
+                  type="radio"
+                  name="title"
+                />
+                Medication
+              </label>
+            <input name="notes" id="notes" type="text" placeholder="Notes" />
+            <input name="date" type="date" />
+            <input name="time" type="time" />
 
-          {sortedArray.map((apt, index) => {
-            let medical;
-            if (apt.title === "Appointment") {
-              medical = <FontAwesomeIcon icon={faClinicMedical} />;
-            } else if (apt.title === "Vaccination") {
-              medical = <FontAwesomeIcon icon={faSyringe} />;
-            } else if (apt.title === "Medication") {
-              medical = <FontAwesomeIcon icon={faPrescriptionBottle} />;
-            }
-            if (
-              Number(id) === apt.sproutid &&
-              !this.state.aptOpen &&
-              !this.state.vacOpen &&
-              !this.state.medOpen
-            ) {
-              return (
-                <>
-                  <span className="date">{apt.date}</span>
-                  <br />
-                  <span className="time">{apt.time}</span>
-                  <li key={index}>
-                    {medical}{" "}
-                    {[apt.title, " ", <br />, <span>{apt.notes}</span>]}
-                  </li>
-                </>
-              );
-            }
-            return null;
-          })}
-
-          {this.state.aptOpen ? apt : null}
-          {this.state.vacOpen ? vac : null}
-          {this.state.medOpen ? med : null}
-        </ul>
-</div>
-        
-      </>
-    );
+            <input className="submit" type="submit" />
+          </form> : <ul className="right">
+            {sortedArray.map((apt, index) => {
+              let medical;
+              if (apt.title === "Appointment") {
+                medical = <FontAwesomeIcon icon={faClinicMedical} />;
+              } else if (apt.title === "Vaccination") {
+                medical = <FontAwesomeIcon icon={faSyringe} />;
+              } else if (apt.title === "Medication") {
+                medical = <FontAwesomeIcon icon={faPrescriptionBottle} />;
+              }
+              if (
+                Number(id) === apt.sproutid &&
+                !this.state.aptOpen &&
+                !this.state.vacOpen &&
+                !this.state.medOpen
+              ) {
+                return (
+                  <>
+                    <span className="date">{apt.date}</span>
+                    <br />
+                    <span className="time">{apt.time}</span>
+                    <li key={index}>
+                      {medical}{" "}
+                      {[apt.title, " ", <br />, <span>{apt.notes}</span>]}
+                    </li>
+                  </>
+                );
+              }
+              return null;
+            })}
+            {this.state.aptOpen ? apt : null}
+            {this.state.vacOpen ? vac : null}
+            {this.state.medOpen ? med : null}
+          </ul>}
+          </div>
+</>)
   }
 }

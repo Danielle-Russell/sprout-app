@@ -95,9 +95,8 @@ overflow: auto;
         margin: 0;
         width: 50%;
     }
-    .wrapper2 {
-        height: 600px;
-        display: flex;
+    .container {
+    margin-left: 15%;
     }
 
    

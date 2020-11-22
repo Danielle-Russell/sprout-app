@@ -160,6 +160,11 @@ table, th, td {
     border: none;
     background-color: inherit;
 }
+
+.sidebar {
+    background-color:#587792;
+
+}
 @media all and (min-width: 800px) {
 
     .act-chart {
