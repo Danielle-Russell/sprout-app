@@ -1,7 +1,6 @@
 import React from "react";
 import Avatar from "react-avatar-edit";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLeaf } from "@fortawesome/free-solid-svg-icons";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import config from '../config'
 
@@ -25,6 +24,10 @@ export default class AddSprout extends React.Component {
     this.setState({ preview });
   };
 
+  close = () => {
+    this.props.history.push('/account/1')
+    window.location.reload()
+  }
   addNewSprout = sprout => {
 
     fetch(`${config.API_ENDPOINT}/api/sprouts`, {
@@ -43,6 +46,8 @@ export default class AddSprout extends React.Component {
       });
   }
 
+ 
+
   handleSubmit = (e) => {
     let user = localStorage.getItem('user email')
     e.preventDefault();
@@ -52,15 +57,11 @@ export default class AddSprout extends React.Component {
       age: e.target.age.value,
       image: this.state.preview
     };
-    console.log('new sprout', newSprout)
     this.addNewSprout(newSprout)
-
-    this.props.history.push(`/account/${user}`);
-    //window.location.reload()
-
   };
 
-  
+
+
   render() {
     return (
       <>
@@ -68,8 +69,8 @@ export default class AddSprout extends React.Component {
                 <button className="home" onClick={this.back}><FontAwesomeIcon icon={faHome} /></button>
 
                 </header>
-
         <form onSubmit={this.handleSubmit}>
+          <button onClick={this.close}>X</button>
           <h2> ADD SPROUT</h2>
           <input name="name" type="text" placeholder="Name" />
           <input name="age" type="text" placeholder="Birthday YYYY-MM-DD" />
@@ -88,7 +89,9 @@ export default class AddSprout extends React.Component {
             <img src={this.state.preview} alt="Preview" className="preview" />
           </div>
          
-          <input type="submit" />
+          <button type="submit">Submit</button>
+          <button onClick={this.close}>Confirm</button>
+
         </form>
       </>
     );

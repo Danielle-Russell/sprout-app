@@ -50,8 +50,12 @@ export default class Growth extends React.Component {
       units: e.target.units.value,
     };
     this.addNewGrowth(newGrowth);
-    window.location.reload();
   };
+
+   close = () => {
+     this.goHome()
+      window.location.reload();
+   }
 
   height = () => {
     this.setState({
@@ -151,17 +155,17 @@ export default class Growth extends React.Component {
     return (
       <>
         <div className="sidebar">
-          <button onClick={this.back}><p>Back to Dashboard </p></button>
-          <button onClick={this.goHome}>
+          <button className="btn" onClick={this.back}><p>Back to Dashboard </p></button>
+          <button className="btn" onClick={this.goHome}>
             <FontAwesomeIcon icon={faHome} />
           </button>
-          <button onClick={this.height}>
+          <button className="btn" onClick={this.height}>
             <FontAwesomeIcon icon={faRuler} />
           </button>
-          <button onClick={this.weight}>
+          <button className="btn" onClick={this.weight}>
             <FontAwesomeIcon icon={faWeight} />
           </button>
-          <button onClick={this.newGrowth}> <p>Add New Activity</p></button>
+          <button className="btn" onClick={this.newGrowth}> <p>Add New Activity</p></button>
         </div>
         <div className="height">
           {this.state.formOpen ? (
@@ -186,7 +190,9 @@ export default class Growth extends React.Component {
               </select>
               <input name="date" type="date" />
 
-              <input className="submit" type="submit" />
+              <button type="submit" className="submit">Confirm</button>
+              <button onClick={this.close} className='submit'>Submit</button>
+
             </form>
           ) : (
             sortedArray2.map((grow, index) => {

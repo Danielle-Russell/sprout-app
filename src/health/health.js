@@ -51,7 +51,7 @@ export default class Health extends React.Component {
     };
     this.addNewHealth(newHealth);
     e.preventDefault();
-    window.location.reload();
+    //window.location.reload();
   };
 
   apt = () => {

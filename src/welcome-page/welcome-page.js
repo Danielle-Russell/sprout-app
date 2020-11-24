@@ -47,7 +47,6 @@ export default class WelcomePage extends React.Component {
       thing()
 
       
-      console.log(sprouts)
         return (
       <>
         <header className="landing-header">
@@ -64,7 +63,7 @@ export default class WelcomePage extends React.Component {
         <div className="sprouts">
           <div className="sprouts-left">
             <h2>MY SPROUTS</h2>
-           {sprouts.length > 4 ? null : <p>To get started, add a profile for your children</p>}
+           {sprouts.length > 4 ? null : <p style={{color: "black"}}>Get started by adding your first profile</p>}
               {sprouts.map( sprout => {
                 if (sprout.name) {
               return <NavLink className="my-sprout" to={`/dashboard/${sprout.id}`}>
@@ -74,7 +73,7 @@ export default class WelcomePage extends React.Component {
                 </NavLink>
             }return null})}
             <NavLink to="/new-sprout">
-              <button className="submit"> Add Sprout</button>
+              <button className="sign-btn"> Add Sprout</button>
             </NavLink>
           </div>
          <div className='account-info'>
@@ -86,7 +85,7 @@ export default class WelcomePage extends React.Component {
              <input type="text" value={localStorage.getItem('lastname')}></input>
 Email
              <input type="text" value={localStorage.getItem('user email')}></input>
-<button onClick={this.back} className="submit"> DELETE ACCOUNT</button>
+<button style={{backgroundColor: "red"}}onClick={this.back} className="submit"> DELETE ACCOUNT</button>
            </form>
          </div>
          </div>

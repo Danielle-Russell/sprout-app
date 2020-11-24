@@ -83,7 +83,7 @@ var yd = years < 1 ? 'months' : 'years'
                 alt="profile"
               />
              
-                <p>{sprouts[i].name}</p> <p>{age} {yd}</p>
+            <p> {sprouts[i].name} <br /> <br /> {age} {yd}</p> 
 
             </div>
           );

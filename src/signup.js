@@ -58,10 +58,9 @@ export default class SignUp extends React.Component {
     .then(user => {
       this.setState({success: true})
       this.setState({error: false})
-      console.log(email.value)
       localStorage.setItem('new user email', email.value)
       localStorage.setItem('new user password', password.value)
-window.location.reload()
+//window.location.reload()
 
     })
     .catch(res => {
@@ -70,47 +69,46 @@ window.location.reload()
   }
 
   reset = () => {
+    var form = document.getElementById("form")
+    form.reset()
     localStorage.clear();
   }
+
+   
   render() {
 
     return (
-<div className="modal">
 
-      <form onSubmit={this.handleNewUser}         >
-      <button className="close" onClick={this.context.closeModal}>X</button>
-
-<div className="imgcontainer">
-<img className="user" src="https://img.icons8.com/fluent/2x/login-rounded-right.png" />
-</div>
+<div>
+      <form className="modal" onSubmit={this.handleNewUser}         >
+      <button className="close" onClick={this.context.go}>X</button>
  <b className="log"> Create Account</b>
           <input name="firstname" type="text" placeholder="First Name" />
           <input name="lastname" type="text" placeholder="Last Name" />
           <input name="email" type="email" placeholder="email" />
           <input name="password" type="password" placeholder="password" />
 
-          <button className="submit" type="submit" onClick={this.back}>
+          <button className="sign-btn" type="submit">
             Submit
           </button>
          
         </form>
         
-        <form onSubmit = {this.handleSubmitJwtAuth}>
+        <form id= "form" className="modal" onSubmit = {this.handleSubmitJwtAuth}>
         <b className="log"> Login</b>
 
         {this.state.error ? this.state.error : null}
 
-        <label for="email"><b>Email</b></label>
-          <input name="email" type="email" placeholder="email" value={localStorage.getItem('new user email')}/>
-          <label for="password"><b>Password</b></label>
+          <input name="email" type="email" placeholder="email" />
 
-          <input name="password" type="password" placeholder="password" value={localStorage.getItem('new user password')} />
-          <button className="submit" type="submit" >
+          <input name="password" type="password" placeholder="password" />
+          <button className="sign-btn" type="submit" >
             Submit
           </button>
-          <button className="submit" onClick={this.reset}>Reset</button>
- <button className="cancelbtn">Cancel</button>
+          <button className="cancelbtn" onClick={this.reset}>Cancel</button>
+
         </form>
+        
         </div>
 
      

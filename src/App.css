@@ -3,7 +3,7 @@
 form {
   text-align: center;
   display: grid;
-  margin: 15%; 
+  margin: 10%; 
 }
 
 input {
@@ -37,6 +37,3 @@ p {
   font-family: arial;
 }
 
-form {
-  width: 50%;
-}

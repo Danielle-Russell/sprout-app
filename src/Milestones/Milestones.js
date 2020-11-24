@@ -59,7 +59,11 @@ export default class Milestones extends React.Component {
     console.log(newMilestone)
     this.addNewMilestone(newMilestone)
 
-  window.location.reload()
+  }
+
+  close = () => {
+    this.showMilestones()
+    window.location.reload()
   }
 
   showForm = () => {
@@ -98,28 +102,30 @@ milestoneArray()
     const sortedArray = milestones
       .sort((a, b) => new Date(a.date) - new Date(b.date))
       .reverse();
-console.log(sortedArray)
     const specSprout = sortedArray.filter( spr => Number(id) === spr.sproutid);
-    const sproutImage = sprouts.map( spr => {
-console.log(spr.id)
-      if (spr.id === Number(this.props.match.params.id)) {
-        return spr.image}})
+    const sproutName = sprouts.map( spr => {
+    return <div>
+      <img className="profile-pic" src = {spr.image} />
+      <p>{spr.name}</p>
+      </div>})
     return (
       <>
+      <header>{sproutName}</header>
+
 <div className="sidebar">
-  <p className="sidebar-nav" onClick={this.back}>Back to Dashboard</p>
-  <p className="sidebar-nav" onClick={this.showMilestones}>Milestone Gallery</p>
+  <p className="sidebar-nav" onClick={this.back}>Back to Dashboard</p> 
+  <p className="sidebar-nav" onClick={this.showMilestones}>Milestone Gallery</p>  
   <p className="sidebar-nav" onClick={this.showForm}>New Milestone</p>
 
-
 </div>
-<header><img src={sproutImage} /></header>
+
 {this.state.showMilestones ? specSprout.map( spr => {
         return <div className="gallery">
           <img src={spr.image} />
           <div className="desc"><b>{spr.date}</b> <br /> {spr.notes}</div>
 
-          </div>}) : <form onSubmit={this.handleSubmit}>
+          </div>
+          }) : <form id="form" onSubmit={this.handleSubmit}>
           <h2>New Milestone</h2>
           <input name="title" id="title" type="text" placeholder="Name" />
 
@@ -127,7 +133,9 @@ console.log(spr.id)
           <input name="date" type="date" />
           <input type="file" onChange={this.handleChange}/>
 
-          <input className="submit" type="submit" />
+          <button className="submit" type="submit">Confirm</button>
+          <button className="submit" onClick={this.close}>Submit</button>
+
         </form>}
      
       </>

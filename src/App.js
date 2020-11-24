@@ -71,6 +71,7 @@ closeModal = () => {
   }
 
   addSprout = (newSprout) => {
+
     this.setState({
       sprouts: [...this.state.sprouts, newSprout],
     });
@@ -102,10 +103,10 @@ closeModal = () => {
   };
 
 go = () => {
-  console.log('works')
   this.setState({
     modalShown: false
   })
+  
   return <Route path='/account/:id'>
     <WelcomePage />
   </Route>

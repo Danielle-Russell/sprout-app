@@ -52,8 +52,10 @@ export default class ActivityLog extends React.Component {
       date: e.target.date.value,
       time: e.target.time.value,
     };
+    console.log(newActivity)
 this.addNewActivity(newActivity)
-    window.location.reload()
+this.goHome()
+    //window.location.reload()
 
   };
 
@@ -86,6 +88,7 @@ this.addNewActivity(newActivity)
   };
 
   goHome = () => {
+    //window.location.reload()
     this.setState({
       sleepOpen: false,
       diaperOpen: false,
@@ -192,7 +195,7 @@ activityArray()
     return (
       <div>
         <div className="sidebar">
-          <p onClick={this.back}>Back to Dashboard</p>
+          <p className="sidebar-nav" onClick={this.back}>Back to Dashboard</p>
           <button className="btn" onClick={this.goHome}>
             <FontAwesomeIcon icon={faHome} />
           </button>
@@ -205,7 +208,7 @@ activityArray()
           <button className="btn" onClick={this.showSleep}>
             <FontAwesomeIcon icon={faBed} />
           </button>
-          <p onClick={this.newActivity}>New Activity</p>
+          <p className="sidebar-nav" onClick={this.newActivity}>New Activity</p>
         </div>
         <div className = "container">
         {this.state.formOpen ? <form className="left" onSubmit={this.handleSubmit}>
