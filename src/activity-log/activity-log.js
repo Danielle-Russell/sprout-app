@@ -24,6 +24,11 @@ export default class ActivityLog extends React.Component {
     this.props.history.goBack();
   };
 
+  close = () => {
+    this.goHome()
+    window.location.reload()
+  }
+
   addNewActivity = activity => {
 
     fetch(`${config.API_ENDPOINT}/api/activities`, {
@@ -54,8 +59,7 @@ export default class ActivityLog extends React.Component {
     };
     console.log(newActivity)
 this.addNewActivity(newActivity)
-this.goHome()
-    //window.location.reload()
+
 
   };
 
@@ -230,7 +234,8 @@ activityArray()
           <input name="notes" id="notes" type="text" placeholder="Notes" />
           <input name="date" type="date" />
           <input name="time" type="time" />
-          <input className="submit" type="submit" />
+          <button className="submit" type="submit">Confirm</button>
+          <button onClick={this.close}>Submit</button>
         </form> : <ul className="right">
         
       

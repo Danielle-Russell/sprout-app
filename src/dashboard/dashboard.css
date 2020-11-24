@@ -75,8 +75,11 @@ p {
 
 table, th, td {
     border: 1px solid black;
-    margin-top: 5%;
-    margin-left: 20%;
+   margin-left: 0;
+   margin-top: 1%;
+   width: 80%;
+   margin: auto;
+
     
   }
   
@@ -159,9 +162,10 @@ table, th, td {
    }
 
    .recent-feed {
-    width: 80%;
+    width: 100%;
     border: none;
     background-color: inherit;
+    margin: auto;
 }
 
 .sidebar {
@@ -169,10 +173,15 @@ table, th, td {
 
 }
 @media all and (min-width: 800px) {
+table, th, td {
+    margin-left: 45%;
+    width: 50%;  
+     margin: auto;
 
+}
     .act-chart {
-        width: 50%;
-        margin: 20px;
+        width: 100%;
+        margin: auto;
     }
 
     .box {
@@ -190,6 +199,13 @@ table, th, td {
         
     }
 
+    .wrapper2 {
+        display: flex;
+        flex-direction: row;
+        width: 80%;
+
+        
+    }
     .sidebar {
         position: fixed;
         height: 100%;
@@ -214,7 +230,6 @@ header {
     .recent-feed {
         width: 100%;
     }
-
 
 
 

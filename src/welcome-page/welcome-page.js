@@ -78,7 +78,7 @@ export default class WelcomePage extends React.Component {
           </div>
          <div className='account-info'>
            <h2>ACCOUNT INFORMATION</h2>
-           <form onSubmit={this.deleteUser}>
+           <form className="delete" onSubmit={this.deleteUser}>
              First Name
              <input type="text" value={localStorage.getItem('firstname')}></input>
              Last Name

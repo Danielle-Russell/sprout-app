@@ -21,7 +21,13 @@ export default class Health extends React.Component {
 
   back = () => {
     this.props.history.goBack();
+
   };
+
+  close = () => {
+    this.goHome()
+    window.location.reload()
+  }
 
   addNewHealth = (health) => {
     fetch(`${config.API_ENDPOINT}/api/health`, {
@@ -190,7 +196,7 @@ export default class Health extends React.Component {
           </button>
         </div>
 <div className="height">
-{this.state.formOpen ? <form className="right" onSubmit={this.handleSubmit}>
+{this.state.formOpen ? <form className="left" onSubmit={this.handleSubmit}>
             <h2> New Record </h2>
               <label htmlFor="apt">
                 <input value="Appointment" id="apt" type="radio" name="title" />
@@ -218,7 +224,9 @@ export default class Health extends React.Component {
             <input name="date" type="date" />
             <input name="time" type="time" />
 
-            <input className="submit" type="submit" />
+            <button type="submit">Confirm</button>
+            <button onClick={this.close}>Submit</button>
+
           </form> : <ul className="right">
             {sortedArray.map((apt, index) => {
               let medical;

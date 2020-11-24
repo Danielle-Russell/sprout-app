@@ -19,6 +19,7 @@ export default class AddSprout extends React.Component {
 
   back = () => {
       this.props.history.goBack();
+
   }
   onCrop = (preview) => {
     this.setState({ preview });

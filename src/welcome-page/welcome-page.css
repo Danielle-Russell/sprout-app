@@ -64,6 +64,15 @@ margin: 5%;
 .sprouts-left {
     width: 50%;
 }
+
+.delete {
+    width: 100%;
+}
+
+.delete button {
+    margin: 0;
+    padding: 0;
+}
 }
 
 

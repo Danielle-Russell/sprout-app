@@ -16,6 +16,7 @@ export default class Milestones extends React.Component {
 
   back = () => {
     this.props.history.goBack();
+
   };
 
   addNewMilestone = mile => {

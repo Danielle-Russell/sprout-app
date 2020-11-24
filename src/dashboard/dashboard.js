@@ -18,6 +18,7 @@ export default class Dashboard extends React.Component {
 
   back = () => {
     this.props.history.goBack();
+
   };
 
   
@@ -90,7 +91,7 @@ var yd = years < 1 ? 'months' : 'years'
         }
       }
     };
-    const dashboardArray = activities.concat(health, growth, milestones);
+    const dashboardArray = activities.concat(health, growth);
     const dashArray = dashboardArray.filter((element) => element !== "");
     const finalDashArray = dashArray.sort(
       (a, b) => new Date(a.date + a.time) - new Date(b.date + b.time)
@@ -276,7 +277,7 @@ const recent = array.sort((a, b) => new Date(a.date) - new Date(b.date))
             />
           </div>
           </div>
-          <div className="wrapper">
+          <div className="wrapper2">
     
         <div className="act-chart">
         <Doughnut
@@ -292,11 +293,12 @@ const recent = array.sort((a, b) => new Date(a.date) - new Date(b.date))
                   averageDailyDiaper,
                 ],
                 fill: true,
-                backgroundColor: ["#587792", "#8DB1AB", "#CEE397"],
+                backgroundColor: ["#457b9d", "#a8dadc", "#1d3557"],
                 borderColor: "rgba(75,192,192,1)",
               },
             ],
           }}
+  
           options = {{
             title: {
               text: "Average Distribution of Daily Activities",
@@ -348,7 +350,7 @@ var color;
 var src;
   var time = act.time;
   var date = act.date;
-  if (now <= date) {
+  if (now <= date && time) {
     var timeFormatted = moment(time, "HH:mm").fromNow();
     var date = timeFormatted;
   } else {
@@ -369,7 +371,7 @@ src="https://static.thenounproject.com/png/749416-200.png"
   return (
     <>
       <span className="dash-span">
-        {date} 
+{date}
       </span>
       <li className={color}><strong>{act.title}</strong> <br /> {act.notes}  <img className="recent-feed-img
       " src={src} /></li>
