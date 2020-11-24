@@ -104,10 +104,11 @@ milestoneArray()
       .reverse();
     const specSprout = sortedArray.filter( spr => Number(id) === spr.sproutid);
     const sproutName = sprouts.map( spr => {
+      if (spr.id === Number(id)) {
     return <div>
       <img className="profile-pic" src = {spr.image} />
       <p>{spr.name}</p>
-      </div>})
+      </div>} return null})
     return (
       <>
       <header>{sproutName}</header>
