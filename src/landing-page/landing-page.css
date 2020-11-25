@@ -1,31 +1,15 @@
 
-body {
-   background-color: #DADED4;
-}
-header {
-  height: 100px;
-}
-.heading {
-font-family: arial;
-margin-right: 10px;
+
+#landing-title {
+   margin: 20%;
+   font-size: 30px;
+   color: #ffffff;
 }
 
-.landing-title {
-    color: #3C403D;
-    font-size: 20px;
-    text-align: center;
-}
 
 h2 {
     color: #3C403D
 }
-
-
-hr {
-    height: 2px;
-    background-color: #39603D;
-}
-
 
 
 .link {
@@ -45,21 +29,20 @@ hr {
     padding: 10px;
 }
 
-hr {
-    margin-left: 40%;
-    margin-right: 40%;
-
-}
-
-
-.modal{
-    padding: 16px;
-    top: 0;
-    display: flex;
-    flex-direction: column;
-background-color: white;
-  }
-
+.modal {
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 50%; /* Full width */
+  height: 50%; /* Full height */
+  margin-top: 5%;
+  margin-left: 25%;
+  margin-right: 10%;
+  overflow: auto; /* Enable scroll if needed */
+  /*background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.4);*/
+    }
   .sidebar-nav:hover {
     color: grey;
   }
@@ -80,11 +63,12 @@ background-color: white;
     float: right;
     font-size: 28px;
     font-weight: bold;
-    background-color: inherit;
     border: none;
     text-align: left;
   }
 
+
+  
   .close:hover,
 .close:focus {
   color: #000;
@@ -93,21 +77,16 @@ background-color: white;
 }
 
 
-.open {
+.shown {
     -webkit-filter: blur(5px) grayscale(90%);
 }
 
-.close {
-    background-color: white;
-
-}
     
     
 form {
     border: 3px solid #f1f1f1;
     padding: 10px;
     background-color: #f1f1f1;
-    width: 80%;
   }
   
   input[type=email], input[type=password], input[type=text] {
@@ -119,17 +98,6 @@ form {
     box-sizing: border-box;
   }
 
-  .imgcontainer {
-    text-align: center;
-    margin: 24px 0 12px 0;
-  }
-  
-  img.user {
-    width: 40%;
-    border-radius: 50%;
-  }
-  
-  
  .sign-btn {
     background-color: #0096c7;
     color: white;
@@ -187,31 +155,74 @@ p {
     background-color: white;
   }
 
-  .sign-form {
-    background-color: white;
+  .landing-body {
+    background-color: #a8dadc;
+    height: 100%;
+    padding: 10%;
   }
-  @media all and (min-width: 800px) {
 
   .sign-form {
-    margin: 0;
+    background-color: white;
+    margin: auto;
+    width: 100%;
+  }
+
+  header img {
+    height: 80px;
+  }
+ 
+  .landing-box img{
+    height: 200px;
+    width: 100%;
+
+  }
+
+  .landing-box {
+   width: 100%;
+   padding: 1%;
+   margin: 1%;
+   height: 300px;
+  }
+
+  #landing-box-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 2%;
+    background-color: #fffff7
+  }
+
+  .sign-form {
+    margin: auto;
     padding: 0;
     background-color: white;
+
   }
+  .landing-how-to img {
+    height: 300px;
+    width: 100%;
+    margin: auto;
+  }
+  
+  #how-to-wrapper {
+    background-color: #a8dadc;
+    padding: 1%;
+  }
+
+  @media all and (min-width: 800px) {
+  
+
   .sign-btn {
     padding: 10px;
   }
-  .modal {
-width: 50%;
-  margin: auto;
-  height: 80%;
+ 
+.modal-div {
+  display: block;
 }
-
 .sidebar {
   flex-direction: column;
 }
 
 form {
-  width: 50%;
   margin: auto;
   height: 100%;
 }
@@ -227,17 +238,32 @@ form {
     height: 200px;
     object-fit: cover;
 
+
   }
 
   .sidebar-nav {
     margin: 10%;
   }
 
-  .landing-header {
-    margin-left: 0;
-    padding: 0;
-    margin: 0;
-    background-color: inherit;
-  }
+
+ .landing-how-to {
+   display: flex;
+   flex-direction: row;
+   margin: 10%;
+ }
+
+ #how-to-wrapper {
+ padding: 5%;
+ }
+ .landing-how-to img {
+   height: 300px;
+   width: auto;
+ }
+
+ #landing-box-wrapper {
+   flex-direction: row;
+ }
+
+    
 
   }

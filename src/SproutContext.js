@@ -15,7 +15,8 @@ React.createContext({
     addNewUser: () => {},
     showModal: () => {},
     closeModal: () => {},
-    modalShown: false
+    modalShown: false,
+    error: null
 })
 
 export default SproutContext

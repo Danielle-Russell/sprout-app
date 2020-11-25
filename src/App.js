@@ -25,6 +25,7 @@ class App extends React.Component {
     milestones: {},
     growth: {},
     modalShown: false,
+    error: null
   }
 }
 showModal = () => {
@@ -104,12 +105,10 @@ closeModal = () => {
 
 go = () => {
   this.setState({
+    error: false,
     modalShown: false
   })
-  
-  return <Route path='/account/:id'>
-    <WelcomePage />
-  </Route>
+  window.location.reload()
 
 }
   
@@ -130,7 +129,8 @@ render() {
     showModal: this.showModal,
     closeModal: this.closeModal,
     modalShown: this.state.modalShown,
-    go: this.go
+    go: this.go,
+    error: this.state.error
   }
 
   return (

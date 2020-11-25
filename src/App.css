@@ -1,14 +1,7 @@
 /* For signup form */
 
-form {
-  text-align: center;
-  display: grid;
-  margin: 10%; 
-}
 
-input {
-  margin: 1%;
-}
+
 
 .avatar {
   display: flex;
