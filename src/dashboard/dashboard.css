@@ -1,9 +1,10 @@
 
 
 header {
-    margin-left: 0;
-    /*background-color: #605F5E;*/
-    background-color: #4A4A48;
+    background-color:#587792;
+
+  
+
     
 }
 
@@ -173,6 +174,10 @@ table, th, td {
 
 }
 @media all and (min-width: 800px) {
+
+    header {
+        margin-left: 0;
+    }
 table, th, td {
     margin-left: 45%;
     width: 50%;  
@@ -216,10 +221,10 @@ table, th, td {
         top: 0;
     }
     
-header {
-    margin-left: 10%;
-}
-
+    header {
+        margin-left: 10%;
+    }
+    
 
 .item {
     width: 85%;

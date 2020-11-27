@@ -85,7 +85,7 @@ export default class WelcomePage extends React.Component {
              <input type="text" value={localStorage.getItem('lastname')}></input>
 Email
              <input type="text" value={localStorage.getItem('user email')}></input>
-<button style={{backgroundColor: "red"}}onClick={this.back} className="submit"> DELETE ACCOUNT</button>
+<button style={{backgroundColor: "red"}}onClick={this.back} className="sign-btn"> DELETE ACCOUNT</button>
            </form>
          </div>
          </div>

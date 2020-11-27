@@ -443,16 +443,17 @@ src="https://static.thenounproject.com/png/749416-200.png"
                 return (
                   <Link className="link" to={`/milestones/${sprout.id}`}>
                     <h1>Milestones</h1>
+                    <img
+              className="grow"
+              alt="sprout"
+              src="https://freeiconshop.com/wp-content/uploads/edd/badge-flat.png"
+            />
                   </Link>
                 );
               }
               return null;
             })}
-            <img
-              className="grow"
-              alt="sprout"
-              src="https://freeiconshop.com/wp-content/uploads/edd/badge-flat.png"
-            />
+         
           </ul>
 
           <ul className = "box">
