@@ -7,7 +7,6 @@ import moment from "moment";
 import { Line } from "react-chartjs-2";
 import { Doughnut } from "react-chartjs-2";
 import ChartDataLabels from "chartjs-plugin-datalabels";
-import ActivityLog from '../activity-log/activity-log'
 
 import SproutContext from "../SproutContext";
 
@@ -458,7 +457,7 @@ src="https://static.thenounproject.com/png/749416-200.png"
               }
               return null;
             })}
-         
+
           </ul>
 
           <ul className = "box">
