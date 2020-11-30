@@ -15,9 +15,17 @@ export default class Milestones extends React.Component {
   static contextType = SproutContext;
 
   back = () => {
-    this.props.history.goBack();
+    this.props.history.push(`/dashboard/${this.props.match.params.id}`);
 
   };
+
+  
+  goBack = () => {
+    setTimeout(function(){ window.location.reload() }, 1000);
+    this.setState({
+      formOpen: false
+    })
+  }
 
   addNewMilestone = mile => {
 
@@ -32,6 +40,7 @@ export default class Milestones extends React.Component {
         return response.json()
       })
       .then(responseJson => this.context.addMilestone(responseJson))
+      .then(this.goBack())
       .catch((error) => {
         console.log(error.message)
         this.setState({hasError: true})
@@ -57,15 +66,11 @@ export default class Milestones extends React.Component {
       date: e.target.date.value,
       image: this.state.file
     };
-    console.log(newMilestone)
     this.addNewMilestone(newMilestone)
 
   }
 
-  close = () => {
-    this.showMilestones()
-    window.location.reload()
-  }
+
 
   showForm = () => {
     this.setState({
@@ -127,16 +132,15 @@ milestoneArray()
           <div className="desc"><b>{spr.date}</b> <br /> {spr.notes}</div>
 
           </div>
-          }) : <form id="form" onSubmit={this.handleSubmit}>
+          }) : <form className="left" onSubmit={this.handleSubmit}>
           <h2>New Milestone</h2>
-          <input name="title" id="title" type="text" placeholder="Name" />
+          <input name="title" id="title" type="text" placeholder="Name" required />
 
-          <input name="notes" id="notes" type="text" placeholder="Notes" />
-          <input name="date" type="date" />
+          <input name="notes" id="notes" type="text" placeholder="Notes" required />
+          <input name="date" type="date" required />
           <input type="file" onChange={this.handleChange}/>
 
-          <button className="submit" type="submit">Confirm</button>
-          <button className="submit" onClick={this.close}>Submit</button>
+          <input type="submit" />
 
         </form>}
      

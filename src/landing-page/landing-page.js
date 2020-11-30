@@ -73,10 +73,10 @@ export default class LandingPage extends React.Component {
             
             <form id="landing-form" onSubmit={this.handleNewUser}>
               <b className="log"> Create Account</b>
-              <input name="firstname" type="text" placeholder="First Name" />
-              <input name="lastname" type="text" placeholder="Last Name" />
-              <input name="email" type="email" placeholder="email" />
-              <input name="password" type="password" placeholder="password" />
+              <input name="firstname" type="text" placeholder="First Name" required />
+              <input name="lastname" type="text" placeholder="Last Name" required/>
+              <input name="email" type="email" placeholder="email" required />
+              <input name="password" type="password" placeholder="password" required />
               <button className="sign-btn" type="submit">
                 Submit
               </button>

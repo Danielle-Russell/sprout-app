@@ -17,9 +17,14 @@ export default class Dashboard extends React.Component {
   static contextType = SproutContext;
 
   back = () => {
-    this.props.history.goBack();
+    this.props.history.push(`/dashboard/${this.props.match.params.id}`);
 
   };
+
+   backSprouts = () => {
+    this.props.history.push(`/account/${this.props.match.params.id}`);
+
+   }
 
   
   render() {
@@ -390,7 +395,7 @@ src="https://static.thenounproject.com/png/749416-200.png"
       <>
         <header>{findFinalId()} </header>
         <div className="sidebar">
-        <button className="home-btn" onClick={this.back}>
+        <button className="home-btn" onClick={this.backSprouts}>
             <FontAwesomeIcon icon={faLongArrowAltLeft}/> Back To Sprouts
           </button>
           </div>

@@ -20,14 +20,17 @@ export default class Health extends React.Component {
   };
 
   back = () => {
-    this.props.history.goBack();
-
+    this.props.history.push(`/dashboard/${this.props.match.params.id}`);
   };
 
-  close = () => {
-    this.goHome()
-    window.location.reload()
+
+  goBack = () => {
+    setTimeout(function(){ window.location.reload() }, 1000);
+    this.setState({
+      formOpen: false
+    })
   }
+
 
   addNewHealth = (health) => {
     fetch(`${config.API_ENDPOINT}/api/health`, {
@@ -41,12 +44,15 @@ export default class Health extends React.Component {
         return response.json();
       })
       .then((responseJson) => this.context.addHealth(responseJson))
+      .then(this.goBack())
       .catch((error) => {
         this.setState({ hasError: true });
       });
   };
 
   handleSubmit = (e) => {
+    e.preventDefault();
+
     const newHealth = {
       useremail: localStorage.getItem("user email"),
       sproutid: parseInt(this.props.match.params.id),
@@ -56,8 +62,7 @@ export default class Health extends React.Component {
       time: e.target.time.value,
     };
     this.addNewHealth(newHealth);
-    e.preventDefault();
-    //window.location.reload();
+  
   };
 
   apt = () => {
@@ -199,7 +204,7 @@ export default class Health extends React.Component {
 {this.state.formOpen ? <form className="left" onSubmit={this.handleSubmit}>
             <h2> New Record </h2>
               <label htmlFor="apt">
-                <input value="Appointment" id="apt" type="radio" name="title" />
+                <input value="Appointment" id="apt" type="radio" name="title" required />
                 Appointment
               </label>
               <label htmlFor="Vaccination">
@@ -208,7 +213,7 @@ export default class Health extends React.Component {
                   id="Vaccination"
                   type="radio"
                   name="title"
-                />
+                required />
                 Vaccination
               </label>
               <label htmlFor="Medication">
@@ -217,15 +222,14 @@ export default class Health extends React.Component {
                   id="Medication"
                   type="radio"
                   name="title"
-                />
+                required />
                 Medication
               </label>
-            <input name="notes" id="notes" type="text" placeholder="Notes" />
-            <input name="date" type="date" />
-            <input name="time" type="time" />
+            <input name="notes" id="notes" type="text" placeholder="Notes" required />
+            <input name="date" type="date" required />
+            <input name="time" type="time" required/>
 
-            <button type="submit">Confirm</button>
-            <button onClick={this.close}>Submit</button>
+            <input type="submit" />
 
           </form> : <ul className="right">
             {sortedArray.map((apt, index) => {

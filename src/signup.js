@@ -59,9 +59,9 @@ export default class SignUp extends React.Component {
 
         {this.state.error ? this.state.error : null}
 
-          <input name="email" type="email" placeholder="email" />
+          <input name="email" type="email" placeholder="email" required />
 
-          <input name="password" type="password" placeholder="password" />
+          <input name="password" type="password" placeholder="password" required />
           <button className="sign-btn" type="submit" >
             Submit
           </button>

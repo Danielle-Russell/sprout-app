@@ -85,7 +85,7 @@ overflow: auto;
     }
 
     .left {
-        margin: 0;
+        margin-left: 10%;
         width: 50%;
     }
     .container {

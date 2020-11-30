@@ -21,12 +21,15 @@ export default class ActivityLog extends React.Component {
   static contextType = SproutContext;
 
   back = () => {
-    this.props.history.goBack();
+    this.props.history.push(`/dashboard/${this.props.match.params.id}`);
   };
 
-  close = () => {
-    this.goHome()
-    window.location.reload()
+
+  goBack = () => {
+    setTimeout(function(){ window.location.reload() }, 1000);
+    this.setState({
+      formOpen: false
+    })
   }
 
   addNewActivity = activity => {
@@ -42,6 +45,7 @@ export default class ActivityLog extends React.Component {
         return response.json()
       })
       .then(responseJson => this.context.addActivity(responseJson))
+      .then(this.goBack())
       .catch((error) => {
         this.setState({hasError: true})
       });
@@ -57,7 +61,6 @@ export default class ActivityLog extends React.Component {
       date: e.target.date.value,
       time: e.target.time.value,
     };
-    console.log(newActivity)
 this.addNewActivity(newActivity)
 
 
@@ -219,23 +222,22 @@ activityArray()
           <h2>New Activity</h2>
         
           <label htmlFor="feed">
-            <input value="Feed" id="feed" type="radio" name="title" />
+            <input value="Feed" id="feed" type="radio" name="title" required />
             Feed
           </label>
           <label htmlFor="diaper">
-            <input value="Diaper" id="diaper" type="radio" name="title" />
+            <input value="Diaper" id="diaper" type="radio" name="title" required />
             Diaper Change
           </label>
           <label htmlFor="sleep">
-            <input value="Sleep" id="sleep" type="radio" name="title" />
+            <input value="Sleep" id="sleep" type="radio" name="title" required />
             Sleep
           </label>
 
-          <input name="notes" id="notes" type="text" placeholder="Notes" />
-          <input name="date" type="date" />
-          <input name="time" type="time" />
-          <button className="submit" type="submit">Confirm</button>
-          <button onClick={this.close}>Submit</button>
+          <input name="notes" id="notes" type="text" placeholder="Notes" required />
+          <input name="date" type="date" required />
+          <input name="time" type="time" required />
+          <input type="submit" />
         </form> : <ul className="right">
         
       

@@ -18,8 +18,16 @@ export default class Growth extends React.Component {
   static contextType = SproutContext;
 
   back = () => {
-    this.props.history.goBack();
+    this.props.history.push(`/dashboard/${this.props.match.params.id}`);
   };
+
+
+  goBack = () => {
+    setTimeout(function(){ window.location.reload() }, 1000);
+    this.setState({
+      formOpen: false
+    })
+  }
 
   addNewGrowth = (growth) => {
     fetch(`${config.API_ENDPOINT}/api/growth`, {
@@ -33,6 +41,7 @@ export default class Growth extends React.Component {
         return response.json();
       })
       .then((responseJson) => this.context.addGrowth(responseJson))
+      .then(this.goBack())
       .catch((error) => {
         this.setState({ hasError: true });
       });
@@ -52,10 +61,6 @@ export default class Growth extends React.Component {
     this.addNewGrowth(newGrowth);
   };
 
-   close = () => {
-     this.goHome()
-      window.location.reload();
-   }
 
   height = () => {
     this.setState({
@@ -171,27 +176,24 @@ export default class Growth extends React.Component {
           {this.state.formOpen ? (
             <form className="left" onSubmit={this.handleSubmit}>
               <h2> New Growth Record </h2>
-              <div className="inputs">
                 <label htmlFor="height">
-                  <input value="Height" type="radio" name="title" />
+                  <input value="Height" type="radio" name="title" required />
                   Height{" "}
                 </label>
                 <label htmlFor="weight">
-                  <input value="Weight" type="radio" name="title" />
+                  <input value="Weight" type="radio" name="title" required />
                   Weight{" "}
                 </label>
-              </div>
 
-              <input name="notes" type="text" placeholder="Notes" />
-              <input name="number" type="text" placeholder="Number" />
+              <input name="notes" type="text" placeholder="Notes" required/>
+              <input name="number" type="text" placeholder="Number" required/>
               <select name="units">
                 <option value="lbs">lbs</option>
                 <option value="inches">inches</option>
               </select>
-              <input name="date" type="date" />
+              <input name="date" type="date" required />
 
-              <button type="submit" className="submit">Confirm</button>
-              <button onClick={this.close} className='submit'>Submit</button>
+              <input type="submit" />
 
             </form>
           ) : (
