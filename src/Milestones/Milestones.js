@@ -137,7 +137,7 @@ milestoneArray()
           <input name="title" id="title" type="text" placeholder="Name" required />
 
           <input name="notes" id="notes" type="text" placeholder="Notes" required />
-          <input name="date" type="date" required />
+          <input name="date" type="date" required placeholder="Date YYYY-MM-DD" />
           <input type="file" onChange={this.handleChange}/>
 
           <input type="submit" />

@@ -191,7 +191,7 @@ export default class Growth extends React.Component {
                 <option value="lbs">lbs</option>
                 <option value="inches">inches</option>
               </select>
-              <input name="date" type="date" required />
+              <input name="date" type="date" required placeholder="Date YYYY-MM-DD" />
 
               <input type="submit" />
 

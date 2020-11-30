@@ -226,8 +226,8 @@ export default class Health extends React.Component {
                 Medication
               </label>
             <input name="notes" id="notes" type="text" placeholder="Notes" required />
-            <input name="date" type="date" required />
-            <input name="time" type="time" required/>
+            <input name="date" type="date" required  placeholder="Date YYYY-MM-DD"/>
+            <input name="time" type="time" required placeholder="Time HH-mm"/>
 
             <input type="submit" />
 
