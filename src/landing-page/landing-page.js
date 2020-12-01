@@ -1,7 +1,7 @@
 import React from "react";
 import "./landing-page.css";
 import SproutContext from "../SproutContext";
-import SignUp from "../signup";
+import Login from "../Login";
 import AuthApiService from "../auth-api-service";
 import placeholder from "./placeholder.png";
 
@@ -40,12 +40,6 @@ export default class LandingPage extends React.Component {
       });
   };
 
-  reset = () => {
-    var form = document.getElementById("form");
-    form.reset();
-    localStorage.clear();
-  };
-
   render() {
     let background = "";
     if (this.context.modalShown) {
@@ -58,7 +52,7 @@ export default class LandingPage extends React.Component {
  
  <div id="modal-div">
             {this.context.modalShown === true ? (
-          <SignUp history={this.props.history} />
+          <Login history={this.props.history} />
         ) : null}
         </div>
         <div className={background}>
@@ -98,7 +92,7 @@ export default class LandingPage extends React.Component {
 
         <div id="landing-box-wrapper">
           <div className="landing-box">
-            <img src="https://www.flaticon.com/svg/static/icons/svg/2972/2972085.svg" />
+            <img src="https://www.flaticon.com/svg/static/icons/svg/2972/2972085.svg" alt="" />
             <b>Tracking</b>
             <p style={{ color: "black" }}>
               Keep daily logs of your child's activities. Sprout will
@@ -107,7 +101,7 @@ export default class LandingPage extends React.Component {
             </p>
           </div>
           <div className="landing-box">
-            <img src="https://www.flaticon.com/svg/static/icons/svg/3094/3094275.svg" />
+            <img src="https://www.flaticon.com/svg/static/icons/svg/3094/3094275.svg" alt=""/>
             <b>Achieving</b>
             <p style={{ color: "black" }}>
               Record your child's milestones. Include a photo to view an image
@@ -115,7 +109,7 @@ export default class LandingPage extends React.Component {
             </p>
           </div>
           <div className="landing-box">
-            <img src="https://www.flaticon.com/svg/static/icons/svg/3772/3772926.svg" />
+            <img src="https://www.flaticon.com/svg/static/icons/svg/3772/3772926.svg" alt="" />
             <b>Logging</b>
             <p style={{ color: "black" }}>
               Never lose track of appointment summaries and vaccination

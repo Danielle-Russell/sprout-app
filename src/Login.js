@@ -2,11 +2,9 @@ import React from "react";
 import SproutContext from './SproutContext';
 import AuthApiService from './auth-api-service'
 import TokenService from './token-service';
-import { Route, Link } from 'react-router-dom';
-import WelcomePage from './welcome-page/welcome-page'
 
 
-export default class SignUp extends React.Component {
+export default class Login extends React.Component {
 
   state = {
     error: null
@@ -14,7 +12,6 @@ export default class SignUp extends React.Component {
 
   static contextType = SproutContext;
 
- 
 
   handleSubmitJwtAuth = ev => {
     ev.preventDefault()
@@ -42,8 +39,6 @@ export default class SignUp extends React.Component {
       this.setState({ error: res.error })
     })
   }
-
-  
    
   render() {
 
@@ -52,7 +47,7 @@ export default class SignUp extends React.Component {
 <div>
      
         
-        <form className="modal" onSubmit = {this.handleSubmitJwtAuth}>
+        <form id="login-form" className="modal" onSubmit = {this.handleSubmitJwtAuth}>
         <button className="close" onClick={this.context.go}>X</button>
 
         <b className="log"> Login</b>
@@ -65,7 +60,7 @@ export default class SignUp extends React.Component {
           <button className="sign-btn" type="submit" >
             Submit
           </button>
-          <button className="cancelbtn" onClick={this.reset}>Cancel</button>
+          <button className="cancelbtn" onClick={this.context.closeModal}>Cancel</button>
 
         </form>
         

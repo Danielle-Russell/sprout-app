@@ -112,7 +112,7 @@ milestoneArray()
     const sproutName = sprouts.map( spr => {
       if (spr.id === Number(id)) {
     return <div>
-      <img className="profile-pic" src = {spr.image} />
+      <img className="profile-pic" src = {spr.image} alt="personal" />
       <p>{spr.name}</p>
       </div>} return null})
     return (
@@ -128,7 +128,7 @@ milestoneArray()
 
 {this.state.showMilestones ? specSprout.map( spr => {
         return <div className="gallery">
-          <img src={spr.image} />
+          <img src={spr.image} alt="personal" />
           <div className="desc"><b>{spr.date}</b> <br /> {spr.notes}</div>
 
           </div>

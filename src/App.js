@@ -3,7 +3,6 @@ import './App.css';
 import { Route } from 'react-router-dom';
 import LandingPage from './landing-page/landing-page';
 import Dashboard from './dashboard/dashboard';
-import SignUp from './signup';
 import WelcomePage from './welcome-page/welcome-page';
 import ActivityLog from './activity-log/activity-log';
 import Health from './health/health';
@@ -103,15 +102,6 @@ closeModal = () => {
     });
   };
 
-go = () => {
-  this.setState({
-    error: false,
-    modalShown: false
-  })
-  window.location.reload()
-
-}
-  
 render() {
   const contextValue = {
     sprouts: this.state.sprouts,

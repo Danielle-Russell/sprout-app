@@ -1,8 +1,6 @@
 import React from "react";
 import SproutContext from "./SproutContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLeaf } from "@fortawesome/free-solid-svg-icons";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { faRuler } from "@fortawesome/free-solid-svg-icons";
 import { faWeight } from "@fortawesome/free-solid-svg-icons";
 import config from "./config";
@@ -21,13 +19,14 @@ export default class Growth extends React.Component {
     this.props.history.push(`/dashboard/${this.props.match.params.id}`);
   };
 
-
   goBack = () => {
-    setTimeout(function(){ window.location.reload() }, 1000);
+    setTimeout(function () {
+      window.location.reload();
+    }, 1000);
     this.setState({
-      formOpen: false
-    })
-  }
+      formOpen: false,
+    });
+  };
 
   addNewGrowth = (growth) => {
     fetch(`${config.API_ENDPOINT}/api/growth`, {
@@ -60,7 +59,6 @@ export default class Growth extends React.Component {
     };
     this.addNewGrowth(newGrowth);
   };
-
 
   height = () => {
     this.setState({
@@ -112,19 +110,18 @@ export default class Growth extends React.Component {
       if (grow.title === "Height" && grow.sproutid === Number(id)) {
         return (
           <div className="height">
-            <span className="date">{grow.date}</span>
             <li key={index}>
-              <FontAwesomeIcon icon={faRuler} />
-              {[
-                grow.title,
-                " ",
-                <br />,
-                <span>
-                  {grow.number} {grow.units}
-                </span>,
-                <br />,
-                <span>{grow.notes}</span>,
-              ]}
+              <img width={50} src="https://www.flaticon.com/svg/static/icons/svg/2589/2589559.svg" alt="measuring tape" />
+              <span className="date">{grow.date}</span>
+              <br />
+        
+              {grow.title}
+              <br />
+              <span>
+                {grow.number} {grow.units}
+              </span>
+              <br />
+              <span>{grow.notes}</span>
             </li>
           </div>
         );
@@ -136,20 +133,17 @@ export default class Growth extends React.Component {
       if (grow.title === "Weight" && grow.sproutid === Number(id)) {
         return (
           <div className="height">
-            <span className="date">{grow.date}</span>
-
             <li key={index}>
-              <FontAwesomeIcon icon={faWeight} />{" "}
-              {[
-                grow.title,
-                " ",
-                <br />,
-                <span>
-                  {grow.number} {grow.units}
-                </span>,
-                <br />,
-                <span>{grow.notes}</span>,
-              ]}
+              <span className="date">{grow.date}</span>
+              <br />
+              <img src="https://www.flaticon.com/svg/static/icons/svg/822/822133.svg" alt="scale" width={50} />
+              {grow.title}
+              <br />
+              <span>
+                {grow.number} {grow.units}
+              </span>
+              <br />
+              <span>{grow.notes}</span>
             </li>
           </div>
         );
@@ -160,77 +154,60 @@ export default class Growth extends React.Component {
     return (
       <>
         <div className="sidebar">
-          <button className="btn" onClick={this.back}><p>Back to Dashboard </p></button>
+          <button className="btn" onClick={this.back}>
+            <p>
+              <FontAwesomeIcon icon={faLongArrowAltLeft} /> Back to Dashboard{" "}
+            </p>
+          </button>
           <button className="btn" onClick={this.goHome}>
-            <FontAwesomeIcon icon={faHome} />
+            All
           </button>
           <button className="btn" onClick={this.height}>
-            <FontAwesomeIcon icon={faRuler} />
+            <FontAwesomeIcon icon={faRuler} /> Heights
           </button>
           <button className="btn" onClick={this.weight}>
-            <FontAwesomeIcon icon={faWeight} />
+            <FontAwesomeIcon icon={faWeight} /> Weights
           </button>
-          <button className="btn" onClick={this.newGrowth}> <p>Add New Activity</p></button>
+          <button className="btn" onClick={this.newGrowth}>
+            {" "}
+            <p>Add New Activity</p>
+          </button>
         </div>
         <div className="height">
           {this.state.formOpen ? (
             <form className="left" onSubmit={this.handleSubmit}>
               <h2> New Growth Record </h2>
-                <label htmlFor="height">
-                  <input value="Height" type="radio" name="title" required />
-                  Height{" "}
-                </label>
-                <label htmlFor="weight">
-                  <input value="Weight" type="radio" name="title" required />
-                  Weight{" "}
-                </label>
+              <label htmlFor="height">
+                <input value="Height" type="radio" name="title" required />
+                Height{" "}
+              </label>
+              <label htmlFor="weight">
+                <input value="Weight" type="radio" name="title" required />
+                Weight{" "}
+              </label>
 
-              <input name="notes" type="text" placeholder="Notes" required/>
-              <input name="number" type="text" placeholder="Number" required/>
+              <input name="notes" type="text" placeholder="Notes" required />
+              <input name="number" type="text" placeholder="Number" required />
               <select name="units">
                 <option value="lbs">lbs</option>
                 <option value="inches">inches</option>
               </select>
-              <input name="date" type="date" required placeholder="Date YYYY-MM-DD" />
+              <input
+                name="date"
+                type="date"
+                required
+                placeholder="Date YYYY-MM-DD"
+              />
 
               <input type="submit" />
-
             </form>
+          ) : this.state.heightOpen ? (
+            heights
+          ) : this.state.weightOpen ? (
+            weights
           ) : (
-            sortedArray2.map((grow, index) => {
-              let icon;
-              if (grow.title === "Height") {
-                icon = <FontAwesomeIcon icon={faRuler} />;
-              } else if (grow.title === "Weight") {
-                icon = <FontAwesomeIcon icon={faWeight} />;
-              }
-              if (
-                Number(id) === grow.sproutid &&
-                !this.state.heightOpen &&
-                !this.state.weightOpen
-              ) {
-                return (
-                  <>
-                    <span className="date">{grow.date}</span>
-
-                    <li key={index}>
-                      {icon} {grow.title}
-                      <br />
-                      <span>
-                        {grow.number} {grow.units}
-                      </span>
-                      <br />
-                      <span>{grow.notes}</span>
-                    </li>
-                  </>
-                );
-              }
-              return null;
-            })
+            [heights, weights]
           )}
-
-          {this.state.heightOpen ? heights : null}
-          {this.state.weightOpen ? weights : null}
         </div>
       </>
     );

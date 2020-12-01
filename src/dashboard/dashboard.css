@@ -14,12 +14,12 @@ header {
     text-align: center;
 }
 
+
 li {
-    margin: 2%;
-    padding: 20px;
     list-style: none;
-    border:solid;
-    background-color: #ffffff;
+    border-top: solid;
+    border-bottom: solid;
+    border-width: thin;
 }
 
 li:hover {

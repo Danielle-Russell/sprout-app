@@ -22,9 +22,6 @@ export default class WelcomePage extends React.Component {
     email: localStorage.getItem('user email'),
  
   })
-    .then(res => {
-      const user = res.user
-    })
 
     .catch(res => {
       console.log(res.message)
@@ -67,8 +64,8 @@ export default class WelcomePage extends React.Component {
               {sprouts.map( sprout => {
                 if (sprout.name) {
               return <NavLink className="my-sprout" to={`/dashboard/${sprout.id}`}>
-                  <li key={sprout.id} className="my-sprout">
-                  <img className="profile-pic" src={sprout.image} /> {sprout.name} 
+                  <li key={sprout.id}>
+                  <img className="profile-pic" src={sprout.image} alt="personal" /> {sprout.name} 
                   </li>
                 </NavLink>
             }return null})}

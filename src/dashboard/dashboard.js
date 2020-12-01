@@ -54,25 +54,20 @@ export default class Dashboard extends React.Component {
         growth.push(this.context.growth[key]);
       }
     };
-    let milestones = [];
-    const milestoneArray = () => {
-      for (var key in this.context.milestones) {
-        milestones.push(this.context.milestones[key]);
-      }
-    };
+    
     sproutArray();
     activityArray();
     healthArray();
     growthArray();
-    milestoneArray();
 
+    //chronological order for charting
     const sortedGrowth = growth
       .sort((a, b) => new Date(a.date) - new Date(b.date))
       .reverse();
 
     const { id } = this.props.match.params;
 
-    const findFinalId = () => {
+    const header = () => {
       
       for (let i = 0; i < sprouts.length; i++) {
         if (Number(id) === sprouts[i].id) {
@@ -95,11 +90,7 @@ var yd = years < 1 ? 'months' : 'years'
         }
       }
     };
-    const dashboardArray = activities.concat(health, growth);
-    const dashArray = dashboardArray.filter((element) => element !== "");
-    const finalDashArray = dashArray.sort(
-      (a, b) => new Date(a.date + a.time) - new Date(b.date + b.time)
-    );
+
 
     //charts
     let heightChart = [];
@@ -107,7 +98,7 @@ var yd = years < 1 ? 'months' : 'years'
     let weightChart = [];
     let weightData = [];
 
-    const sortGrowth = sortedGrowth.map((grow, index) => {
+    sortedGrowth.map((grow, index) => {
       if (grow.title === "Height" && grow.sproutid === Number(id)) {
         heightChart.push(grow.date);
         heightData.push(grow.number);
@@ -118,6 +109,8 @@ var yd = years < 1 ? 'months' : 'years'
       }
       return null;
     });
+
+ 
     let x = [];
 
     weightChart.reverse().forEach((z) => {
@@ -140,14 +133,17 @@ var yd = years < 1 ? 'months' : 'years'
       let data = z;
       b.push(data);
     });
-    const array = finalDashArray.filter((act) => Number(id) === act.sproutid);
-    const pie = activities.filter((act) => Number(id) === act.sproutid);
-    const feed = pie.filter((act) => act.title === "Feed");
-    const diaper = pie.filter((act) => act.title === "Diaper");
 
-    const sleep = pie.filter((act) => act.title === "Sleep");
-const recent = array.sort((a, b) => new Date(a.date) - new Date(b.date))
-.reverse();
+    //sort most recent activities
+    const sproutActivities= activities.filter((act) => Number(id) === act.sproutid);
+    const recent = sproutActivities.sort(
+      (a, b) => new Date(a.date + a.time) - new Date(b.date + b.time)
+    );
+ 
+    const feed = sproutActivities.filter((act) => act.title === "Feed");
+    const diaper = sproutActivities.filter((act) => act.title === "Diaper");
+
+    const sleep = sproutActivities.filter((act) => act.title === "Sleep");
 
     //group by date
     function datesGroupByComponent(dates, token) {
@@ -172,8 +168,8 @@ const recent = array.sort((a, b) => new Date(a.date) - new Date(b.date))
     var averageWeeklyDiaper = 0;
     for (key2 in datesGroupByComponent(diaper, "w")) {
       count2 += datesGroupByComponent(diaper, "w")[key2].length;
-      var denom = Object.keys(datesGroupByComponent(diaper, "w"));
-      averageWeeklyDiaper = count2 / denom.length;
+      var denom1 = Object.keys(datesGroupByComponent(diaper, "w"));
+      averageWeeklyDiaper = count2 / denom1.length;
     }
 
     var count3 = 0;
@@ -181,8 +177,8 @@ const recent = array.sort((a, b) => new Date(a.date) - new Date(b.date))
     var averageWeeklySleep = 0;
     for (key3 in datesGroupByComponent(sleep, "D")) {
       count3 += datesGroupByComponent(sleep, "D")[key3].length;
-      var denom = Object.keys(datesGroupByComponent(sleep, "D"));
-      averageWeeklySleep = count3 / denom.length;
+      var denom2 = Object.keys(datesGroupByComponent(sleep, "D"));
+      averageWeeklySleep = count3 / denom2.length;
     }
 
     //average daily values
@@ -191,8 +187,8 @@ const recent = array.sort((a, b) => new Date(a.date) - new Date(b.date))
     var averageDailySleep = 0;
     for (key4 in datesGroupByComponent(sleep, "D")) {
       count4 += datesGroupByComponent(sleep, "D")[key4].length;
-      var denom = Object.keys(datesGroupByComponent(sleep, "D"));
-      averageDailySleep = count4 / denom.length;
+      var denom3 = Object.keys(datesGroupByComponent(sleep, "D"));
+      averageDailySleep = count4 / denom3.length;
     }
 
     var count5 = 0;
@@ -200,16 +196,16 @@ const recent = array.sort((a, b) => new Date(a.date) - new Date(b.date))
     var averageDailyDiaper = 0;
     for (key5 in datesGroupByComponent(diaper, "D")) {
       count5 += datesGroupByComponent(diaper, "D")[key5].length;
-      var denom = Object.keys(datesGroupByComponent(diaper, "D"));
-      averageDailyDiaper = count5 / denom.length;
+      var denom4 = Object.keys(datesGroupByComponent(diaper, "D"));
+      averageDailyDiaper = count5 / denom4.length;
     }
     var count6 = 0;
     var key6;
     var averageDailyFeed = 0;
     for (key6 in datesGroupByComponent(feed, "D")) {
       count6 += datesGroupByComponent(feed, "D")[key6].length;
-      var denom = Object.keys(datesGroupByComponent(feed, "D"));
-      averageDailyFeed = count6 / denom.length;
+      var denom5 = Object.keys(datesGroupByComponent(feed, "D"));
+      averageDailyFeed = count6 / denom5.length;
     }
 
     //monthly averages
@@ -218,8 +214,8 @@ const recent = array.sort((a, b) => new Date(a.date) - new Date(b.date))
     var averageMonthlyFeed = 0;
     for (key7 in datesGroupByComponent(feed, "M")) {
       count7 += datesGroupByComponent(feed, "M")[key7].length;
-      var denom = Object.keys(datesGroupByComponent(feed, "M"));
-      averageMonthlyFeed = count7 / denom.length;
+      var denom6 = Object.keys(datesGroupByComponent(feed, "M"));
+      averageMonthlyFeed = count7 / denom6.length;
     }
 
     var count8 = 0;
@@ -227,16 +223,16 @@ const recent = array.sort((a, b) => new Date(a.date) - new Date(b.date))
     var averageMonthlyDiaper = 0;
     for (key8 in datesGroupByComponent(diaper, "M")) {
       count8 += datesGroupByComponent(diaper, "M")[key8].length;
-      var denom = Object.keys(datesGroupByComponent(diaper, "M"));
-      averageMonthlyDiaper = count8 / denom.length;
+      var denom7 = Object.keys(datesGroupByComponent(diaper, "M"));
+      averageMonthlyDiaper = count8 / denom7.length;
     }
     var count9 = 0;
     var key9;
     var averageMonthlySleep = 0;
     for (key9 in datesGroupByComponent(sleep, "M")) {
       count9 += datesGroupByComponent(sleep, "M")[key9].length;
-      var denom = Object.keys(datesGroupByComponent(sleep, "M"));
-      averageMonthlySleep = count9 / denom.length;
+      var denom8 = Object.keys(datesGroupByComponent(sleep, "M"));
+      averageMonthlySleep = count9 / denom8.length;
     }
     console.log(averageMonthlyFeed)
     const chart = () => {
@@ -346,20 +342,19 @@ const recent = array.sort((a, b) => new Date(a.date) - new Date(b.date))
            <div>
 
            <ul className="recent-feed">
-          <h1>Recent Feed</h1>
+          <h2>Most Recent Activities</h2>
 
 {recent.slice(0,3).map((act) => {
 var now = moment().format("YYYY-MM-DD");
 var color;
 var src;
   var time = act.time;
-  var date = act.date;
+  var date;
   if (now <= date && time) {
     var timeFormatted = moment(time, "HH:mm").fromNow();
-    var date = timeFormatted;
-  } else {
-    var timeFormatted = time;
-  } if (act.title === "Feed") {
+    date = timeFormatted;
+  } 
+   if (act.title === "Feed") {
 color = "feed"
 src="https://static.thenounproject.com/png/749416-200.png"
 
@@ -369,7 +364,7 @@ src="https://static.thenounproject.com/png/749416-200.png"
   } if (act.title === "Sleep" ) {
     color = "sleep"
     src= "https://img.icons8.com/carbon-copy/452/partly-cloudy-night.png"
-  }
+  } date= act.date
 
 
   return (
@@ -377,8 +372,8 @@ src="https://static.thenounproject.com/png/749416-200.png"
       <span className="dash-span">
 {date}
       </span>
-      <li className={color}><strong>{act.title}</strong> <br /> {act.notes}  <img className="recent-feed-img
-      " src={src} /></li>
+      <li style={{border: "solid"}} className={color}><strong>{act.title}</strong> <br /> {act.notes}  <img className="recent-feed-img
+      " src={src} alt=""/></li>
     </>
   );
 
@@ -392,7 +387,7 @@ src="https://static.thenounproject.com/png/749416-200.png"
     }
     return (
       <>
-        <header>{findFinalId()} </header>
+        <header>{header()} </header>
         <div className="sidebar">
         <button className="home-btn" onClick={this.backSprouts}>
             <FontAwesomeIcon icon={faLongArrowAltLeft}/> Back To Sprouts
@@ -412,7 +407,7 @@ src="https://static.thenounproject.com/png/749416-200.png"
                     <h1>Growth</h1>
                     <img
                       className="grow"
-                      src="https://freeiconshop.com/wp-content/uploads/edd/upward-trend-flat-128x128.png"
+                      src="https://freeiconshop.com/wp-content/uploads/edd/upward-trend-flat-128x128.png" alt=""
                     />
                   </Link>
                 );
@@ -431,7 +426,7 @@ src="https://static.thenounproject.com/png/749416-200.png"
                     <h1>Activity Log </h1>
                     <img
                       className="grow"
-                      src="https://freeiconshop.com/wp-content/uploads/edd/orange-flat-128x128.png"
+                      src="https://freeiconshop.com/wp-content/uploads/edd/orange-flat-128x128.png" alt=""
                     />
                   </Link>
                 );
@@ -468,7 +463,7 @@ src="https://static.thenounproject.com/png/749416-200.png"
                     <h1>Health Records</h1>
                     <img
                       className="grow"
-                      src="https://freeiconshop.com/wp-content/uploads/edd/clipboard-list-flat.png"
+                      src="https://freeiconshop.com/wp-content/uploads/edd/clipboard-list-flat.png" alt=""
                     />
                   </Link>
                 );

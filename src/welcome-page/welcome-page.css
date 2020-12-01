@@ -1,11 +1,15 @@
 .my-sprout {
     text-decoration: none;
-    border-color: black;
     color: black;
     font-weight: 600;
-    font-style: italic
+    font-style: italic;
+
 }
 
+.my-sprout li {
+    border: solid;
+    margin: 5px;
+}
 .heading {
     font-size: 20px;
     font-family: Arial;
@@ -47,12 +51,14 @@ margin: 5%;
 }
 
 .height {
-    margin-left: 15%;
-    margin-top: 5%;
+    margin: 2%;
 }
 
 @media all and (min-width: 800px) {
 
+    .height {
+        margin-left: 6%;
+    }
     .sprouts {
         flex-direction:row;
     }

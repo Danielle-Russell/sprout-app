@@ -4,8 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBed } from "@fortawesome/free-solid-svg-icons";
 import { faUtensils } from "@fortawesome/free-solid-svg-icons";
 import { faPoop } from "@fortawesome/free-solid-svg-icons";
-import { faLeaf } from "@fortawesome/free-solid-svg-icons";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import SproutContext from '../SproutContext';
 import config from '../config';
@@ -125,7 +123,11 @@ activityArray()
 
    const { id } = this.props.match.params;
 
-    const feeds = activities.map((act, i) => {
+   const sortedArray = activities
+   .sort((a, b) => new Date(a.date) - new Date(b.date))
+   .reverse();
+
+    const feeds = sortedArray.map((act, i) => {
       if (act.title === "Feed" && act.sproutid === Number(id)) {
         return (
           <>
@@ -139,7 +141,7 @@ activityArray()
                 </span>
     
             <li key={i}>
-              <FontAwesomeIcon icon={faUtensils} />{" "}
+              <img src= "https://www.flaticon.com/svg/static/icons/svg/2367/2367620.svg" alt="dinner plate" width={50} />
               {[act.title, <br />, <span>{act.notes}</span>]}
             </li>
           </>
@@ -148,7 +150,7 @@ activityArray()
       return null;
     });
 
-    const diapers = activities.map((act, i) => {
+    const diapers = sortedArray.map((act, i) => {
       if (act.title === "Diaper" && act.sproutid === Number(id)) {
         return (
           <>
@@ -163,8 +165,7 @@ activityArray()
     
 
             <li key={i}>
-              <FontAwesomeIcon icon={faPoop} />{" "}
-              {[act.title, <br />, <span>{act.notes}</span>]}
+<img src = "https://www.flaticon.com/svg/static/icons/svg/2123/2123665.svg" alt="diaper" width={50} />              {[act.title, <br />, <span>{act.notes}</span>]}
             </li>
           </>
         );
@@ -172,7 +173,7 @@ activityArray()
       return null;
     });
 
-    const sleep = activities.map((act, i) => {
+    const sleep = sortedArray.map((act, i) => {
       if (act.title === "Sleep" && act.sproutid === Number(id)) {
         return (
           <>
@@ -187,7 +188,7 @@ activityArray()
     
 
             <li key={i}>
-              <FontAwesomeIcon icon={faBed} />{" "}
+              <img src="https://www.flaticon.com/svg/static/icons/svg/3658/3658869.svg" alt="mobile" width={50}/>{" "}
               {[act.title, <br />, <span>{act.notes}</span>]}
             </li>
           </>
@@ -196,9 +197,7 @@ activityArray()
       return null;
     });
 
-    const sortedArray = activities
-      .sort((a, b) => new Date(a.date) - new Date(b.date))
-      .reverse();
+   
     return (
       <div>
         <div className="sidebar">
@@ -218,6 +217,7 @@ activityArray()
           <p className="sidebar-nav" onClick={this.newActivity}>New Activity</p>
         </div>
         <div className = "container">
+          
         {this.state.formOpen ? <form className="left" onSubmit={this.handleSubmit}>
           <h2>New Activity</h2>
         
@@ -238,47 +238,10 @@ activityArray()
           <input name="date" type="date" required placeholder="Date YYYY-MM-DD" />
           <input name="time" type="time" required placeholder="Time HH-MM" />
           <input type="submit" />
-        </form> : <ul className="right">
-        
-      
-          {sortedArray.map((activity, index) => {
-            let element;
-            if (activity.title === "Sleep") {
-              element = <FontAwesomeIcon icon={faBed} />;
-            } else if (activity.title === "Feed") {
-              element = <FontAwesomeIcon icon={faUtensils} />;
-            } else if (activity.title === "Diaper") {
-              element = <FontAwesomeIcon icon={faPoop} />;
-            }
-            if (
-              Number(id) === activity.sproutid &&
-              !this.state.feedOpen &&
-              !this.state.diaperOpen &&
-              !this.state.sleepOpen
-            ) {
-              return (
-                <>
-                <span className="date">
-                  
-              {activity.date} 
-              </span>
-              <br />
-              {activity.time}
- <li className="act-list" key={index}>
-                    {element}{" "}
-                    {[activity.title, <br />, <span>{activity.notes}</span>]}
-                  </li>
-                </>
-              );
-            }
-            return null;
-          })}
-          {this.state.diaperOpen ? diapers : null}
-          {this.state.feedOpen ? feeds : null}
-          {this.state.sleepOpen ? sleep : null}
-        </ul>}
+        </form> : this.state.feedOpen ? feeds : this.state.sleepOpen ? sleep : this.state.diaperOpen ? diapers : [feeds, sleep, diapers] 
+        }
 </div>
        </div>
     );
-  }
+        }
 }

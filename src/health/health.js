@@ -5,9 +5,6 @@ import { faClinicMedical } from "@fortawesome/free-solid-svg-icons";
 import { faSyringe } from "@fortawesome/free-solid-svg-icons";
 import { faPrescriptionBottle } from "@fortawesome/free-solid-svg-icons";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
-
-import { faLeaf } from "@fortawesome/free-solid-svg-icons";
 import SproutContext from "../SproutContext";
 import config from "../config";
 
@@ -23,14 +20,14 @@ export default class Health extends React.Component {
     this.props.history.push(`/dashboard/${this.props.match.params.id}`);
   };
 
-
   goBack = () => {
-    setTimeout(function(){ window.location.reload() }, 1000);
+    setTimeout(function () {
+      window.location.reload();
+    }, 1000);
     this.setState({
-      formOpen: false
-    })
-  }
-
+      formOpen: false,
+    });
+  };
 
   addNewHealth = (health) => {
     fetch(`${config.API_ENDPOINT}/api/health`, {
@@ -62,7 +59,6 @@ export default class Health extends React.Component {
       time: e.target.time.value,
     };
     this.addNewHealth(newHealth);
-  
   };
 
   apt = () => {
@@ -71,7 +67,6 @@ export default class Health extends React.Component {
       vacOpen: false,
       medOpen: false,
       formOpen: false,
-
     });
   };
   vac = () => {
@@ -80,7 +75,6 @@ export default class Health extends React.Component {
       vacOpen: true,
       medOpen: false,
       formOpen: false,
-
     });
   };
   med = () => {
@@ -89,7 +83,6 @@ export default class Health extends React.Component {
       vacOpen: false,
       medOpen: true,
       formOpen: false,
-
     });
   };
 
@@ -98,8 +91,7 @@ export default class Health extends React.Component {
       aptOpen: false,
       vacOpen: false,
       medOpen: false,
-          formOpen: false,
-
+      formOpen: false,
     });
   };
 
@@ -127,52 +119,64 @@ export default class Health extends React.Component {
       .sort((a, b) => new Date(a.date) - new Date(b.date))
       .reverse();
 
-    const apt = health.map((apt, index) => {
+    const apt = sortedArray.map((apt, index) => {
       if (apt.title === "Appointment" && apt.sproutid === Number(id)) {
         return (
-          <>
+          <div className="height">
             <span className="date">{apt.date}</span>
             <br />
             <span className="time">{apt.time}</span>{" "}
             <li key={index}>
-              <FontAwesomeIcon icon={faClinicMedical} />{" "}
+              <img
+                src="https://www.flaticon.com/svg/static/icons/svg/619/619051.svg"
+                alt="hospital"
+                width={50}
+              />{" "}
               {[apt.title, " ", <br />, <span>{apt.notes}</span>]}
             </li>
-          </>
+          </div>
         );
       }
       return null;
     });
 
-    const vac = health.map((apt, index) => {
+    const vac = sortedArray.map((apt, index) => {
       if (apt.title === "Vaccination" && apt.sproutid === Number(id)) {
         return (
-          <>
+          <div className="height">
             <span className="date">{apt.date}</span>
             <br />
             <span className="time">{apt.time}</span>{" "}
             <li key={index}>
-              <FontAwesomeIcon icon={faSyringe} />{" "}
+              <img
+                src="https://www.flaticon.com/svg/static/icons/svg/3027/3027579.svg"
+                alt="syringe"
+                width={50}
+              />{" "}
               {[apt.title, " ", <br />, <span>{apt.notes}</span>]}
             </li>
-          </>
+          </div>
         );
       }
       return null;
     });
 
-    const med = health.map((apt, index) => {
+    const med = sortedArray.map((apt, index) => {
       if (apt.title === "Medication" && apt.sproutid === Number(id)) {
         return (
-          <>
+          <div className="height">
             <span className="date">{apt.date}</span>
             <br />
             <span className="time">{apt.time}</span>
             <li key={index}>
-              <FontAwesomeIcon icon={faPrescriptionBottle} />{" "}
+              <img
+                src="https://www.flaticon.com/svg/static/icons/svg/1546/1546140.svg"
+                alt="medications"
+                width={50}
+              />{" "}
               {[apt.title, " ", <br />, <span>{apt.notes}</span>]}
             </li>
-          </>
+          </div>
         );
       }
       return null;
@@ -181,11 +185,11 @@ export default class Health extends React.Component {
     return (
       <>
         <div className="sidebar">
-        <button className="btn" onClick={this.back}>
-          <p> Back to dashboard </p>
+          <button className="btn" onClick={this.back}>
+            <p> Back to dashboard </p>
           </button>
           <button className="btn" onClick={this.goHome}>
-          <FontAwesomeIcon icon={faHome} />
+            <FontAwesomeIcon icon={faHome} />
           </button>
           <button className="btn" onClick={this.apt}>
             <FontAwesomeIcon icon={faClinicMedical} />
@@ -200,11 +204,18 @@ export default class Health extends React.Component {
             New Record
           </button>
         </div>
-<div className="height">
-{this.state.formOpen ? <form className="left" onSubmit={this.handleSubmit}>
-            <h2> New Record </h2>
+        <div className="height">
+          {this.state.formOpen ? (
+            <form className="left" onSubmit={this.handleSubmit}>
+              <h2> New Record </h2>
               <label htmlFor="apt">
-                <input value="Appointment" id="apt" type="radio" name="title" required />
+                <input
+                  value="Appointment"
+                  id="apt"
+                  type="radio"
+                  name="title"
+                  required
+                />
                 Appointment
               </label>
               <label htmlFor="Vaccination">
@@ -213,7 +224,8 @@ export default class Health extends React.Component {
                   id="Vaccination"
                   type="radio"
                   name="title"
-                required />
+                  required
+                />
                 Vaccination
               </label>
               <label htmlFor="Medication">
@@ -222,50 +234,43 @@ export default class Health extends React.Component {
                   id="Medication"
                   type="radio"
                   name="title"
-                required />
+                  required
+                />
                 Medication
               </label>
-            <input name="notes" id="notes" type="text" placeholder="Notes" required />
-            <input name="date" type="date" required  placeholder="Date YYYY-MM-DD"/>
-            <input name="time" type="time" required placeholder="Time HH-mm"/>
+              <input
+                name="notes"
+                id="notes"
+                type="text"
+                placeholder="Notes"
+                required
+              />
+              <input
+                name="date"
+                type="date"
+                required
+                placeholder="Date YYYY-MM-DD"
+              />
+              <input
+                name="time"
+                type="time"
+                required
+                placeholder="Time HH-mm"
+              />
 
-            <input type="submit" />
-
-          </form> : <ul className="right">
-            {sortedArray.map((apt, index) => {
-              let medical;
-              if (apt.title === "Appointment") {
-                medical = <FontAwesomeIcon icon={faClinicMedical} />;
-              } else if (apt.title === "Vaccination") {
-                medical = <FontAwesomeIcon icon={faSyringe} />;
-              } else if (apt.title === "Medication") {
-                medical = <FontAwesomeIcon icon={faPrescriptionBottle} />;
-              }
-              if (
-                Number(id) === apt.sproutid &&
-                !this.state.aptOpen &&
-                !this.state.vacOpen &&
-                !this.state.medOpen
-              ) {
-                return (
-                  <>
-                    <span className="date">{apt.date}</span>
-                    <br />
-                    <span className="time">{apt.time}</span>
-                    <li key={index}>
-                      {medical}{" "}
-                      {[apt.title, " ", <br />, <span>{apt.notes}</span>]}
-                    </li>
-                  </>
-                );
-              }
-              return null;
-            })}
-            {this.state.aptOpen ? apt : null}
-            {this.state.vacOpen ? vac : null}
-            {this.state.medOpen ? med : null}
-          </ul>}
-          </div>
-</>)
+              <input type="submit" />
+            </form>
+          ) : this.state.aptOpen ? (
+            apt
+          ) : this.state.vacOpen ? (
+            vac
+          ) : this.state.medOpen ? (
+            med
+          ) : (
+            [apt, vac, med]
+          )}
+        </div>
+      </>
+    );
   }
 }
