@@ -5,15 +5,15 @@ import { faBed } from "@fortawesome/free-solid-svg-icons";
 import { faUtensils } from "@fortawesome/free-solid-svg-icons";
 import { faPoop } from "@fortawesome/free-solid-svg-icons";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
-import SproutContext from '../SproutContext';
-import config from '../config';
+import SproutContext from "../SproutContext";
+import config from "../config";
 
 export default class ActivityLog extends React.Component {
   state = {
     feedOpen: false,
     diaperOpen: false,
     sleepOpen: false,
-    formOpen: false
+    formOpen: false,
   };
 
   static contextType = SproutContext;
@@ -22,46 +22,44 @@ export default class ActivityLog extends React.Component {
     this.props.history.push(`/dashboard/${this.props.match.params.id}`);
   };
 
-
   goBack = () => {
-    setTimeout(function(){ window.location.reload() }, 1000);
+    setTimeout(function () {
+      window.location.reload();
+    }, 1000);
     this.setState({
-      formOpen: false
-    })
-  }
+      formOpen: false,
+    });
+  };
 
-  addNewActivity = activity => {
-
+  addNewActivity = (activity) => {
     fetch(`${config.API_ENDPOINT}/api/activities`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(activity),
     })
-      .then(response => {
-        return response.json()
+      .then((response) => {
+        return response.json();
       })
-      .then(responseJson => this.context.addActivity(responseJson))
+      .then((responseJson) => this.context.addActivity(responseJson))
       .then(this.goBack())
       .catch((error) => {
-        this.setState({hasError: true})
+        this.setState({ hasError: true });
       });
-  }
+  };
   handleSubmit = (e) => {
     e.preventDefault();
 
     const newActivity = {
-      useremail: localStorage.getItem('user email'),
+      useremail: localStorage.getItem("user email"),
       sproutid: parseInt(this.props.match.params.id),
       title: e.target.title.value,
       notes: e.target.notes.value,
       date: e.target.date.value,
       time: e.target.time.value,
     };
-this.addNewActivity(newActivity)
-
-
+    this.addNewActivity(newActivity);
   };
 
   showFeeds = () => {
@@ -69,7 +67,7 @@ this.addNewActivity(newActivity)
       feedOpen: true,
       diaperOpen: false,
       sleepOpen: false,
-      formOpen: false
+      formOpen: false,
     });
   };
 
@@ -78,8 +76,7 @@ this.addNewActivity(newActivity)
       diaperOpen: true,
       feedOpen: false,
       sleepOpen: false,
-      formOpen: false
-
+      formOpen: false,
     });
   };
   showSleep = () => {
@@ -87,8 +84,7 @@ this.addNewActivity(newActivity)
       sleepOpen: true,
       diaperOpen: false,
       feedOpen: false,
-      formOpen: false
-
+      formOpen: false,
     });
   };
 
@@ -98,8 +94,7 @@ this.addNewActivity(newActivity)
       sleepOpen: false,
       diaperOpen: false,
       feedOpen: false,
-      formOpen: false
-
+      formOpen: false,
     });
   };
 
@@ -108,42 +103,44 @@ this.addNewActivity(newActivity)
       sleepOpen: false,
       diaperOpen: false,
       feedOpen: false,
-      formOpen: true
+      formOpen: true,
     });
-  }
+  };
   render() {
-
-    let activities = []
+    let activities = [];
     const activityArray = () => {
-     for (var key in this.context.activities) {
-       activities.push(this.context.activities[key])
- }
-     }
-activityArray()
+      for (var key in this.context.activities) {
+        activities.push(this.context.activities[key]);
+      }
+    };
+    activityArray();
 
-   const { id } = this.props.match.params;
+    const { id } = this.props.match.params;
 
-   const sortedArray = activities
-   .sort((a, b) => new Date(a.date) - new Date(b.date))
-   .reverse();
+    const sortedArray = activities
+      .sort((a, b) => new Date(a.date) - new Date(b.date))
+      .reverse();
 
     const feeds = sortedArray.map((act, i) => {
       if (act.title === "Feed" && act.sproutid === Number(id)) {
         return (
           <>
-             <span className="date">
-                  
-                  {act.date} 
-                  </span>
-                  <br />
-                  <span className="time">
-                    {act.time}
-                </span>
-    
+            <span className="date">{act.date}</span>
+
             <li key={i}>
-              <img src= "https://www.flaticon.com/svg/static/icons/svg/2367/2367620.svg" alt="dinner plate" width={50} />
+              <img
+                src="https://www.flaticon.com/svg/static/icons/svg/2367/2367620.svg"
+                alt="dinner plate"
+                width={50}
+              />
               {[act.title, <br />, <span>{act.notes}</span>]}
+              <span className="time">{act.time}</span>
+
             </li>
+            <img
+              style={{ margin: "5px" }}
+              src="https://img.icons8.com/ultraviolet/40/000000/vertical-line.png"
+            />
           </>
         );
       }
@@ -154,19 +151,23 @@ activityArray()
       if (act.title === "Diaper" && act.sproutid === Number(id)) {
         return (
           <>
-        <span className="date">
-                  
-                  {act.date} 
-                  </span>
-                  <br />
-                  <span className="time">
-                    {act.time}
-                </span>
-    
+            <span className="date">{act.date}</span>
+            <br />
 
             <li key={i}>
-<img src = "https://www.flaticon.com/svg/static/icons/svg/2123/2123665.svg" alt="diaper" width={50} />              {[act.title, <br />, <span>{act.notes}</span>]}
+              <img
+                src="https://www.flaticon.com/svg/static/icons/svg/2123/2123665.svg"
+                alt="diaper"
+                width={50}
+              />{" "}
+              {[act.title, <br />, <span>{act.notes}</span>]}
+              <span className="time">{act.time}</span>
+
             </li>
+            <img
+              style={{ margin: "5px" }}
+              src="https://img.icons8.com/ultraviolet/40/000000/vertical-line.png"
+            />
           </>
         );
       }
@@ -177,31 +178,43 @@ activityArray()
       if (act.title === "Sleep" && act.sproutid === Number(id)) {
         return (
           <>
-             <span className="date">
-                  
-                  {act.date} 
-                  </span>
-                  <br />
-                  <span className="time">
-                    {act.time}
-                </span>
-    
-
+            <span className="date">{act.date}</span>
+       
             <li key={i}>
-              <img src="https://www.flaticon.com/svg/static/icons/svg/3658/3658869.svg" alt="mobile" width={50}/>{" "}
+
+              <img
+                src="https://www.flaticon.com/svg/static/icons/svg/3658/3658869.svg"
+                alt="mobile"
+                width={50}
+              />{" "}
               {[act.title, <br />, <span>{act.notes}</span>]}
+              <span className="time">{act.time}</span>
+
             </li>
+            <img
+              style={{ margin: "5px" }}
+              src="https://img.icons8.com/ultraviolet/40/000000/vertical-line.png"
+            />{" "}
           </>
         );
       }
       return null;
     });
 
-   
+    const combineActivities = feeds.concat(sleep, diapers);
+
+    const allActivities = combineActivities.filter((val) => val !== null);
+
+    const all = allActivities
+      .sort((a, b) => new Date(a.date) - new Date(b.date))
+      .reverse();
+
     return (
       <div>
         <div className="sidebar">
-          <p className="sidebar-nav" onClick={this.back}>Back to Dashboard</p>
+          <p className="sidebar-nav" onClick={this.back}>
+            Back to Dashboard
+          </p>
           <button className="btn" onClick={this.goHome}>
             <FontAwesomeIcon icon={faHome} />
           </button>
@@ -214,34 +227,78 @@ activityArray()
           <button className="btn" onClick={this.showSleep}>
             <FontAwesomeIcon icon={faBed} />
           </button>
-          <p className="sidebar-nav" onClick={this.newActivity}>New Activity</p>
+          <p className="sidebar-nav" onClick={this.newActivity}>
+            New Activity
+          </p>
         </div>
-        <div className = "container">
-          
-        {this.state.formOpen ? <form className="left" onSubmit={this.handleSubmit}>
-          <h2>New Activity</h2>
-        
-          <label htmlFor="feed">
-            <input value="Feed" id="feed" type="radio" name="title" required />
-            Feed
-          </label>
-          <label htmlFor="diaper">
-            <input value="Diaper" id="diaper" type="radio" name="title" required />
-            Diaper Change
-          </label>
-          <label htmlFor="sleep">
-            <input value="Sleep" id="sleep" type="radio" name="title" required />
-            Sleep
-          </label>
+        <div className="container">
+          {this.state.formOpen ? (
+            <form className="left" onSubmit={this.handleSubmit}>
+              <h2>New Activity</h2>
 
-          <input name="notes" id="notes" type="text" placeholder="Notes" required />
-          <input name="date" type="date" required placeholder="Date YYYY-MM-DD" />
-          <input name="time" type="time" required placeholder="Time HH-MM" />
-          <input type="submit" />
-        </form> : this.state.feedOpen ? feeds : this.state.sleepOpen ? sleep : this.state.diaperOpen ? diapers : [feeds, sleep, diapers] 
-        }
-</div>
-       </div>
+              <label htmlFor="feed">
+                <input
+                  value="Feed"
+                  id="feed"
+                  type="radio"
+                  name="title"
+                  required
+                />
+                Feed
+              </label>
+              <label htmlFor="diaper">
+                <input
+                  value="Diaper"
+                  id="diaper"
+                  type="radio"
+                  name="title"
+                  required
+                />
+                Diaper Change
+              </label>
+              <label htmlFor="sleep">
+                <input
+                  value="Sleep"
+                  id="sleep"
+                  type="radio"
+                  name="title"
+                  required
+                />
+                Sleep
+              </label>
+
+              <input
+                name="notes"
+                id="notes"
+                type="text"
+                placeholder="Notes"
+                required
+              />
+              <input
+                name="date"
+                type="date"
+                required
+                placeholder="Date YYYY-MM-DD"
+              />
+              <input
+                name="time"
+                type="time"
+                required
+                placeholder="Time HH-MM"
+              />
+              <input type="submit" />
+            </form>
+          ) : this.state.feedOpen ? (
+            feeds
+          ) : this.state.sleepOpen ? (
+            sleep
+          ) : this.state.diaperOpen ? (
+            diapers
+          ) : (
+            all
+          )}
+        </div>
+      </div>
     );
-        }
+  }
 }

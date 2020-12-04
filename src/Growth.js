@@ -123,6 +123,10 @@ export default class Growth extends React.Component {
               <br />
               <span>{grow.notes}</span>
             </li>
+            <img
+              style={{ height: '100%' }}
+              src="https://img.icons8.com/ultraviolet/40/000000/vertical-line.png"
+            />
           </div>
         );
       }
@@ -145,6 +149,10 @@ export default class Growth extends React.Component {
               <br />
               <span>{grow.notes}</span>
             </li>
+            <img
+              style={{ margin: "5px" }}
+              src="https://img.icons8.com/ultraviolet/40/000000/vertical-line.png"
+            />
           </div>
         );
       }

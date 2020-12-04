@@ -3,7 +3,9 @@ import "./landing-page.css";
 import SproutContext from "../SproutContext";
 import Login from "../Login";
 import AuthApiService from "../auth-api-service";
-import placeholder from "./placeholder.png";
+import heightChart from "./heightChart.png";
+import recent from "./recent.png";
+import sprouts from "./sprouts.png"
 
 export default class LandingPage extends React.Component {
   state = {
@@ -56,14 +58,21 @@ export default class LandingPage extends React.Component {
         ) : null}
         </div>
         <div className={background}>
+        <nav>
+            <ul className="nav">
+              <li><a href="#how-to-wrapper">How It Works</a></li>
+              <li><a href="#landing-box-wrapper">Why Sprout</a></li>
 
+              <li><a>About</a></li>
+              </ul>
+              </nav>
         <div className="landing-body">
-       
+                
         
-          <header style={{ backgroundColor: "inherit" }}></header>
+          
          
           <div className="wrapper">
-            <h1 id="landing-title">Keep Track of the Most Precious Moments</h1>
+            <h1 id="landing-title"> <span>SPROUT</span> <br /> Keep Track of the Most Precious Moments</h1>
             
             <form id="landing-form" onSubmit={this.handleNewUser}>
               <b className="log"> Create Account</b>
@@ -88,7 +97,6 @@ export default class LandingPage extends React.Component {
   
           </div>
         </div>
-
 
         <div id="landing-box-wrapper">
           <div className="landing-box">
@@ -118,23 +126,29 @@ export default class LandingPage extends React.Component {
             </p>
           </div>
         </div>
+       
         <div id="how-to-wrapper">
+
           <div className="landing-how-to">
-            <img src={placeholder} alt="placeholder" />
+          <img src={sprouts} alt="placeholder" />
+
+            Keep individual profiles for multiple children
+
+          </div>
+          <div className="landing-how-to">
             Track your child's growth progress with logging and automatically
             generated charts.
+            <img src={heightChart} alt="chart" />
+
           </div>
           <div className="landing-how-to">
-            Keep individual profiles for multiple children
-            <img src={placeholder} alt="placeholder" />
-          </div>
-          <div className="landing-how-to">
-            <img src={placeholder} alt="placeholder" />
-            Look back on your gallery of milestones throughout your child's
-            life. Upload a photo for each milestone to remember
+          <img src={recent} alt="placeholder" />
+            Track your child's daily activities
           </div>
         </div>
+       
       </div>
+      <footer> &#169; Danielle Russell 2020 </footer>
       </>
     );
   }

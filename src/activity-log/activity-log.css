@@ -55,7 +55,10 @@ h2 {
 
 .time {
     font-weight: 500;
-    font-size: 15px;
+    font-size: 10px;
+    display: grid;
+    margin-left: 50%;
+
     
 }
 
@@ -69,6 +72,11 @@ overflow: auto;
 .back {
     background-color: inherit;
     border: none;
+}
+
+a {
+    margin: auto;
+    text-align: center;
 }
 
 

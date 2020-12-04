@@ -20,6 +20,7 @@ li {
     border-top: solid;
     border-bottom: solid;
     border-width: thin;
+    padding: 5px;
 }
 
 li:hover {
@@ -87,6 +88,7 @@ table, th, td {
   
   .grow {
       height: 75px;
+      margin: auto;
     
   }
   
@@ -196,6 +198,7 @@ table, th, td {
         padding: 5%;
         background-color: #ffffff;
         height: 15%;
+        text-align: center;
     }
     
 

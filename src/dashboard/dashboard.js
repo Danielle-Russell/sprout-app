@@ -370,7 +370,7 @@ src="https://static.thenounproject.com/png/749416-200.png"
   return (
     <>
       <span className="dash-span">
-{date}
+{date} {time}
       </span>
       <li style={{border: "solid"}} className={color}><strong>{act.title}</strong> <br /> {act.notes}  <img className="recent-feed-img
       " src={src} alt=""/></li>

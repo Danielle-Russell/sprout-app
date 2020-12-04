@@ -13,6 +13,7 @@ export default class WelcomePage extends React.Component {
   back = () => {
     this.props.history.push("/");
     localStorage.clear();
+    window.location.reload();
   };
 
  deleteUser = () => {

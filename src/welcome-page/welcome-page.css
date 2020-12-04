@@ -41,11 +41,14 @@ flex-direction: column;
 }
 .sprouts-left {
     width: 50%;
-padding: 100px;
 border: none;
 background-color: inherit;
-margin: 5%;
+display: flex;
+flex-direction: column;
+margin: auto;
+height: 50%;
 }
+
 .account {
     font-size: 30px;
 }
