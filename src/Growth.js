@@ -164,17 +164,17 @@ export default class Growth extends React.Component {
         <div className="sidebar">
           <button className="btn" onClick={this.back}>
             <p>
-              <FontAwesomeIcon icon={faLongArrowAltLeft} /> Back to Dashboard{" "}
+              <FontAwesomeIcon icon={faLongArrowAltLeft} /> Back to Dashboard
             </p>
           </button>
           <button className="btn" onClick={this.goHome}>
-            All
+           <p> All </p> 
           </button>
           <button className="btn" onClick={this.height}>
-            <FontAwesomeIcon icon={faRuler} /> Heights
+            <FontAwesomeIcon icon={faRuler} /> <p>Height </p>
           </button>
           <button className="btn" onClick={this.weight}>
-            <FontAwesomeIcon icon={faWeight} /> Weights
+            <FontAwesomeIcon icon={faWeight} /> <p>Weight</p>
           </button>
           <button className="btn" onClick={this.newGrowth}>
             {" "}

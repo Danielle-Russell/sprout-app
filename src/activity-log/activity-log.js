@@ -5,6 +5,7 @@ import { faBed } from "@fortawesome/free-solid-svg-icons";
 import { faUtensils } from "@fortawesome/free-solid-svg-icons";
 import { faPoop } from "@fortawesome/free-solid-svg-icons";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { faLongArrowAltLeft } from "@fortawesome/free-solid-svg-icons";
 import SproutContext from "../SproutContext";
 import config from "../config";
 
@@ -135,7 +136,6 @@ export default class ActivityLog extends React.Component {
               />
               {[act.title, <br />, <span>{act.notes}</span>]}
               <span className="time">{act.time}</span>
-
             </li>
             <img
               style={{ margin: "5px" }}
@@ -162,7 +162,6 @@ export default class ActivityLog extends React.Component {
               />{" "}
               {[act.title, <br />, <span>{act.notes}</span>]}
               <span className="time">{act.time}</span>
-
             </li>
             <img
               style={{ margin: "5px" }}
@@ -179,9 +178,7 @@ export default class ActivityLog extends React.Component {
         return (
           <>
             <span className="date">{act.date}</span>
-       
             <li key={i}>
-
               <img
                 src="https://www.flaticon.com/svg/static/icons/svg/3658/3658869.svg"
                 alt="mobile"
@@ -189,7 +186,6 @@ export default class ActivityLog extends React.Component {
               />{" "}
               {[act.title, <br />, <span>{act.notes}</span>]}
               <span className="time">{act.time}</span>
-
             </li>
             <img
               style={{ margin: "5px" }}
@@ -212,24 +208,31 @@ export default class ActivityLog extends React.Component {
     return (
       <div>
         <div className="sidebar">
-          <p className="sidebar-nav" onClick={this.back}>
-            Back to Dashboard
-          </p>
+          <button className="btn" onClick={this.back}>
+            <p>
+              {" "}
+              <FontAwesomeIcon
+                icon={faLongArrowAltLeft}
+                style={{ color: "white" }}
+              />
+              Back to Dashboard
+            </p>
+          </button>
           <button className="btn" onClick={this.goHome}>
-            <FontAwesomeIcon icon={faHome} />
+            <FontAwesomeIcon icon={faHome} /> <p>All</p>
           </button>
           <button className="btn" onClick={this.showFeeds}>
-            <FontAwesomeIcon icon={faUtensils} />
+            <FontAwesomeIcon icon={faUtensils} /> <p>Feeds</p>
           </button>
           <button className="btn" onClick={this.showDiapers}>
-            <FontAwesomeIcon icon={faPoop} />
+            <FontAwesomeIcon icon={faPoop} /> <p>Diapers</p>
           </button>
           <button className="btn" onClick={this.showSleep}>
-            <FontAwesomeIcon icon={faBed} />
+            <FontAwesomeIcon icon={faBed} /> <p>Sleep</p>
           </button>
-          <p className="sidebar-nav" onClick={this.newActivity}>
-            New Activity
-          </p>
+          <button className="btn" onClick={this.newActivity}>
+            <p>New Activity</p>
+          </button>
         </div>
         <div className="container">
           {this.state.formOpen ? (

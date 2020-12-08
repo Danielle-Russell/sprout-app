@@ -5,6 +5,7 @@ import { faClinicMedical } from "@fortawesome/free-solid-svg-icons";
 import { faSyringe } from "@fortawesome/free-solid-svg-icons";
 import { faPrescriptionBottle } from "@fortawesome/free-solid-svg-icons";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { faLongArrowAltLeft } from "@fortawesome/free-solid-svg-icons";
 import SproutContext from "../SproutContext";
 import config from "../config";
 
@@ -186,22 +187,26 @@ export default class Health extends React.Component {
       <>
         <div className="sidebar">
           <button className="btn" onClick={this.back}>
-            <p> Back to dashboard </p>
+            <p>
+              {" "}
+              <FontAwesomeIcon icon={faLongArrowAltLeft} /> Back to dashboard{" "}
+            </p>
           </button>
           <button className="btn" onClick={this.goHome}>
-            <FontAwesomeIcon icon={faHome} />
+            <FontAwesomeIcon icon={faHome} /> <p>All</p>
           </button>
           <button className="btn" onClick={this.apt}>
-            <FontAwesomeIcon icon={faClinicMedical} />
+            <FontAwesomeIcon icon={faClinicMedical} /> <p>Appoinments</p>
           </button>
           <button className="btn" onClick={this.vac}>
             <FontAwesomeIcon icon={faSyringe} />
+            <p>Vaccinations</p>
           </button>
           <button className="btn" onClick={this.med}>
-            <FontAwesomeIcon icon={faPrescriptionBottle} />
+            <FontAwesomeIcon icon={faPrescriptionBottle} /> <p>Medications</p>
           </button>
           <button className="btn" onClick={this.newHealth}>
-            New Record
+            <p>New Record</p>
           </button>
         </div>
         <div className="height">

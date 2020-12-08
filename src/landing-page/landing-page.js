@@ -57,7 +57,7 @@ export default class LandingPage extends React.Component {
           <Login history={this.props.history} />
         ) : null}
         </div>
-        <div className={background}>
+        <div style={{backgroundColor: "#a8dadc"}} className={background}>
         <nav>
             <ul className="nav">
               <li><a href="#how-to-wrapper">How It Works</a></li>
@@ -71,8 +71,8 @@ export default class LandingPage extends React.Component {
         
           
          
-          <div className="wrapper">
-            <h1 id="landing-title"> <span>SPROUT</span> <br /> Keep Track of the Most Precious Moments</h1>
+  
+            <h1 id="landing-title"> <span>SPROUT</span> <br /> Keep Track of Precious Moments</h1>
             
             <form id="landing-form" onSubmit={this.handleNewUser}>
               <b className="log"> Create Account</b>
@@ -95,7 +95,7 @@ export default class LandingPage extends React.Component {
               </button>
             </form>
   
-          </div>
+         
         </div>
 
         <div id="landing-box-wrapper">
@@ -132,7 +132,7 @@ export default class LandingPage extends React.Component {
           <div className="landing-how-to">
           <img src={sprouts} alt="placeholder" />
 
-            Keep individual profiles for multiple children
+            <p>Make Unique Profiles for Each Child</p>
 
           </div>
           <div className="landing-how-to">

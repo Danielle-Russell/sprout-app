@@ -12,13 +12,12 @@
 #landing-title span {
   font-size: inherit;
   font-weight: 500;
-
 }
 
 .nav {
 border: none;
-background-color: inherit;
-float: right;
+background-color: #a8dadc;
+float: center;
 margin: 1%;
 }
 
@@ -36,7 +35,6 @@ text-decoration: none;
 h2 {
     color: #3C403D
 }
-
 
 .link {
     text-decoration: none;
@@ -93,8 +91,6 @@ h2 {
     text-align: left;
   }
 
-
-  
   .close:hover,
 .close:focus {
   color: #000;
@@ -103,12 +99,15 @@ h2 {
 }
 
 
-.shown {
-  filter: blur(5px) grayscale(90%);
-    -webkit-filter: blur(5px) grayscale(90%);
-}
+  .shown {
+    filter: blur(5px) grayscale(90%);
+      -webkit-filter: blur(5px) grayscale(90%);
+  }
+  
 
-    
+  .closed {
+    background-color: #a8dadc;
+  }
     
 form {
     border: 3px solid #f1f1f1;
@@ -186,13 +185,23 @@ p {
   .landing-body {
     background-color: #a8dadc;
     height: 100%;
-    padding: 10%;
+    padding: 5%;
+    display: flex;
+  width: 80%;
+    top: 0;
+    flex-direction: column;
   }
+
+  header {
+    background-color: #a8dadc;
+
+  }
+  
 
   .sign-form {
     background-color: white;
     margin: auto;
-    width: 100%;
+    width: 80%;
   }
 
   header img {
@@ -214,8 +223,8 @@ p {
   #landing-box-wrapper {
     display: flex;
     flex-direction: column;
-    margin: 2%;
     background-color: #fffff7;
+
   }
 
   footer {
@@ -233,20 +242,48 @@ p {
 a {
   float: right;
 }
+
+.landing-how-to {
+  display: flex;
+  flex-direction: column;
+}
   .landing-how-to img {
     height: 300px;
-    width: 100%; 
     border: solid;
+    align-items: center;
+    justify-content: center;
   }
   
   #how-to-wrapper {
     background-color: #a8dadc;
-    padding: 1%;
+    display: flex;
+    flex-direction: column;
+  
+
+
+   
   }
 
   @media all and (min-width: 800px) {
-  
 
+    .landing-how-to {
+      flex-direction: row;
+    }
+
+    #how-to-wrapper {
+      padding: 100px;
+
+    }
+
+    .nav {
+      float: right;
+    }
+
+  
+.landing-body {
+  flex-direction: row;
+  width: 80%;
+}
   .sign-btn {
     padding: 10px;
   }
@@ -282,15 +319,7 @@ form {
   }
 
 
- .landing-how-to {
-   display: flex;
-   flex-direction: row;
-   margin: 10%;
- }
-
- #how-to-wrapper {
- padding: 5%;
- }
+ 
  .landing-how-to img {
    height: 300px;
    width: auto;

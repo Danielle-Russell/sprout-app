@@ -48,7 +48,7 @@ export default class Login extends React.Component {
      
         
         <form id="login-form" className="modal" onSubmit = {this.handleSubmitJwtAuth}>
-        <button className="close" onClick={this.context.go}>X</button>
+        <button className="close" onClick={this.context.closeModal}>X</button>
 
         <b className="log"> Login</b>
 

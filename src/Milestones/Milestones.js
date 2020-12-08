@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLongArrowAltLeft } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import config from '../config';
 import SproutContext from '../SproutContext';
@@ -120,9 +122,9 @@ milestoneArray()
       <header>{sproutName}</header>
 
 <div className="sidebar">
-  <p className="sidebar-nav" onClick={this.back}>Back to Dashboard</p> 
-  <p className="sidebar-nav" onClick={this.showMilestones}>Milestone Gallery</p>  
-  <p className="sidebar-nav" onClick={this.showForm}>New Milestone</p>
+  <button className="btn" onClick={this.back}><p><FontAwesomeIcon icon={faLongArrowAltLeft} /> Back to Dashboard</p></button> 
+  <button className="btn" onClick={this.showMilestones}><p>Milestone Gallery</p></button>  
+  <button className="btn" onClick={this.showForm}><p>New Milestone</p></button>
 
 </div>
 
