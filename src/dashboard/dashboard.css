@@ -23,7 +23,7 @@ li {
     padding: 5px;
 }
 
-li:hover {
+.my-sprout li:hover {
     transform: scale(1.1);
 }
 

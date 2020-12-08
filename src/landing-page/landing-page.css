@@ -223,13 +223,16 @@ p {
   #landing-box-wrapper {
     display: flex;
     flex-direction: column;
-    background-color: #fffff7;
+    background-color: #b2dfe2
 
   }
 
   footer {
     background-color: #a8dadc;
     text-align: center;
+    padding: 50px;
+    font-weight: bold;
+    color: black;
 
   }
   .sign-form {
@@ -250,8 +253,10 @@ a {
   .landing-how-to img {
     height: 300px;
     border: solid;
-    align-items: center;
-    justify-content: center;
+    margin: auto;
+   margin-top: 10px;
+    width: 400px;
+    
   }
   
   #how-to-wrapper {
@@ -295,6 +300,9 @@ a {
   flex-direction: column;
 }
 
+b {
+  text-align: center;
+}
 form {
   margin: auto;
   height: 100%;
