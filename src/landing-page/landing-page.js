@@ -64,10 +64,6 @@ export default class LandingPage extends React.Component {
               <li>
                 <a href="#landing-box-wrapper">Why Sprout</a>
               </li>
-
-              <li>
-                <a>About</a>
-              </li>
             </ul>
           </nav>
           <div className="landing-body">

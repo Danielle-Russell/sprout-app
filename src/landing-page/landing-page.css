@@ -32,6 +32,10 @@ margin: 10px;
 text-decoration: none;
 }
 
+.nav li:hover {
+  transform: scale(1.1)
+}
+
 h2 {
     color: #3C403D
 }
@@ -64,9 +68,8 @@ h2 {
   margin-left: 25%;
   margin-right: 10%;
   overflow: auto; /* Enable scroll if needed */
-  /*background-color: rgb(0,0,0); 
-  background-color: rgba(0,0,0,0.4);*/
     }
+
   .sidebar-nav:hover {
     color: grey;
   }
@@ -187,7 +190,6 @@ p {
     height: 100%;
     padding: 5%;
     display: flex;
-  width: 80%;
     top: 0;
     flex-direction: column;
   }
