@@ -86,11 +86,17 @@ export default class AddSprout extends React.Component {
         <form className="left" onSubmit={this.handleSubmit}>
           <button className="close" onClick={this.close}>X</button>
           <h2> ADD SPROUT</h2>
+          <span className="act-title">NAME</span>
           <input name="name" type="text" placeholder="Name" required />
+          <span className="act-title">D.O.B</span>
+
           <label htmlFor="age">
             Date of Birth
           <input name="age" type="date" placeholder="Birthday YYYY-MM-DD" min={hundredYears} max={now} />
+
           </label>
+          <span className="act-title">IMAGE</span>
+
           Upload a profile picture
          
           <div className="avatar">
@@ -106,7 +112,7 @@ export default class AddSprout extends React.Component {
             <img src={this.state.preview ? this.state.preview : "https://www.flaticon.com/svg/static/icons/svg/2919/2919600.svg"} alt="Preview" className="preview" />
           </div>
          
-          <input type="submit" />
+          <input className ="sign-btn" type="submit" />
          
 
         </form>
