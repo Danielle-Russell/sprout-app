@@ -111,10 +111,16 @@ export default class Growth extends React.Component {
         return (
           <div className="height">
             <li key={index}>
-              <img width={50} src="https://www.flaticon.com/svg/static/icons/svg/2589/2589559.svg" alt="measuring tape" />
               <span className="date">{grow.date}</span>
               <br />
-        
+              <img
+                width={50}
+                src="https://www.flaticon.com/svg/static/icons/svg/2589/2589559.svg"
+                alt="measuring tape"
+              />
+
+              <br />
+
               {grow.title}
               <br />
               <span>
@@ -123,10 +129,6 @@ export default class Growth extends React.Component {
               <br />
               <span>{grow.notes}</span>
             </li>
-            <img
-              style={{ height: '100%' }}
-              src="https://img.icons8.com/ultraviolet/40/000000/vertical-line.png"
-            />
           </div>
         );
       }
@@ -140,7 +142,12 @@ export default class Growth extends React.Component {
             <li key={index}>
               <span className="date">{grow.date}</span>
               <br />
-              <img src="https://www.flaticon.com/svg/static/icons/svg/822/822133.svg" alt="scale" width={50} />
+              <img
+                src="https://www.flaticon.com/svg/static/icons/svg/822/822133.svg"
+                alt="scale"
+                width={50}
+              />
+              <br />
               {grow.title}
               <br />
               <span>
@@ -149,10 +156,6 @@ export default class Growth extends React.Component {
               <br />
               <span>{grow.notes}</span>
             </li>
-            <img
-              style={{ margin: "5px" }}
-              src="https://img.icons8.com/ultraviolet/40/000000/vertical-line.png"
-            />
           </div>
         );
       }
@@ -168,7 +171,7 @@ export default class Growth extends React.Component {
             </p>
           </button>
           <button className="btn" onClick={this.goHome}>
-           <p> All </p> 
+            <p> All </p>
           </button>
           <button className="btn" onClick={this.height}>
             <FontAwesomeIcon icon={faRuler} /> <p>Height </p>
@@ -185,6 +188,8 @@ export default class Growth extends React.Component {
           {this.state.formOpen ? (
             <form className="left" onSubmit={this.handleSubmit}>
               <h2> New Growth Record </h2>
+              <span className="act-title">TYPE</span>
+
               <label htmlFor="height">
                 <input value="Height" type="radio" name="title" required />
                 Height{" "}
@@ -193,13 +198,21 @@ export default class Growth extends React.Component {
                 <input value="Weight" type="radio" name="title" required />
                 Weight{" "}
               </label>
+              <span className="act-title">NOTES</span>
 
               <input name="notes" type="text" placeholder="Notes" required />
+              <span className="act-title">NUMBER</span>
+              <span>example: "5" for "5lbs"</span>
+
               <input name="number" type="text" placeholder="Number" required />
+              <span className="act-title">UNITS</span>
+
               <select name="units">
                 <option value="lbs">lbs</option>
                 <option value="inches">inches</option>
               </select>
+              <span className="act-title">DATE</span>
+
               <input
                 name="date"
                 type="date"
@@ -207,7 +220,7 @@ export default class Growth extends React.Component {
                 placeholder="Date YYYY-MM-DD"
               />
 
-              <input type="submit" />
+              <input className="sign-btn" type="submit" />
             </form>
           ) : this.state.heightOpen ? (
             heights

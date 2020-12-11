@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClinicMedical } from "@fortawesome/free-solid-svg-icons";
 import { faSyringe } from "@fortawesome/free-solid-svg-icons";
 import { faPrescriptionBottle } from "@fortawesome/free-solid-svg-icons";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { faLongArrowAltLeft } from "@fortawesome/free-solid-svg-icons";
 import SproutContext from "../SproutContext";
 import config from "../config";
@@ -189,12 +188,10 @@ export default class Health extends React.Component {
           <button className="btn" onClick={this.back}>
             <p>
               {" "}
-              <FontAwesomeIcon icon={faLongArrowAltLeft} /> Back to dashboard{" "}
+              <FontAwesomeIcon icon={faLongArrowAltLeft} /> Back to dashboard
             </p>
           </button>
-          <button className="btn" onClick={this.goHome}>
-            <FontAwesomeIcon icon={faHome} /> <p>All</p>
-          </button>
+
           <button className="btn" onClick={this.apt}>
             <FontAwesomeIcon icon={faClinicMedical} /> <p>Appoinments</p>
           </button>
@@ -213,6 +210,7 @@ export default class Health extends React.Component {
           {this.state.formOpen ? (
             <form className="left" onSubmit={this.handleSubmit}>
               <h2> New Record </h2>
+              <span className="act-title">TYPE</span>
               <label htmlFor="apt">
                 <input
                   value="Appointment"
@@ -243,6 +241,8 @@ export default class Health extends React.Component {
                 />
                 Medication
               </label>
+              <span className="act-title">NOTES</span>
+
               <input
                 name="notes"
                 id="notes"
@@ -250,12 +250,16 @@ export default class Health extends React.Component {
                 placeholder="Notes"
                 required
               />
+              <span className="act-title">DATE</span>
+
               <input
                 name="date"
                 type="date"
                 required
                 placeholder="Date YYYY-MM-DD"
               />
+              <span className="act-title">TIME</span>
+
               <input
                 name="time"
                 type="time"
@@ -263,7 +267,7 @@ export default class Health extends React.Component {
                 placeholder="Time HH-mm"
               />
 
-              <input type="submit" />
+              <input className="sign-btn" type="submit" />
             </form>
           ) : this.state.aptOpen ? (
             apt

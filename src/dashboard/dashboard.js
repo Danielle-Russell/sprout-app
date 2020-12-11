@@ -234,7 +234,7 @@ var yd = years < 1 ? 'months' : 'years'
       var denom8 = Object.keys(datesGroupByComponent(sleep, "M"));
       averageMonthlySleep = count9 / denom8.length;
     }
-    console.log(averageMonthlyFeed)
+    
     const chart = () => {
      
       if (averageMonthlyFeed >= 1) {

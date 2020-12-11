@@ -5,7 +5,6 @@
    font-size: 30px;
    color: #ffffff;
    font-weight: 300;
-   font-style: italic;
 
 }
 
@@ -222,10 +221,14 @@ p {
    height: 300px;
   }
 
+.landing-box p {
+  margin: 1%;
+}
   #landing-box-wrapper {
     display: flex;
     flex-direction: column;
-    background-color: #b2dfe2
+    background-color: #b2dfe2;
+    text-align: center;
 
   }
 

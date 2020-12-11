@@ -134,13 +134,14 @@ export default class ActivityLog extends React.Component {
                 alt="dinner plate"
                 width={50}
               />
-              {[act.title, <br />, <span>{act.notes}</span>]}
-              <span className="time">{act.time}</span>
+               <br />
+              <span className='act-title'>{act.title}</span>
+              <br />
+              {act.notes}
+              <br />
+              <span>{act.time}</span>
             </li>
-            <img
-              style={{ margin: "5px" }}
-              src="https://img.icons8.com/ultraviolet/40/000000/vertical-line.png"
-            />
+            
           </>
         );
       }
@@ -159,14 +160,15 @@ export default class ActivityLog extends React.Component {
                 src="https://www.flaticon.com/svg/static/icons/svg/2123/2123665.svg"
                 alt="diaper"
                 width={50}
-              />{" "}
-              {[act.title, <br />, <span>{act.notes}</span>]}
-              <span className="time">{act.time}</span>
+              />
+               <br />
+              <span className='act-title'>{act.title}</span>
+              <br />
+              {act.notes}
+              <br />
+              <span>{act.time}</span>
             </li>
-            <img
-              style={{ margin: "5px" }}
-              src="https://img.icons8.com/ultraviolet/40/000000/vertical-line.png"
-            />
+          
           </>
         );
       }
@@ -183,14 +185,16 @@ export default class ActivityLog extends React.Component {
                 src="https://www.flaticon.com/svg/static/icons/svg/3658/3658869.svg"
                 alt="mobile"
                 width={50}
-              />{" "}
-              {[act.title, <br />, <span>{act.notes}</span>]}
-              <span className="time">{act.time}</span>
+              />
+              <br />
+              <span className='act-title'>{act.title}</span>
+              <br />
+              {act.notes}
+              <br />
+              <span>{act.time}</span>
+            
             </li>
-            <img
-              style={{ margin: "5px" }}
-              src="https://img.icons8.com/ultraviolet/40/000000/vertical-line.png"
-            />{" "}
+            
           </>
         );
       }
@@ -206,7 +210,9 @@ export default class ActivityLog extends React.Component {
       .reverse();
 
     return (
+      
       <div>
+       
         <div className="sidebar">
           <button className="btn" onClick={this.back}>
             <p>
@@ -238,7 +244,7 @@ export default class ActivityLog extends React.Component {
           {this.state.formOpen ? (
             <form className="left" onSubmit={this.handleSubmit}>
               <h2>New Activity</h2>
-
+<span className="act-title">TYPE</span>
               <label htmlFor="feed">
                 <input
                   value="Feed"
@@ -269,6 +275,7 @@ export default class ActivityLog extends React.Component {
                 />
                 Sleep
               </label>
+              <span className="act-title">NOTES</span>
 
               <input
                 name="notes"
@@ -277,19 +284,23 @@ export default class ActivityLog extends React.Component {
                 placeholder="Notes"
                 required
               />
+              <span className="act-title">DATE</span>
+
               <input
                 name="date"
                 type="date"
                 required
                 placeholder="Date YYYY-MM-DD"
               />
+              <span className="act-title">TIME</span>
+
               <input
                 name="time"
                 type="time"
                 required
                 placeholder="Time HH-MM"
               />
-              <input type="submit" />
+              <input className="sign-btn" type="submit" />
             </form>
           ) : this.state.feedOpen ? (
             feeds

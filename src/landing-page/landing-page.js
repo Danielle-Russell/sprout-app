@@ -41,6 +41,15 @@ export default class LandingPage extends React.Component {
       });
   };
 
+  demo = () => {
+    let email = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5).concat("@gmail.comlo")
+    localStorage.setItem('user email', email);
+    localStorage.setItem('firstname', 'Bridget');
+    localStorage.setItem('lastname', 'Jones');
+    this.props.history.push(`/account/${email}`)
+    window.location.reload()
+  }
+
   render() {
     let background = "";
     if (this.context.modalShown) {
@@ -63,6 +72,9 @@ export default class LandingPage extends React.Component {
               </li>
               <li>
                 <a href="#landing-box-wrapper">Why Sprout</a>
+              </li>
+              <li>
+                <a href="#landing-body" onClick={this.demo}>Demo</a>
               </li>
             </ul>
           </nav>
@@ -111,15 +123,19 @@ export default class LandingPage extends React.Component {
             <div className="landing-box">
               <img
                 src="https://www.flaticon.com/svg/static/icons/svg/2972/2972085.svg"
-                alt=""
+                alt="" 
               />
-    
+ <p style={{fontStyle:"normal"}}>LOGGING</p>
+    <br />
+    <p>Have fast access to an activity log</p>
             </div>
             <div className="landing-box">
               <img
                 src="https://www.flaticon.com/svg/static/icons/svg/3094/3094275.svg"
                 alt=""
               />
+              <p style={{fontStyle:"normal"}}>LEARNING</p>
+              <p>Remember and compare milestones to track progress</p>
             
             </div>
             <div className="landing-box">
@@ -127,7 +143,8 @@ export default class LandingPage extends React.Component {
                 src="https://www.flaticon.com/svg/static/icons/svg/3772/3772926.svg"
                 alt=""
               />
-            
+            <p style={{fontStyle:"normal"}}>HEALTH RECORDS</p>
+            <p>Have fast access to previous appointments and vaccinations, and keep track of important medications</p>
             </div>
           </div>
 
@@ -140,7 +157,7 @@ export default class LandingPage extends React.Component {
             <div className="landing-how-to">
               <p>
                 Track growth progress with logging and automatically generated
-                charts{" "}
+                charts
               </p>
               <img src={heightChart} alt="chart" />
             </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import Avatar from "react-avatar-edit";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { faLongArrowAltLeft } from "@fortawesome/free-solid-svg-icons";
 import config from '../config'
 import moment from "moment";
 
@@ -80,10 +80,10 @@ export default class AddSprout extends React.Component {
     return (
       <>
         <header className="landing-header"> 
-                <button className="home" onClick={this.back}><FontAwesomeIcon icon={faHome} /></button>
+                <button className="btn" onClick={this.back}><FontAwesomeIcon icon={faLongArrowAltLeft} /> <p>Back to Account</p></button>
 
                 </header>
-        <form style={{margin: "auto"}} onSubmit={this.handleSubmit}>
+        <form className="left" onSubmit={this.handleSubmit}>
           <button className="close" onClick={this.close}>X</button>
           <h2> ADD SPROUT</h2>
           <input name="name" type="text" placeholder="Name" required />

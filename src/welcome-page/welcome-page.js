@@ -2,7 +2,6 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import SproutContext from '../SproutContext'
 import "./welcome-page.css";
-import { faLeaf } from "@fortawesome/free-solid-svg-icons";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import AuthApiService from '../auth-api-service'
@@ -48,10 +47,7 @@ export default class WelcomePage extends React.Component {
         return (
       <>
         <header className="landing-header">
-          <span className="heading">
-            Sprout <FontAwesomeIcon icon={faLeaf} />
-          </span>
-          <div className="right-header">{localStorage.getItem('firstname')}<FontAwesomeIcon icon={faUserCircle} />
+          <div className="right-header">{localStorage.getItem('firstname')} <FontAwesomeIcon icon={faUserCircle} />
           <button className="submit" onClick={this.back}>
             Sign Out
           </button>
