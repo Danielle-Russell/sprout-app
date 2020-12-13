@@ -31,7 +31,7 @@ export default class WelcomePage extends React.Component {
 
   render() {
     let sprouts = []
-   const thing = () => {
+   const sprouts2 = () => {
 
       for (var key in this.context.sprouts) {
         if(key.length) {
@@ -41,7 +41,7 @@ export default class WelcomePage extends React.Component {
   }
       }
 
-      thing()
+      sprouts2()
 
       
         return (
@@ -58,11 +58,11 @@ export default class WelcomePage extends React.Component {
           <div className="sprouts-left">
             <h2>MY SPROUTS</h2>
            {sprouts.length > 4 ? null : <p style={{color: "black"}}>Get started by adding your first profile</p>}
-              {sprouts.map( sprout => {
+              {sprouts.map( (sprout, index) => {
                 if (sprout.name) {
-              return <NavLink className="my-sprout" to={`/dashboard/${sprout.id}`}>
+              return <NavLink key={index} className="my-sprout" to={`/dashboard/${sprout.id}`}>
                   <li key={sprout.id}>
-                  <img className="profile-pic" src={sprout.image} alt="personal" /> {sprout.name} 
+                  <img className="profile-pic" src={sprout.image} alt="personal" /> {sprout.name}
                   </li>
                 </NavLink>
             }return null})}
@@ -74,11 +74,11 @@ export default class WelcomePage extends React.Component {
            <h2>ACCOUNT INFORMATION</h2>
            <form className="delete" onSubmit={this.deleteUser}>
              First Name
-             <input type="text" value={localStorage.getItem('firstname')}></input>
+             <input type="text" value={localStorage.getItem('firstname')} readOnly></input>
              Last Name
-             <input type="text" value={localStorage.getItem('lastname')}></input>
+             <input type="text" value={localStorage.getItem('lastname')} readOnly></input>
 Email
-             <input type="text" value={localStorage.getItem('user email')}></input>
+             <input type="text" value={localStorage.getItem('user email')} readOnly></input>
 <button style={{backgroundColor: "red"}}onClick={this.back} className="sign-btn"> DELETE ACCOUNT</button>
            </form>
          </div>

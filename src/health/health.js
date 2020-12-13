@@ -119,20 +119,24 @@ export default class Health extends React.Component {
       .sort((a, b) => new Date(a.date) - new Date(b.date))
       .reverse();
 
-    const apt = sortedArray.map((apt, index) => {
+    const apt = sortedArray.map((apt, index, key) => {
       if (apt.title === "Appointment" && apt.sproutid === Number(id)) {
         return (
-          <div className="height">
+          <div key={apt.id} className="height">
             <span className="date">{apt.date}</span>
-            <br />
-            <span className="time">{apt.time}</span>{" "}
-            <li key={index}>
+         
+            <li>
               <img
                 src="https://www.flaticon.com/svg/static/icons/svg/619/619051.svg"
                 alt="hospital"
                 width={50}
-              />{" "}
-              {[apt.title, " ", <br />, <span>{apt.notes}</span>]}
+              />
+              <br />
+              <span className="act-title">APPOINTMENT</span>
+              <br />
+              {apt.notes}
+              <br />
+<span>{apt.time}</span>
             </li>
           </div>
         );
@@ -140,20 +144,25 @@ export default class Health extends React.Component {
       return null;
     });
 
-    const vac = sortedArray.map((apt, index) => {
+    const vac = sortedArray.map((apt, index, key) => {
       if (apt.title === "Vaccination" && apt.sproutid === Number(id)) {
         return (
-          <div className="height">
+          <div key={apt.id} className="height">
             <span className="date">{apt.date}</span>
-            <br />
-            <span className="time">{apt.time}</span>{" "}
-            <li key={index}>
+          
+            <li>
               <img
                 src="https://www.flaticon.com/svg/static/icons/svg/3027/3027579.svg"
                 alt="syringe"
                 width={50}
-              />{" "}
-              {[apt.title, " ", <br />, <span>{apt.notes}</span>]}
+              />
+               <br />
+              <span className="act-title">VACCINATION</span>
+              <br />
+              {apt.notes}
+              <br />
+<span>{apt.time}</span>
+
             </li>
           </div>
         );
@@ -164,17 +173,21 @@ export default class Health extends React.Component {
     const med = sortedArray.map((apt, index) => {
       if (apt.title === "Medication" && apt.sproutid === Number(id)) {
         return (
-          <div className="height">
+          <div key={apt.id} className="height">
             <span className="date">{apt.date}</span>
-            <br />
-            <span className="time">{apt.time}</span>
-            <li key={index}>
+        
+            <li>
               <img
                 src="https://www.flaticon.com/svg/static/icons/svg/1546/1546140.svg"
                 alt="medications"
                 width={50}
-              />{" "}
-              {[apt.title, " ", <br />, <span>{apt.notes}</span>]}
+              />
+              <br />
+              <span className="act-title">MEDICATION</span>
+              <br />
+              {apt.notes}
+              <br />
+<span>{apt.time}</span>
             </li>
           </div>
         );
@@ -187,7 +200,7 @@ export default class Health extends React.Component {
         <div className="sidebar">
           <button className="btn" onClick={this.back}>
             <p>
-              {" "}
+           
               <FontAwesomeIcon icon={faLongArrowAltLeft} /> Back to dashboard
             </p>
           </button>

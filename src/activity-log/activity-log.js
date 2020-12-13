@@ -125,8 +125,8 @@ export default class ActivityLog extends React.Component {
     const feeds = sortedArray.map((act, i) => {
       if (act.title === "Feed" && act.sproutid === Number(id)) {
         return (
-          <>
-            <span className="date">{act.date}</span>
+          <div key={act.id}>
+            <span  className="date">{act.date}</span>
 
             <li key={i}>
               <img
@@ -142,7 +142,7 @@ export default class ActivityLog extends React.Component {
               <span>{act.time}</span>
             </li>
             
-          </>
+          </div>
         );
       }
       return null;
@@ -151,8 +151,8 @@ export default class ActivityLog extends React.Component {
     const diapers = sortedArray.map((act, i) => {
       if (act.title === "Diaper" && act.sproutid === Number(id)) {
         return (
-          <>
-            <span className="date">{act.date}</span>
+          <div key={act.id} >
+            <span  className="date">{act.date}</span>
             <br />
 
             <li key={i}>
@@ -169,7 +169,7 @@ export default class ActivityLog extends React.Component {
               <span>{act.time}</span>
             </li>
           
-          </>
+          </div>
         );
       }
       return null;
@@ -178,8 +178,8 @@ export default class ActivityLog extends React.Component {
     const sleep = sortedArray.map((act, i) => {
       if (act.title === "Sleep" && act.sproutid === Number(id)) {
         return (
-          <>
-            <span className="date">{act.date}</span>
+          <div key={act.id}>
+            <span  className="date">{act.date}</span>
             <li key={i}>
               <img
                 src="https://www.flaticon.com/svg/static/icons/svg/3658/3658869.svg"
@@ -195,7 +195,7 @@ export default class ActivityLog extends React.Component {
             
             </li>
             
-          </>
+          </div>
         );
       }
       return null;

@@ -107,7 +107,7 @@ export default class Milestones extends React.Component {
     const sproutName = sprouts.map((spr) => {
       if (spr.id === Number(id)) {
         return (
-          <div>
+          <div key={spr.id}>
             <img className="profile-pic" src={spr.image} alt="personal" />
             <p>{spr.name}</p>
           </div>
@@ -136,7 +136,7 @@ export default class Milestones extends React.Component {
         {this.state.showMilestones ? (
           specSprout.map((spr) => {
             return (
-              <div className="gallery">
+              <div key={spr.id} className="gallery">
                 <img src={spr.image} alt="personal" />
                 <div className="desc">
                   <b>{spr.date}</b> <br /> {spr.notes}

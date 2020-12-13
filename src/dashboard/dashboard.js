@@ -71,10 +71,34 @@ export default class Dashboard extends React.Component {
       
       for (let i = 0; i < sprouts.length; i++) {
         if (Number(id) === sprouts[i].id) {
-          var years = moment().diff(sprouts[i].age, 'year');
-var months = moment().diff(sprouts[i].age, 'months');
-var age = years < 1 ? months : years 
-var yd = years < 1 ? 'months' : 'years'
+  
+let age = moment(new Date(sprouts[i].age)).format()
+
+let duration = moment.duration(moment().diff(age));
+const formatDuration = (duration) => {
+  let years = duration.years();
+  let months= duration.months();
+  let days= duration.days();
+  let result = '';
+  if (years === 1) {
+      result += '1 Year, ';
+  } else if (years > 1) {
+      result += years + ' years, ';
+  }
+  if (months === 1) {
+      result += ' 1 month, ';
+  } else if (months > 1) {
+      result += months + ' months, ';
+  }
+  if (days === 1) {
+      result += ' & 1 day, ';
+  } else if (days > 1) {
+      result += days + ' days ';
+  }
+  return result;
+}
+
+
           return (
             <div className="profile">
               <img
@@ -83,7 +107,7 @@ var yd = years < 1 ? 'months' : 'years'
                 alt="profile"
               />
              
-            <p> {sprouts[i].name} <br /> <br /> {age} {yd}</p> 
+            <p> {sprouts[i].name} <br /> <br /> {formatDuration(duration)}</p> 
 
             </div>
           );
@@ -115,7 +139,7 @@ var yd = years < 1 ? 'months' : 'years'
 
     weightChart.reverse().forEach((z) => {
       let date = z;
-      x.push(date);
+      x.push(date)
     });
     let y = [];
     weightData.reverse().forEach((z) => {
@@ -242,7 +266,7 @@ var yd = years < 1 ? 'months' : 'years'
 
           <div className="item">
           Growth Patterns
-            <Line
+            <Line 
               data={{
                 plugins: [ChartDataLabels],
                 labels: x,
@@ -260,7 +284,7 @@ var yd = years < 1 ? 'months' : 'years'
                   <div className="item"   >
 
            
-            <Line
+            <Line 
               data={{
                 plugins: [ChartDataLabels],
                 labels: a,
@@ -279,8 +303,8 @@ var yd = years < 1 ? 'months' : 'years'
           </div>
           <div className="wrapper2">
     
-        <div className="act-chart">
-        <Doughnut
+        <div className="act-chart" >
+        <Doughnut 
           data={{
             plugins: [ChartDataLabels],
             labels: ["Sleep", "Feed", "Diaper"],
@@ -307,12 +331,15 @@ var yd = years < 1 ? 'months' : 'years'
           }}}
         />
         <table>
+          <thead>
           <tr>
             <td>&nbsp;</td>
             <td>Feeds</td>
             <td>Diapers</td>
             <td>Sleep</td>
           </tr>
+          </thead>
+          <tbody>
           <tr>
             <td>Daily</td>
             <td>{averageDailyFeed}</td>
@@ -337,6 +364,7 @@ var yd = years < 1 ? 'months' : 'years'
             <td>{diaper.length}</td>
             <td>{sleep.length}</td>
           </tr>
+          </tbody>
         </table>
           </div>
            <div>
@@ -344,14 +372,14 @@ var yd = years < 1 ? 'months' : 'years'
            <ul className="recent-feed">
           <h2>Most Recent Activities</h2>
 
-{recent.slice(0,3).map((act) => {
+{recent.slice(0,3).map((act, index) => {
 var now = moment().format("YYYY-MM-DD");
 var color;
 var src;
   var time = act.time;
   var date;
   if (now <= date && time) {
-    var timeFormatted = moment(time, "HH:mm").fromNow();
+    var timeFormatted = moment(time).format("HH:mm").fromNow();
     date = timeFormatted;
   } 
    if (act.title === "Feed") {
@@ -368,13 +396,13 @@ src="https://static.thenounproject.com/png/749416-200.png"
 
 
   return (
-    <>
+    <div key={act.id}>
       <span className="dash-span">
 {date} {time}
       </span>
-      <li style={{border: "solid"}} className={color}><strong>{act.title}</strong> <br /> {act.notes}  <img className="recent-feed-img
+      <li  key={index} style={{border: "solid"}} className={color}><strong>{act.title}</strong> <br /> {act.notes}  <img className="recent-feed-img
       " src={src} alt=""/></li>
-    </>
+    </div>
   );
 
 })}
@@ -398,79 +426,87 @@ src="https://static.thenounproject.com/png/749416-200.png"
 
         <div className="wrapper">
 
-          <ul className="box
-          ">
+       
             {sprouts.map((sprout, index) => {
               if (Number(id) === sprout.id) {
                 return (
-                  <Link className="link" to={`/growth/${sprout.id}`}>
+                  <ul className="box
+                  " key={index}>
+                  <Link key={sprout.id} className="link" to={`/growth/${sprout.id}`}>
                     <h1>Growth</h1>
                     <img
                       className="grow"
                       src="https://freeiconshop.com/wp-content/uploads/edd/upward-trend-flat-128x128.png" alt=""
                     />
                   </Link>
+                  </ul>
                 );
               }
               return null
             })}
            
         
-          </ul>
+      
 
-<ul className="box">
             {sprouts.map((sprout, index) => {
               if (Number(id) === sprout.id) {
                 return (
-                  <Link className="link" to={`/activity-log/${sprout.id}`}>
+                  <ul className="box" key={index}>
+
+                  <Link key={sprout.id} className="link" to={`/activity-log/${sprout.id}`}>
                     <h1>Activity Log </h1>
-                    <img
+                    <img 
                       className="grow"
                       src="https://freeiconshop.com/wp-content/uploads/edd/orange-flat-128x128.png" alt=""
                     />
                   </Link>
+                  </ul>
+
                 );
               }
 
               return null;
             })}
-          </ul>
 
-          <ul className="box">
+          
             {sprouts.map((sprout, index) => {
               if (Number(id) === sprout.id) {
                 return (
-                  <Link className="link" to={`/milestones/${sprout.id}`}>
+                  <ul className="box" key={index}>
+                  <Link key={sprout.id} className="link" to={`/milestones/${sprout.id}`}>
                     <h1>Milestones</h1>
-                    <img
+                    <img 
               className="grow"
               alt="sprout"
               src="https://freeiconshop.com/wp-content/uploads/edd/badge-flat.png"
             />
                   </Link>
+                  </ul>
+
                 );
               }
               return null;
             })}
 
-          </ul>
 
-          <ul className = "box">
             {sprouts.map((sprout, index) => {
               if (Number(id) === sprout.id) {
                 return (
-                  <Link className="link" to={`/health/${sprout.id}`}>
+                  <ul key={index} className = "box">
+
+                  <Link key={sprout.id} className="link" to={`/health/${sprout.id}`}>
                     <h1>Health Records</h1>
-                    <img
+                    <img 
                       className="grow"
                       src="https://freeiconshop.com/wp-content/uploads/edd/clipboard-list-flat.png" alt=""
                     />
                   </Link>
+                  </ul>
+
                 );
               }
               return null;
             })}
-          </ul>
         </div>
 
       {chart()}

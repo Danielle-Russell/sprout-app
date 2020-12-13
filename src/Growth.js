@@ -109,7 +109,7 @@ export default class Growth extends React.Component {
     const heights = sortedArray2.map((grow, index) => {
       if (grow.title === "Height" && grow.sproutid === Number(id)) {
         return (
-          <div className="height">
+          <div key={grow.id} className="height">
             <li key={index}>
               <span className="date">{grow.date}</span>
               <br />
@@ -138,7 +138,7 @@ export default class Growth extends React.Component {
     const weights = sortedArray2.map((grow, index) => {
       if (grow.title === "Weight" && grow.sproutid === Number(id)) {
         return (
-          <div className="height">
+          <div key={grow.id} className="height">
             <li key={index}>
               <span className="date">{grow.date}</span>
               <br />
