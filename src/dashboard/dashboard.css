@@ -166,7 +166,7 @@ table, th, td {
    }
 
    .recent-feed {
-    width: 100%;
+    width: 80%;
     border: none;
     background-color: inherit;
     margin: auto;
