@@ -1,68 +1,33 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Sprout
 
-## Available Scripts
+### Live Link: https://sprout-app-mu.vercel.app
+### Repository Link for API: https://github.com/Danielle-Russell/sprout-api.git
 
-In the project directory, you can run:
+### Summary
 
-### `npm start`
+Sprout is an interactive fullstack application that allows users to track the daily activities and overall progress of each of their children. Designed with high maintenance babies in mind, Sprout incorporates features that make it useful for children of all ages. Users must make an account to save their information, however there is also an option for users to demo the application in its full capacity without saving any of the information they entered. Users can make individual profiles for each of their children, with a custom profile picture for each. Once entered into a profile, each child will have their own custom dashboard that outlines their growth patterns, links to each category (Growth, Activity Log, Milestones, and Health Records) where new logs can be added as well as a comprehensive list of all previously added logs. The milestone component also features a gallery for users to view images that they added upon entry with tags that explain which milestone is being referenced. Below on the dashboards, users can also view their three most recent activities logged as well as a doughnut chart, showing the average daily distribution of activities (for example, a child may eat 5 times a day but only sleep 3, while having 5 diaper changes. 
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Technology
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+The front-end of this application was built using React.js. The back end was built using Node.js with Express. I used React Router for my routing and a Chart.js plugin to generate my charts. 
 
-### `npm test`
+### Landing Page 
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<img src= https://github.com/Danielle-Russell/sprout-app/blob/master/sprout-landing-page.png />
 
-### `npm run build`
+Create an account, log in, or demo the app from the nav bar. Sprout App uses JWT authentication and bCrypt password hashing to create a unique and secure experience. 
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Sprouts
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+<img src=https://github.com/Danielle-Russell/sprout-app/blob/master/src/landing-page/sprouts.png />
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Add an unlimited number of accounts for your children.
 
-### `npm run eject`
+### Dashboard
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<img src=https://github.com/Danielle-Russell/sprout-app/blob/master/dashboard.png />
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+View result summaries on a dynamic dashboard for each profile
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
