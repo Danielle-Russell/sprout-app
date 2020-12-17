@@ -42,7 +42,7 @@ export default class LandingPage extends React.Component {
   };
 
   demo = () => {
-    let email = "demo@gmail.com"
+    let email = "demouser@gmail.com"
     localStorage.setItem("user email", email);
     localStorage.setItem("firstname", "Demo");
     localStorage.setItem("lastname", "Smith");
