@@ -6,6 +6,13 @@
 
 }
 
+h1 {
+    color: #3C403D;
+    text-align: center;
+    margin: 1%;
+
+}
+
 .my-sprout li {
     border: solid;
     margin: 5px;
@@ -38,7 +45,7 @@ display: flex;
 flex-direction: column;
 }
 
-.account-info {
+.sprouts-right {
     width: 100%;
 }
 .sprouts-left {
@@ -48,7 +55,7 @@ background-color: inherit;
 display: flex;
 flex-direction: column;
 margin: auto;
-height: 50%;
+
 }
 
 .account {
@@ -68,7 +75,7 @@ height: 50%;
         flex-direction:row;
     }
 
-.account-info {
+.sprouts-right {
     width: 50%;
     margin: 10%;
 }

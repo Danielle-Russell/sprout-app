@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Route } from 'react-router-dom';
+import { Route, BrowserRouter } from 'react-router-dom';
 import LandingPage from './landing-page/landing-page';
 import Dashboard from './dashboard/dashboard';
 import WelcomePage from './welcome-page/welcome-page';
@@ -124,9 +124,10 @@ render() {
   }
 
   return (
-
+<BrowserRouter>
     <div className="App">
         <SproutContext.Provider value={contextValue}>
+          
 
   <Route exact path='/' component={LandingPage} />
   <Route path='/activity-log/:id' component={ActivityLog} />
@@ -138,9 +139,12 @@ render() {
   <Route path='/new-sprout' component={AddSprout} />
   <Route path='/milestones/:id' component={Milestones} />
   <Route path='/growth/:id' component={Growth} />
+
   </SproutContext.Provider>
+ 
 
 </div>
+</BrowserRouter>
 
 
   )

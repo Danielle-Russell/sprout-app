@@ -113,18 +113,20 @@ export default class Health extends React.Component {
       }
     };
     healthArray();
-    const { id } = this.props.match.params;
 
     const sortedArray = health
       .sort((a, b) => new Date(a.date) - new Date(b.date))
       .reverse();
 
     const apt = sortedArray.map((apt, index, key) => {
-      if (apt.title === "Appointment" && apt.sproutid === Number(id)) {
+      if (
+        apt.title === "Appointment" &&
+        apt.sproutid === Number(this.props.match.params.id)
+      ) {
         return (
           <div key={apt.id} className="height">
             <span className="date">{apt.date}</span>
-         
+
             <li>
               <img
                 src="https://www.flaticon.com/svg/static/icons/svg/619/619051.svg"
@@ -136,7 +138,7 @@ export default class Health extends React.Component {
               <br />
               {apt.notes}
               <br />
-<span>{apt.time}</span>
+              <span>{apt.time}</span>
             </li>
           </div>
         );
@@ -145,24 +147,26 @@ export default class Health extends React.Component {
     });
 
     const vac = sortedArray.map((apt, index, key) => {
-      if (apt.title === "Vaccination" && apt.sproutid === Number(id)) {
+      if (
+        apt.title === "Vaccination" &&
+        apt.sproutid === Number(this.props.match.params.id)
+      ) {
         return (
           <div key={apt.id} className="height">
             <span className="date">{apt.date}</span>
-          
+
             <li>
               <img
                 src="https://www.flaticon.com/svg/static/icons/svg/3027/3027579.svg"
                 alt="syringe"
                 width={50}
               />
-               <br />
+              <br />
               <span className="act-title">VACCINATION</span>
               <br />
               {apt.notes}
               <br />
-<span>{apt.time}</span>
-
+              <span>{apt.time}</span>
             </li>
           </div>
         );
@@ -171,11 +175,14 @@ export default class Health extends React.Component {
     });
 
     const med = sortedArray.map((apt, index) => {
-      if (apt.title === "Medication" && apt.sproutid === Number(id)) {
+      if (
+        apt.title === "Medication" &&
+        apt.sproutid === Number(this.props.match.params.id)
+      ) {
         return (
           <div key={apt.id} className="height">
             <span className="date">{apt.date}</span>
-        
+
             <li>
               <img
                 src="https://www.flaticon.com/svg/static/icons/svg/1546/1546140.svg"
@@ -187,7 +194,7 @@ export default class Health extends React.Component {
               <br />
               {apt.notes}
               <br />
-<span>{apt.time}</span>
+              <span>{apt.time}</span>
             </li>
           </div>
         );
@@ -200,7 +207,6 @@ export default class Health extends React.Component {
         <div className="sidebar">
           <button className="btn" onClick={this.back}>
             <p>
-           
               <FontAwesomeIcon icon={faLongArrowAltLeft} /> Back to dashboard
             </p>
           </button>
@@ -219,68 +225,68 @@ export default class Health extends React.Component {
             <p>New Record</p>
           </button>
         </div>
-        <div className="height">
+        <main className="height">
+          <h1>HEALTH</h1>
           {this.state.formOpen ? (
             <form className="left" onSubmit={this.handleSubmit}>
               <h2> New Record </h2>
-              <span className="act-title">TYPE</span>
-              <label htmlFor="apt">
-                <input
-                  value="Appointment"
-                  id="apt"
-                  type="radio"
-                  name="title"
-                  required
-                />
-                Appointment
+
+              <fieldset>
+                <legend>
+                  <span className="act-title">TYPE</span>
+                </legend>
+                <label htmlFor="apt">
+                  <input
+                    value="Appointment"
+                    id="apt"
+                    type="radio"
+                    name="title"
+                    required
+                  />
+                  Appointment
+                </label>
+                <label htmlFor="Vaccination">
+                  <input
+                    value="Vaccination"
+                    id="Vaccination"
+                    type="radio"
+                    name="title"
+                    required
+                  />
+                  Vaccination
+                </label>
+                <label htmlFor="Medication">
+                  <input
+                    value="Medication"
+                    id="Medication"
+                    type="radio"
+                    name="title"
+                    required
+                  />
+                  Medication
+                </label>
+              </fieldset>
+              <label htmlFor="notes">
+                <span className="act-title">NOTES</span>
               </label>
-              <label htmlFor="Vaccination">
-                <input
-                  value="Vaccination"
-                  id="Vaccination"
-                  type="radio"
-                  name="title"
-                  required
-                />
-                Vaccination
+              <input id="notes" type="text" placeholder="Notes" required />
+              <label htmlFor="date">
+                <span className="act-title">DATE</span>
               </label>
-              <label htmlFor="Medication">
-                <input
-                  value="Medication"
-                  id="Medication"
-                  type="radio"
-                  name="title"
-                  required
-                />
-                Medication
-              </label>
-              <span className="act-title">NOTES</span>
 
               <input
-                name="notes"
-                id="notes"
-                type="text"
-                placeholder="Notes"
-                required
-              />
-              <span className="act-title">DATE</span>
-
-              <input
-                name="date"
+                id="date"
                 type="date"
                 required
                 placeholder="Date YYYY-MM-DD"
               />
-              <span className="act-title">TIME</span>
+              <label htmlFor="time">
+                <span className="act-title">TIME</span>
+              </label>
 
-              <input
-                name="time"
-                type="time"
-                required
-                placeholder="Time HH-mm"
-              />
+              <input id="time" type="time" required placeholder="Time HH-mm" />
 
-              <input className="sign-btn" type="submit" />
+              <input className="sign-btn" type="submit" value="submit" />
             </form>
           ) : this.state.aptOpen ? (
             apt
@@ -291,7 +297,7 @@ export default class Health extends React.Component {
           ) : (
             [apt, vac, med]
           )}
-        </div>
+        </main>
       </>
     );
   }

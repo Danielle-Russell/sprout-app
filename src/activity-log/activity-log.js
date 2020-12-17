@@ -116,22 +116,21 @@ export default class ActivityLog extends React.Component {
     };
     activityArray();
 
-    const { id } = this.props.match.params;
 
     const sortedArray = activities
       .sort((a, b) => new Date(a.date) - new Date(b.date))
       .reverse();
 
     const feeds = sortedArray.map((act, i) => {
-      if (act.title === "Feed" && act.sproutid === Number(id)) {
+      if (act.title === "Feed" && act.sproutid === Number(this.props.match.params.id)) {
         return (
-          <div key={act.id}>
+          <div key={act.sproutid}>
             <span  className="date">{act.date}</span>
 
             <li key={i}>
               <img
                 src="https://www.flaticon.com/svg/static/icons/svg/2367/2367620.svg"
-                alt="dinner plate"
+                alt="dinner-plate"
                 width={50}
               />
                <br />
@@ -149,16 +148,16 @@ export default class ActivityLog extends React.Component {
     });
 
     const diapers = sortedArray.map((act, i) => {
-      if (act.title === "Diaper" && act.sproutid === Number(id)) {
+      if (act.title === "Diaper" && act.sproutid === Number(this.props.match.params.id)) {
         return (
-          <div key={act.id} >
+          <div key={act.sproutid} >
             <span  className="date">{act.date}</span>
             <br />
 
             <li key={i}>
               <img
                 src="https://www.flaticon.com/svg/static/icons/svg/2123/2123665.svg"
-                alt="diaper"
+                alt="diaper-icon"
                 width={50}
               />
                <br />
@@ -176,14 +175,14 @@ export default class ActivityLog extends React.Component {
     });
 
     const sleep = sortedArray.map((act, i) => {
-      if (act.title === "Sleep" && act.sproutid === Number(id)) {
+      if (act.title === "Sleep" && act.sproutid === Number(this.props.match.params.id)) {
         return (
-          <div key={act.id}>
+          <div key={act.sproutid}>
             <span  className="date">{act.date}</span>
             <li key={i}>
               <img
                 src="https://www.flaticon.com/svg/static/icons/svg/3658/3658869.svg"
-                alt="mobile"
+                alt="sleep-mobile-icon"
                 width={50}
               />
               <br />
@@ -216,7 +215,7 @@ export default class ActivityLog extends React.Component {
         <div className="sidebar">
           <button className="btn" onClick={this.back}>
             <p>
-              {" "}
+          
               <FontAwesomeIcon
                 icon={faLongArrowAltLeft}
                 style={{ color: "white" }}
@@ -240,11 +239,13 @@ export default class ActivityLog extends React.Component {
             <p>New Activity</p>
           </button>
         </div>
-        <div className="container">
+        <main className="container">
+        <h1>ACTIVITIES</h1>
           {this.state.formOpen ? (
             <form className="left" onSubmit={this.handleSubmit}>
               <h2>New Activity</h2>
-<span className="act-title">TYPE</span>
+              <fieldset>
+<legend><span className="act-title">TYPE</span></legend>
               <label htmlFor="feed">
                 <input
                   value="Feed"
@@ -275,32 +276,35 @@ export default class ActivityLog extends React.Component {
                 />
                 Sleep
               </label>
-              <span className="act-title">NOTES</span>
-
+              </fieldset>
+             
+<label htmlFor="notes"> <span className="act-title">NOTES</span></label>
               <input
-                name="notes"
+                
                 id="notes"
                 type="text"
                 placeholder="Notes"
                 required
               />
-              <span className="act-title">DATE</span>
+           <label htmlFor="date"> <span className="act-title">DATE</span></label>
+
 
               <input
-                name="date"
+                id="date"
                 type="date"
                 required
                 placeholder="Date YYYY-MM-DD"
               />
-              <span className="act-title">TIME</span>
+           <label htmlFor="time"> <span className="act-title">TIME</span></label>
+
 
               <input
-                name="time"
+                id="time"
                 type="time"
                 required
                 placeholder="Time HH-MM"
               />
-              <input className="sign-btn" type="submit" />
+              <input className="sign-btn" type="submit" value="submit" />
             </form>
           ) : this.state.feedOpen ? (
             feeds
@@ -311,7 +315,7 @@ export default class ActivityLog extends React.Component {
           ) : (
             all
           )}
-        </div>
+        </main>
       </div>
     );
   }

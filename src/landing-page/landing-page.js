@@ -42,13 +42,13 @@ export default class LandingPage extends React.Component {
   };
 
   demo = () => {
-    let email = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5).concat("@gmail.comlo")
-    localStorage.setItem('user email', email);
-    localStorage.setItem('firstname', 'Bridget');
-    localStorage.setItem('lastname', 'Jones');
-    this.props.history.push(`/account/${email}`)
-    window.location.reload()
-  }
+    let email = "demo@gmail.com"
+    localStorage.setItem("user email", email);
+    localStorage.setItem("firstname", "Demo");
+    localStorage.setItem("lastname", "Smith");
+    this.props.history.push(`/account/${email}`);
+    window.location.reload();
+  };
 
   render() {
     let background = "";
@@ -64,48 +64,66 @@ export default class LandingPage extends React.Component {
             <Login history={this.props.history} />
           ) : null}
         </div>
-        <div style={{ backgroundColor: "#a8dadc" }} className={background}>
+        <div className={background}>
           <nav>
             <ul className="nav">
-              <li>
-                <a href="#how-to-wrapper">How It Works</a>
-              </li>
-              <li>
+            <li>
                 <a href="#landing-box-wrapper">Why Sprout</a>
               </li>
               <li>
-                <a href="#landing-body" onClick={this.demo}>Demo</a>
+                <a href="#how-to-wrapper">How It Works</a>
+              </li>
+             
+              <li>
+                <a href="#landing-body" onClick={this.demo}>
+                  Demo
+                </a>
               </li>
             </ul>
           </nav>
           <div className="landing-body">
             <h1 id="landing-title">
-              {" "}
+              
               <span>SPROUT</span> <br /> Keep Track of Precious Moments
             </h1>
 
             <form id="landing-form" onSubmit={this.handleNewUser}>
               <b className="log"> Create Account</b>
+              <br />
+              <br />
+              <label htmlFor="firstname">First Name: </label>
               <input
+                id="firstname"
                 name="firstname"
                 type="text"
                 placeholder="First Name"
                 required
               />
+              <label htmlFor="lastname">Last Name: </label>
               <input
+                id="lastname"
                 name="lastname"
                 type="text"
                 placeholder="Last Name"
                 required
               />
-              <input name="email" type="email" placeholder="email" required />
+              <label htmlFor="email">Email: </label>
               <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="email"
+                required
+              />
+              <label htmlFor="password">Password (8 Characters): </label>
+              <input
+                id="password"
                 name="password"
                 type="password"
                 placeholder="password"
                 required
               />
-              <button className="sign-btn" type="submit">
+              <button className="sign-btn" type="submit" disabled={this.context.modalShown}> 
                 Submit
               </button>
               {this.state.error && !this.context.modalShown ? (
@@ -113,7 +131,7 @@ export default class LandingPage extends React.Component {
               ) : null}
               <br />
               Already Have An Account?
-              <button className="sign-btn" onClick={this.context.showModal}>
+              <button className="sign-btn" onClick={this.context.showModal} disabled={this.context.modalShown}>
                 Log In
               </button>
             </form>
@@ -123,34 +141,36 @@ export default class LandingPage extends React.Component {
             <div className="landing-box">
               <img
                 src="https://www.flaticon.com/svg/static/icons/svg/2972/2972085.svg"
-                alt="" 
+                alt=""
               />
- <p style={{fontStyle:"normal"}}>LOGGING</p>
-    <br />
-    <p>Have fast access to an activity log</p>
+              <p style={{ fontStyle: "normal" }}>LOGGING</p>
+              <br />
+              <p>Have fast access to an activity log</p>
             </div>
             <div className="landing-box">
               <img
                 src="https://www.flaticon.com/svg/static/icons/svg/3094/3094275.svg"
                 alt=""
               />
-              <p style={{fontStyle:"normal"}}>LEARNING</p>
+              <p style={{ fontStyle: "normal" }}>LEARNING</p>
               <p>Remember and compare milestones to track progress</p>
-            
             </div>
             <div className="landing-box">
               <img
                 src="https://www.flaticon.com/svg/static/icons/svg/3772/3772926.svg"
                 alt=""
               />
-            <p style={{fontStyle:"normal"}}>HEALTH RECORDS</p>
-            <p>Have fast access to previous appointments and vaccinations, and keep track of important medications</p>
+              <p style={{ fontStyle: "normal" }}>HEALTH RECORDS</p>
+              <p>
+                Have fast access to previous appointments and vaccinations, and
+                keep track of important medications
+              </p>
             </div>
           </div>
 
           <div id="how-to-wrapper">
             <div className="landing-how-to">
-              <img src={sprouts} alt="placeholder" />
+              <img src={sprouts} alt="sprout individual profiles example" />
 
               <p>Make Unique Profiles for Each Child</p>
             </div>
@@ -159,10 +179,10 @@ export default class LandingPage extends React.Component {
                 Track growth progress with logging and automatically generated
                 charts
               </p>
-              <img src={heightChart} alt="chart" />
+              <img src={heightChart} alt="sprout growth chart" />
             </div>
             <div className="landing-how-to">
-              <img src={recent} alt="placeholder" />
+              <img src={recent} alt="log of sprout activities example" />
               <p>Track daily activities</p>
             </div>
           </div>

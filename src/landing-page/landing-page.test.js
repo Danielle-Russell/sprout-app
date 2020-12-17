@@ -1,11 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+import { BrowserRouter } from "react-router-dom";
+import LandingPage from "./landing-page";
 
 it("renders without crashing", () => {
   const div = document.createElement("div");
   ReactDOM.render(
-    <App />,
+    <BrowserRouter>
+      <LandingPage />
+    </BrowserRouter>,
     div
   );
   ReactDOM.unmountComponentAtNode(div);

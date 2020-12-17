@@ -1,11 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+import { BrowserRouter } from "react-router-dom";
+import Growth from "./Growth";
 
 it("renders without crashing", () => {
   const div = document.createElement("div");
   ReactDOM.render(
-    <App />,
+    <BrowserRouter>
+      <Growth />
+    </BrowserRouter>,
     div
   );
   ReactDOM.unmountComponentAtNode(div);

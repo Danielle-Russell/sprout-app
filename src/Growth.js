@@ -11,6 +11,9 @@ export default class Growth extends React.Component {
     heightOpen: false,
     weightOpen: false,
     formOpen: false,
+    units: "",
+    error: false,
+    number: 1,
   };
 
   static contextType = SproutContext;
@@ -28,6 +31,32 @@ export default class Growth extends React.Component {
     });
   };
 
+  onChange = (e) => {
+    this.setState({
+      number: e.target.value,
+    });
+  };
+
+  validateNumber = () => {
+    const number = parseFloat(this.state.number);
+
+    if (!Number.isInteger(number)) {
+      return "Please select a whole number";
+    }
+    return null;
+  };
+  determineUnits = (e) => {
+    if (e.target.value === "Height") {
+      this.setState({
+        units: "inches",
+      });
+    }
+    if (e.target.value === "Weight") {
+      this.setState({
+        units: "lbs",
+      });
+    }
+  };
   addNewGrowth = (growth) => {
     fetch(`${config.API_ENDPOINT}/api/growth`, {
       method: "POST",
@@ -90,7 +119,6 @@ export default class Growth extends React.Component {
       weightOpen: false,
     });
   };
-
   render() {
     let growth = [];
     const growthArray = () => {
@@ -100,14 +128,15 @@ export default class Growth extends React.Component {
     };
     growthArray();
 
-    const { id } = this.props.match.params;
-
     const sortedArray2 = growth
       .sort((a, b) => new Date(a.date) - new Date(b.date))
       .reverse();
 
     const heights = sortedArray2.map((grow, index) => {
-      if (grow.title === "Height" && grow.sproutid === Number(id)) {
+      if (
+        grow.title === "Height" &&
+        grow.sproutid === Number(this.props.match.params.id)
+      ) {
         return (
           <div key={grow.id} className="height">
             <li key={index}>
@@ -136,7 +165,10 @@ export default class Growth extends React.Component {
     });
 
     const weights = sortedArray2.map((grow, index) => {
-      if (grow.title === "Weight" && grow.sproutid === Number(id)) {
+      if (
+        grow.title === "Weight" &&
+        grow.sproutid === Number(this.props.match.params.id)
+      ) {
         return (
           <div key={grow.id} className="height">
             <li key={index}>
@@ -180,47 +212,77 @@ export default class Growth extends React.Component {
             <FontAwesomeIcon icon={faWeight} /> <p>Weight</p>
           </button>
           <button className="btn" onClick={this.newGrowth}>
-            {" "}
             <p>Add New Activity</p>
           </button>
         </div>
-        <div className="height">
+        <main className="height">
+          <h1>GROWTH</h1>
           {this.state.formOpen ? (
             <form className="left" onSubmit={this.handleSubmit}>
               <h2> New Growth Record </h2>
-              <span className="act-title">TYPE</span>
+              <fieldset>
+              <legend><span className="act-title">TYPE</span></legend>
 
               <label htmlFor="height">
-                <input value="Height" type="radio" name="title" required />
-                Height{" "}
+                <input
+                  value="Height"
+                  id="height"
+                  type="radio"
+                  name="title"
+                  onChange={this.determineUnits}
+                  required
+                />
+                Height
               </label>
               <label htmlFor="weight">
-                <input value="Weight" type="radio" name="title" required />
-                Weight{" "}
+                <input
+                id="weight"
+                  value="Weight"
+                  type="radio"
+                  name="title"
+                  onChange={this.determineUnits}
+                  required
+                />
+                Weight
               </label>
-              <span className="act-title">NOTES</span>
+              </fieldset>
+             <label htmlFor="notes"> <span className="act-title">NOTES</span></label>
 
-              <input name="notes" type="text" placeholder="Notes" required />
-              <span className="act-title">NUMBER</span>
+              <input name="notes" id="notes" type="text" placeholder="Notes" required />
+              <label htmlFor="number"> <span className="act-title">NUMBER</span></label>
               <span>example: "5" for "5lbs"</span>
 
-              <input name="number" type="text" placeholder="Number" required />
-              <span className="act-title">UNITS</span>
+              <input
+                name="number"
+                id="number"
+                type="text"
+                onChange={this.onChange}
+              />
+              {this.validateNumber()}
+              <label htmlFor="units"> <span className="act-title">UNITS</span></label>
 
-              <select name="units">
-                <option value="lbs">lbs</option>
-                <option value="inches">inches</option>
+              <select name="units" id="units" readOnly>
+                {this.state.units === "lbs" ? (
+                  <option value="lbs">lbs</option>
+                ) : (
+                  <option value="inches">inches</option>
+                )}
               </select>
-              <span className="act-title">DATE</span>
+              <label htmlFor="date"> <span className="act-title">DATE</span></label>
 
               <input
                 name="date"
+                id="date"
                 type="date"
                 required
                 placeholder="Date YYYY-MM-DD"
               />
 
-              <input className="sign-btn" type="submit" />
+              <input
+                className="sign-btn"
+                type="submit"
+                disabled={this.validateNumber()}
+              />
             </form>
           ) : this.state.heightOpen ? (
             heights
@@ -229,7 +291,7 @@ export default class Growth extends React.Component {
           ) : (
             [heights, weights]
           )}
-        </div>
+        </main>
       </>
     );
   }

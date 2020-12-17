@@ -98,14 +98,14 @@ export default class Milestones extends React.Component {
     };
     milestoneArray();
 
-    const { id } = this.props.match.params;
-
     const sortedArray = milestones
       .sort((a, b) => new Date(a.date) - new Date(b.date))
       .reverse();
-    const specSprout = sortedArray.filter((spr) => Number(id) === spr.sproutid);
+    const specSprout = sortedArray.filter(
+      (spr) => Number(this.props.match.params.id) === spr.sproutid
+    );
     const sproutName = sprouts.map((spr) => {
-      if (spr.id === Number(id)) {
+      if (spr.id === Number(this.props.match.params.id)) {
         return (
           <div key={spr.id}>
             <img className="profile-pic" src={spr.image} alt="personal" />
@@ -132,12 +132,12 @@ export default class Milestones extends React.Component {
             <p>New Milestone</p>
           </button>
         </div>
-
+        <h1>MILESTONES</h1>
         {this.state.showMilestones ? (
           specSprout.map((spr) => {
             return (
               <div key={spr.id} className="gallery">
-                <img src={spr.image} alt="personal" />
+                <img src={spr.image} alt={spr.id} />
                 <div className="desc">
                   <b>{spr.date}</b> <br /> {spr.notes}
                 </div>
@@ -147,37 +147,33 @@ export default class Milestones extends React.Component {
         ) : (
           <form className="left" onSubmit={this.handleSubmit}>
             <h2>New Milestone</h2>
-            <span className="act-title">TITLE</span>
+            <label htmlFor="title">
+              <span className="act-title">TITLE</span>
+            </label>
+
+            <input id="title" type="text" placeholder="Name" required />
+            <label htmlFor="notes">
+              <span className="act-title">NOTES</span>
+            </label>
+
+            <input id="notes" type="text" placeholder="Notes" required />
+            <label htmlFor="date">
+              <span className="act-title">DATE</span>
+            </label>
 
             <input
-              name="title"
-              id="title"
-              type="text"
-              placeholder="Name"
-              required
-            />
-            <span className="act-title">NOTES</span>
-
-            <input
-              name="notes"
-              id="notes"
-              type="text"
-              placeholder="Notes"
-              required
-            />
-            <span className="act-title">DATE</span>
-
-            <input
-              name="date"
+              id="date"
               type="date"
               required
               placeholder="Date YYYY-MM-DD"
             />
-            <span className="act-title">UPLOAD IMAGE</span>
+            <label htmlFor="image">
+              <span className="act-title">UPLOAD IMAGE</span>
+            </label>
 
-            <input type="file" onChange={this.handleChange} />
+            <input id="image" type="file" onChange={this.handleChange} />
 
-            <input className="sign-btn" type="submit" />
+            <input className="sign-btn" type="submit" value="submit" />
           </form>
         )}
       </>
