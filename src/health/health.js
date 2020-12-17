@@ -286,7 +286,7 @@ export default class Health extends React.Component {
 
               <input id="time" type="time" required placeholder="Time HH-mm" />
 
-              <input className="sign-btn" type="submit" value="submit" />
+              <input className="sign-btn" type="submit" value="Submit" />
             </form>
           ) : this.state.aptOpen ? (
             apt

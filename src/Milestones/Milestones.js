@@ -173,7 +173,7 @@ export default class Milestones extends React.Component {
 
             <input id="image" type="file" onChange={this.handleChange} />
 
-            <input className="sign-btn" type="submit" value="submit" />
+            <input className="sign-btn" type="submit" value="Submit" />
           </form>
         )}
       </>

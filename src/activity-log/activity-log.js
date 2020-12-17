@@ -304,7 +304,7 @@ export default class ActivityLog extends React.Component {
                 required
                 placeholder="Time HH-MM"
               />
-              <input className="sign-btn" type="submit" value="submit" />
+              <input className="sign-btn" type="submit" value="Submit" />
             </form>
           ) : this.state.feedOpen ? (
             feeds
