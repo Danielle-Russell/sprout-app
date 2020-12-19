@@ -12,11 +12,6 @@ html {
   font-weight: 300;
 }
 
-#landing-title span {
-  font-size: inherit;
-  font-weight: 500;
-}
-
 .nav {
   border: none;
   background-color: #a8dadc;

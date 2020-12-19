@@ -84,7 +84,7 @@ export default class LandingPage extends React.Component {
           </nav>
           <div className="landing-body">
             <h1 id="landing-title">
-              <span>SPROUT</span> <br /> Keep Track of Precious Moments
+              SPROUT <br /> Keep Track of Precious Moments
             </h1>
 
             <form id="landing-form" onSubmit={this.handleNewUser}>
