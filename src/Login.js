@@ -2,7 +2,7 @@ import React from "react";
 import SproutContext from "./SproutContext";
 import AuthApiService from "./auth-api-service";
 import TokenService from "./token-service";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 
 export default class Login extends React.Component {
   state = {
@@ -46,7 +46,11 @@ export default class Login extends React.Component {
           className="modal"
           onSubmit={this.handleSubmitJwtAuth}
         >
-          <button type="button" className="close" onClick={this.context.closeModal}>
+          <button
+            type="button"
+            className="close"
+            onClick={this.context.closeModal}
+          >
             X
           </button>
 
@@ -71,13 +75,15 @@ export default class Login extends React.Component {
             required
           />
           <input className="sign-btn" type="submit" value="Submit" />
-          
-          <button type="button" className="cancelbtn" onClick={this.context.closeModal}>
+
+          <button
+            type="button"
+            className="cancelbtn"
+            onClick={this.context.closeModal}
+          >
             Cancel
           </button>
-          
         </form>
-       
       </div>
     );
   }
@@ -85,4 +91,4 @@ export default class Login extends React.Component {
 
 Login.propTypes = {
   history: PropTypes.object,
-}
+};

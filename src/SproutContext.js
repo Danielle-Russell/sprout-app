@@ -1,22 +1,21 @@
-import React from 'react';
+import React from "react";
 
-const SproutContext =
-React.createContext({
-    sprouts: {},
-    activities: {},
-    health: {},
-    milestones: {},
-    growth: {},
-    addSprout: () => {},
-    addHealth: () => {},    
-    addGrowth: () => {},
-    addMilestone: () => {},
-    addActivity: () => {},
-    addNewUser: () => {},
-    showModal: () => {},
-    closeModal: () => {},
-    modalShown: false,
-    error: null
-})
+const SproutContext = React.createContext({
+  sprouts: {},
+  activities: {},
+  health: {},
+  milestones: {},
+  growth: {},
+  addSprout: () => {},
+  addHealth: () => {},
+  addGrowth: () => {},
+  addMilestone: () => {},
+  addActivity: () => {},
+  addNewUser: () => {},
+  showModal: () => {},
+  closeModal: () => {},
+  modalShown: false,
+  error: null,
+});
 
-export default SproutContext
+export default SproutContext;

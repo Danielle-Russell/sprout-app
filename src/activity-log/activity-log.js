@@ -8,7 +8,7 @@ import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { faLongArrowAltLeft } from "@fortawesome/free-solid-svg-icons";
 import SproutContext from "../SproutContext";
 import config from "../config";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 
 export default class ActivityLog extends React.Component {
   state = {
@@ -117,16 +117,18 @@ export default class ActivityLog extends React.Component {
     };
     activityArray();
 
-
     const sortedArray = activities
       .sort((a, b) => new Date(a.date) - new Date(b.date))
       .reverse();
 
     const feeds = sortedArray.map((act, i) => {
-      if (act.title === "Feed" && act.sproutid === Number(this.props.match.params.id)) {
+      if (
+        act.title === "Feed" &&
+        act.sproutid === Number(this.props.match.params.id)
+      ) {
         return (
           <div key={act.id}>
-            <span  className="date">{act.date}</span>
+            <span className="date">{act.date}</span>
 
             <li key={i}>
               <img
@@ -134,14 +136,13 @@ export default class ActivityLog extends React.Component {
                 alt="dinner-plate"
                 width={50}
               />
-               <br />
-              <span className='act-title'>{act.title}</span>
+              <br />
+              <span className="act-title">{act.title}</span>
               <br />
               {act.notes}
               <br />
               <span>{act.time}</span>
             </li>
-            
           </div>
         );
       }
@@ -149,10 +150,13 @@ export default class ActivityLog extends React.Component {
     });
 
     const diapers = sortedArray.map((act, i) => {
-      if (act.title === "Diaper" && act.sproutid === Number(this.props.match.params.id)) {
+      if (
+        act.title === "Diaper" &&
+        act.sproutid === Number(this.props.match.params.id)
+      ) {
         return (
-          <div key={act.id} >
-            <span  className="date">{act.date}</span>
+          <div key={act.id}>
+            <span className="date">{act.date}</span>
             <br />
 
             <li key={i}>
@@ -161,14 +165,13 @@ export default class ActivityLog extends React.Component {
                 alt="diaper-icon"
                 width={50}
               />
-               <br />
-              <span className='act-title'>{act.title}</span>
+              <br />
+              <span className="act-title">{act.title}</span>
               <br />
               {act.notes}
               <br />
               <span>{act.time}</span>
             </li>
-          
           </div>
         );
       }
@@ -176,10 +179,13 @@ export default class ActivityLog extends React.Component {
     });
 
     const sleep = sortedArray.map((act, i) => {
-      if (act.title === "Sleep" && act.sproutid === Number(this.props.match.params.id)) {
+      if (
+        act.title === "Sleep" &&
+        act.sproutid === Number(this.props.match.params.id)
+      ) {
         return (
           <div key={act.id}>
-            <span  className="date">{act.date}</span>
+            <span className="date">{act.date}</span>
             <li key={i}>
               <img
                 src="https://www.flaticon.com/svg/static/icons/svg/3658/3658869.svg"
@@ -187,14 +193,12 @@ export default class ActivityLog extends React.Component {
                 width={50}
               />
               <br />
-              <span className='act-title'>{act.title}</span>
+              <span className="act-title">{act.title}</span>
               <br />
               {act.notes}
               <br />
               <span>{act.time}</span>
-            
             </li>
-            
           </div>
         );
       }
@@ -210,13 +214,10 @@ export default class ActivityLog extends React.Component {
       .reverse();
 
     return (
-      
       <div>
-       
         <div className="sidebar">
           <button className="btn" onClick={this.back}>
             <p>
-          
               <FontAwesomeIcon
                 icon={faLongArrowAltLeft}
                 style={{ color: "white" }}
@@ -241,54 +242,55 @@ export default class ActivityLog extends React.Component {
           </button>
         </div>
         <main className="container">
-        <h1>ACTIVITIES</h1>
+          <h1>ACTIVITIES</h1>
           {this.state.formOpen ? (
             <form className="default-form" onSubmit={this.handleSubmit}>
               <h2>New Activity</h2>
               <fieldset>
-<legend><span className="act-title">TYPE</span></legend>
-              <label htmlFor="feed">
-                <input
-                  value="Feed"
-                  id="feed"
-                  type="radio"
-                  name="title"
-                  required
-                />
-                Feed
-              </label>
-              <label htmlFor="diaper">
-                <input
-                  value="Diaper"
-                  id="diaper"
-                  type="radio"
-                  name="title"
-                  required
-                />
-                Diaper Change
-              </label>
-              <label htmlFor="sleep">
-                <input
-                  value="Sleep"
-                  id="sleep"
-                  type="radio"
-                  name="title"
-                  required
-                />
-                Sleep
-              </label>
+                <legend>
+                  <span className="act-title">TYPE</span>
+                </legend>
+                <label htmlFor="feed">
+                  <input
+                    value="Feed"
+                    id="feed"
+                    type="radio"
+                    name="title"
+                    required
+                  />
+                  Feed
+                </label>
+                <label htmlFor="diaper">
+                  <input
+                    value="Diaper"
+                    id="diaper"
+                    type="radio"
+                    name="title"
+                    required
+                  />
+                  Diaper Change
+                </label>
+                <label htmlFor="sleep">
+                  <input
+                    value="Sleep"
+                    id="sleep"
+                    type="radio"
+                    name="title"
+                    required
+                  />
+                  Sleep
+                </label>
               </fieldset>
-             
-<label htmlFor="notes"> <span className="act-title">NOTES</span></label>
-              <input
-                
-                id="notes"
-                type="text"
-                placeholder="Notes"
-                required
-              />
-           <label htmlFor="date"> <span className="act-title">DATE</span></label>
 
+              <label htmlFor="notes">
+                {" "}
+                <span className="act-title">NOTES</span>
+              </label>
+              <input id="notes" type="text" placeholder="Notes" required />
+              <label htmlFor="date">
+                {" "}
+                <span className="act-title">DATE</span>
+              </label>
 
               <input
                 id="date"
@@ -296,15 +298,12 @@ export default class ActivityLog extends React.Component {
                 required
                 placeholder="Date YYYY-MM-DD"
               />
-           <label htmlFor="time"> <span className="act-title">TIME</span></label>
+              <label htmlFor="time">
+                {" "}
+                <span className="act-title">TIME</span>
+              </label>
 
-
-              <input
-                id="time"
-                type="time"
-                required
-                placeholder="Time HH-MM"
-              />
+              <input id="time" type="time" required placeholder="Time HH-MM" />
               <input className="sign-btn" type="submit" value="Submit" />
             </form>
           ) : this.state.feedOpen ? (
@@ -324,5 +323,5 @@ export default class ActivityLog extends React.Component {
 
 ActivityLog.propTypes = {
   history: PropTypes.object,
-  match: PropTypes.object
-}
+  match: PropTypes.object,
+};

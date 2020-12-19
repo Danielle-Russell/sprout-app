@@ -43,7 +43,7 @@ export default class LandingPage extends React.Component {
   };
 
   demo = () => {
-    let email = "demouser@gmail.com"
+    let email = "demouser@gmail.com";
     localStorage.setItem("user email", email);
     localStorage.setItem("firstname", "Demo");
     localStorage.setItem("lastname", "Smith");
@@ -68,13 +68,13 @@ export default class LandingPage extends React.Component {
         <div className={background}>
           <nav>
             <ul className="nav">
-            <li>
+              <li>
                 <a href="#landing-box-wrapper">Why Sprout</a>
               </li>
               <li>
                 <a href="#how-to-wrapper">How It Works</a>
               </li>
-             
+
               <li>
                 <a href="#landing-body" onClick={this.demo}>
                   Demo
@@ -84,7 +84,6 @@ export default class LandingPage extends React.Component {
           </nav>
           <div className="landing-body">
             <h1 id="landing-title">
-              
               <span>SPROUT</span> <br /> Keep Track of Precious Moments
             </h1>
 
@@ -124,7 +123,11 @@ export default class LandingPage extends React.Component {
                 placeholder="password"
                 required
               />
-              <button className="sign-btn" type="submit" disabled={this.context.modalShown}> 
+              <button
+                className="sign-btn"
+                type="submit"
+                disabled={this.context.modalShown}
+              >
                 Submit
               </button>
               {this.state.error && !this.context.modalShown ? (
@@ -132,7 +135,11 @@ export default class LandingPage extends React.Component {
               ) : null}
               <br />
               Already Have An Account?
-              <button className="sign-btn" onClick={this.context.showModal} disabled={this.context.modalShown}>
+              <button
+                className="sign-btn"
+                onClick={this.context.showModal}
+                disabled={this.context.modalShown}
+              >
                 Log In
               </button>
             </form>
@@ -195,5 +202,5 @@ export default class LandingPage extends React.Component {
 }
 
 LandingPage.propTypes = {
-  history: PropTypes.object
+  history: PropTypes.object,
 };

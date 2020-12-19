@@ -67,9 +67,10 @@ export default class AddSprout extends React.Component {
 
   validateImage = () => {
     if (this.state.preview === null) {
-return "Please select an image"
-    } return null
-  }
+      return "Please select an image";
+    }
+    return null;
+  };
   render() {
     const yearsAgo = moment().subtract(100, "years");
     const now = moment().format("YYYY-MM-DD");
@@ -102,28 +103,29 @@ return "Please select an image"
             max={now}
           />
 
-            <span className="act-title"> Upload a profile picture</span>
-            <br />
-            {this.validateImage()}
-
+          <span className="act-title"> Upload a profile picture</span>
+          <br />
+          {this.validateImage()}
 
           <div className="avatar">
-            <Avatar
-              width={200}
-              height={200}
-              onCrop={this.onCrop}
-            />
+            <Avatar width={200} height={200} onCrop={this.onCrop} />
           </div>
           <img
-              src={
-                this.state.preview
-                  ? this.state.preview
-                  : "https://www.flaticon.com/svg/static/icons/svg/2919/2919600.svg"
-              }
-              alt="Preview"
-              className="preview"
-            />
-          <button disabled={this.validateImage()} className="sign-btn" type="submit">Submit</button>
+            src={
+              this.state.preview
+                ? this.state.preview
+                : "https://www.flaticon.com/svg/static/icons/svg/2919/2919600.svg"
+            }
+            alt="Preview"
+            className="preview"
+          />
+          <button
+            disabled={this.validateImage()}
+            className="sign-btn"
+            type="submit"
+          >
+            Submit
+          </button>
         </form>
       </>
     );
@@ -132,4 +134,4 @@ return "Please select an image"
 
 AddSprout.propTypes = {
   history: PropTypes.object,
-}
+};

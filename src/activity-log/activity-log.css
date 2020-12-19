@@ -1,115 +1,106 @@
 form {
-    text-align: left;
+  text-align: left;
 }
 
 span {
-    font-size: 11px;
+  font-size: 11px;
 }
 
 button {
-    text-align: center;
-    padding: 15px;
+  text-align: center;
+  padding: 15px;
 }
 
-
 .submit {
-    text-align: center;
-    padding: 5px;
+  text-align: center;
+  padding: 5px;
 }
 
 .submit:hover {
-    opacity: 0.8
+  opacity: 0.8;
 }
 
-
 button:hover {
-   opacity: 0.7;
+  opacity: 0.7;
 }
 
 .act-title {
-font-style: bold;
-text-transform: uppercase;
-font-weight: bold;
+  font-style: bold;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 .back {
-    margin-left: 65%;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+  margin-left: 65%;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .buttons {
-    text-align: center;
+  text-align: center;
 }
 
 .btn {
-    background-color: inherit;
-    border: none;
-    
+  background-color: inherit;
+  border: none;
 }
 
 h2 {
-    text-align: center;
+  text-align: center;
 }
 
 .date {
-    font-weight: 600;
-    
-    font-size: 15px;
+  font-weight: 600;
+
+  font-size: 15px;
 }
 
 .time {
-    font-weight: 500;
-    font-size: 10px;
-    display: grid;
-    margin-left: 50%;
-
-    
+  font-weight: 500;
+  font-size: 10px;
+  display: grid;
+  margin-left: 50%;
 }
 
-.right{
-border: none;
-background-color: inherit;
-overflow: auto;
+.right {
+  border: none;
+  background-color: inherit;
+  overflow: auto;
 }
-
 
 .back {
-    background-color: inherit;
-    border: none;
+  background-color: inherit;
+  border: none;
 }
 
 a {
-    margin: auto;
-    text-align: center;
+  margin: auto;
+  text-align: center;
 }
 
 .default-form {
-    display: flex;
-    margin: 1%;
-    flex-direction: column;
+  display: flex;
+  margin: 1%;
+  flex-direction: column;
 }
 
-.default-form select, .default-form input {
-    margin: 1%;
-  
+.default-form select,
+.default-form input {
+  margin: 1%;
 }
 
-@media all and (min-width:800px) {
-    .activity-log {
-        margin-left: 20%;
-        margin-right: 20%;
+@media all and (min-width: 800px) {
+  .activity-log {
+    margin-left: 20%;
+    margin-right: 20%;
+  }
 
-    }
-
-    .default-form {
-        margin-left: 10%;
-        width: 50%;
-    }
-    .container {
+  .default-form {
+    margin-left: 10%;
+    width: 50%;
+  }
+  .container {
     margin-left: 15%;
-    }
-
-   
+  }
 }

@@ -1,8 +1,5 @@
 /* For signup form */
 
-
-
-
 .avatar {
   display: flex;
   margin: 20px;
@@ -29,4 +26,3 @@ p {
   font-weight: 600;
   font-family: arial;
 }
-

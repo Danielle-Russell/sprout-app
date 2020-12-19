@@ -1,46 +1,44 @@
-import React from 'react';
-import './App.css';
-import { Route, BrowserRouter } from 'react-router-dom';
-import LandingPage from './landing-page/landing-page';
-import Dashboard from './dashboard/dashboard';
-import WelcomePage from './welcome-page/welcome-page';
-import ActivityLog from './activity-log/activity-log';
-import Health from './health/health';
-import AddSprout from './Add-Sprout/Add-Sprout';
-import Milestones from './Milestones/Milestones';
-import Growth from './Growth';
-import config from './config';
-import SproutContext from './SproutContext'
-
-
+import React from "react";
+import "./App.css";
+import { Route, BrowserRouter } from "react-router-dom";
+import LandingPage from "./landing-page/landing-page";
+import Dashboard from "./dashboard/dashboard";
+import WelcomePage from "./welcome-page/welcome-page";
+import ActivityLog from "./activity-log/activity-log";
+import Health from "./health/health";
+import AddSprout from "./Add-Sprout/Add-Sprout";
+import Milestones from "./Milestones/Milestones";
+import Growth from "./Growth";
+import config from "./config";
+import SproutContext from "./SproutContext";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-  this.state = {
-    sprouts: {},
-    activities: {},
-    health: {},
-    milestones: {},
-    growth: {},
-    modalShown: false,
-    error: null
+    this.state = {
+      sprouts: {},
+      activities: {},
+      health: {},
+      milestones: {},
+      growth: {},
+      modalShown: false,
+      error: null,
+    };
   }
-}
-showModal = () => {
-  this.setState({
-    modalShown: true
-  })
-}
+  showModal = () => {
+    this.setState({
+      modalShown: true,
+    });
+  };
 
-closeModal = () => {
-  this.setState({
-    modalShown: false
-  })
-}
+  closeModal = () => {
+    this.setState({
+      modalShown: false,
+    });
+  };
 
   componentDidMount() {
-    const email = localStorage.getItem('user email');
+    const email = localStorage.getItem("user email");
     Promise.all([
       fetch(`${config.API_ENDPOINT}/api/sprouts/${email}`),
       fetch(`${config.API_ENDPOINT}/api/activities/${email}`),
@@ -48,107 +46,107 @@ closeModal = () => {
       fetch(`${config.API_ENDPOINT}/api/milestones/${email}`),
       fetch(`${config.API_ENDPOINT}/api/growth/${email}`),
     ])
-      .then(([sproutsRes, activitiesRes, healthRes, milestoneRes, growthRes]) => {
-        if (!sproutsRes.ok) return sproutsRes.json().then((e) => Promise.reject(e));
-        if (!activitiesRes.ok)
-          return activitiesRes.json().then((e) => Promise.reject(e));
+      .then(
+        ([sproutsRes, activitiesRes, healthRes, milestoneRes, growthRes]) => {
+          if (!sproutsRes.ok)
+            return sproutsRes.json().then((e) => Promise.reject(e));
+          if (!activitiesRes.ok)
+            return activitiesRes.json().then((e) => Promise.reject(e));
           if (!healthRes.ok)
-          return healthRes.json().then((e) => Promise.reject(e));
+            return healthRes.json().then((e) => Promise.reject(e));
           if (!milestoneRes.ok)
-          return milestoneRes.json().then((e) => Promise.reject(e));
+            return milestoneRes.json().then((e) => Promise.reject(e));
           if (!growthRes.ok)
-          return growthRes.json().then((e) => Promise.reject(e));
-        return Promise.all([sproutsRes.json(), activitiesRes.json(), healthRes.json(), milestoneRes.json(), growthRes.json()]);
-      })
+            return growthRes.json().then((e) => Promise.reject(e));
+          return Promise.all([
+            sproutsRes.json(),
+            activitiesRes.json(),
+            healthRes.json(),
+            milestoneRes.json(),
+            growthRes.json(),
+          ]);
+        }
+      )
       .then(([sprouts, activities, health, milestones, growth]) => {
         this.setState({ sprouts, activities, health, milestones, growth });
       })
       .catch((e) => {
         this.setState({
-          hasError: true
-        })
+          hasError: true,
+        });
       });
   }
 
   addSprout = (newSprout) => {
-
     this.setState({
       sprouts: [...this.state.sprouts, newSprout],
     });
   };
 
-  addHealth= (health) => {
+  addHealth = (health) => {
     this.setState({
       health: [...this.state.health, health],
     });
   };
 
-
-  addGrowth= (growth) => {
+  addGrowth = (growth) => {
     this.setState({
       growth: [...this.state.growth, growth],
     });
   };
 
-  addMilestone= (mile) => {
+  addMilestone = (mile) => {
     this.setState({
       milestones: [...this.state.milestones, mile],
     });
   };
 
-  addActivity= (activity) => {
+  addActivity = (activity) => {
     this.setState({
       activities: [...this.state.activities, activity],
     });
   };
 
-render() {
-  const contextValue = {
-    sprouts: this.state.sprouts,
-    activities: this.state.activities,
-    health: this.state.health,
-    milestones: this.state.milestones,
-    growth: this.state.growth,
-    addSprout: this.addSprout,
-    addHealth: this.addHealth,
-    src: this.state.src,
-    preview: this.state.preview,
-    addGrowth: this.addGrowth,
-    addMilestone: this.addMilestone,
-    addActivity: this.addActivity,
-    showModal: this.showModal,
-    closeModal: this.closeModal,
-    modalShown: this.state.modalShown,
-    go: this.go,
-    error: this.state.error
+  render() {
+    const contextValue = {
+      sprouts: this.state.sprouts,
+      activities: this.state.activities,
+      health: this.state.health,
+      milestones: this.state.milestones,
+      growth: this.state.growth,
+      addSprout: this.addSprout,
+      addHealth: this.addHealth,
+      src: this.state.src,
+      preview: this.state.preview,
+      addGrowth: this.addGrowth,
+      addMilestone: this.addMilestone,
+      addActivity: this.addActivity,
+      showModal: this.showModal,
+      closeModal: this.closeModal,
+      modalShown: this.state.modalShown,
+      go: this.go,
+      error: this.state.error,
+    };
+
+    return (
+      <BrowserRouter>
+        <div className="App">
+          <SproutContext.Provider value={contextValue}>
+            <Route exact path="/" component={LandingPage} />
+            <Route path="/activity-log/:id" component={ActivityLog} />
+            <Route path="/dashboard/:id" component={Dashboard} />
+            <Route path="/account/:id" component={WelcomePage} />
+
+            <Route path="/health/:id" component={Health} />
+
+            <Route path="/new-sprout" component={AddSprout} />
+            <Route path="/milestones/:id" component={Milestones} />
+            <Route path="/growth/:id" component={Growth} />
+          </SproutContext.Provider>
+        </div>
+      </BrowserRouter>
+    );
   }
-
-  return (
-<BrowserRouter>
-    <div className="App">
-        <SproutContext.Provider value={contextValue}>
-          
-
-  <Route exact path='/' component={LandingPage} />
-  <Route path='/activity-log/:id' component={ActivityLog} />
-  <Route path='/dashboard/:id' component={Dashboard} />
-  <Route path='/account/:id' component={WelcomePage} />
-
-  <Route path='/health/:id' component={Health} />
-
-  <Route path='/new-sprout' component={AddSprout} />
-  <Route path='/milestones/:id' component={Milestones} />
-  <Route path='/growth/:id' component={Growth} />
-
-  </SproutContext.Provider>
- 
-
-</div>
-</BrowserRouter>
-
-
-  )
-}
 }
 
 export default App;
