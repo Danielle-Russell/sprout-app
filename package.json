@@ -17,6 +17,7 @@
     "file-upload-with-preview": "^4.1.0",
     "iodash": "0.0.1-security",
     "moment": "^2.29.1",
+    "prop-types": "^15.7.2",
     "react": "^17.0.0",
     "react-avatar-edit": "^0.9.0",
     "react-chartjs-2": "^2.11.1",

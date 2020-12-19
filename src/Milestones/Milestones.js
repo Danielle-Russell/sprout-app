@@ -3,6 +3,7 @@ import { faLongArrowAltLeft } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import config from "../config";
 import SproutContext from "../SproutContext";
+import PropTypes from "prop-types";
 
 export default class Milestones extends React.Component {
   state = {
@@ -145,7 +146,7 @@ export default class Milestones extends React.Component {
             );
           })
         ) : (
-          <form className="left" onSubmit={this.handleSubmit}>
+          <form className="default-form" onSubmit={this.handleSubmit}>
             <h2>New Milestone</h2>
             <label htmlFor="title">
               <span className="act-title">TITLE</span>
@@ -180,3 +181,8 @@ export default class Milestones extends React.Component {
     );
   }
 }
+
+Milestones.propTypes = {
+  history: PropTypes.object,
+  match: PropTypes.object,
+};

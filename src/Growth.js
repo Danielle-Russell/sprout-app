@@ -5,6 +5,7 @@ import { faRuler } from "@fortawesome/free-solid-svg-icons";
 import { faWeight } from "@fortawesome/free-solid-svg-icons";
 import config from "./config";
 import { faLongArrowAltLeft } from "@fortawesome/free-solid-svg-icons";
+import PropTypes from "prop-types";
 
 export default class Growth extends React.Component {
   state = {
@@ -218,38 +219,52 @@ export default class Growth extends React.Component {
         <main className="height">
           <h1>GROWTH</h1>
           {this.state.formOpen ? (
-            <form className="left" onSubmit={this.handleSubmit}>
+            <form className="default-form" onSubmit={this.handleSubmit}>
               <h2> New Growth Record </h2>
               <fieldset>
-              <legend><span className="act-title">TYPE</span></legend>
+                <legend>
+                  <span className="act-title">TYPE</span>
+                </legend>
 
-              <label htmlFor="height">
-                <input
-                  value="Height"
-                  id="height"
-                  type="radio"
-                  name="title"
-                  onChange={this.determineUnits}
-                  required
-                />
-                Height
-              </label>
-              <label htmlFor="weight">
-                <input
-                id="weight"
-                  value="Weight"
-                  type="radio"
-                  name="title"
-                  onChange={this.determineUnits}
-                  required
-                />
-                Weight
-              </label>
+                <label htmlFor="height">
+                  <input
+                    value="Height"
+                    id="height"
+                    type="radio"
+                    name="title"
+                    onChange={this.determineUnits}
+                    required
+                  />
+                  Height
+                </label>
+                <label htmlFor="weight">
+                  <input
+                    id="weight"
+                    value="Weight"
+                    type="radio"
+                    name="title"
+                    onChange={this.determineUnits}
+                    required
+                  />
+                  Weight
+                </label>
               </fieldset>
-             <label htmlFor="notes"> <span className="act-title">NOTES</span></label>
+              <label htmlFor="notes">
+                {" "}
+                <span className="act-title">NOTES</span>
+              </label>
 
-              <input name="notes" id="notes" type="text" placeholder="Notes" required />
-              <label htmlFor="number"> <span className="act-title">NUMBER</span></label>
+              <input
+                name="notes"
+                id="notes"
+                type="text"
+                placeholder="Notes"
+                required
+              />
+              <label htmlFor="number">
+                {" "}
+                <span className="act-title">NUMBER</span>
+              </label>
               <span>example: "5" for "5lbs"</span>
 
               <input
@@ -259,7 +274,10 @@ export default class Growth extends React.Component {
                 onChange={this.onChange}
               />
               {this.validateNumber()}
-              <label htmlFor="units"> <span className="act-title">UNITS</span></label>
+              <label htmlFor="units">
+                {" "}
+                <span className="act-title">UNITS</span>
+              </label>
 
               <select name="units" id="units" readOnly>
                 {this.state.units === "lbs" ? (
@@ -268,7 +286,10 @@ export default class Growth extends React.Component {
                   <option value="inches">inches</option>
                 )}
               </select>
-              <label htmlFor="date"> <span className="act-title">DATE</span></label>
+              <label htmlFor="date">
+                {" "}
+                <span className="act-title">DATE</span>
+              </label>
 
               <input
                 name="date"
@@ -296,3 +317,8 @@ export default class Growth extends React.Component {
     );
   }
 }
+
+Growth.propTypes = {
+  history: PropTypes.object,
+  match: PropTypes.object,
+};

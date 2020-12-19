@@ -2,6 +2,7 @@ import React from "react";
 import SproutContext from "./SproutContext";
 import AuthApiService from "./auth-api-service";
 import TokenService from "./token-service";
+import PropTypes from 'prop-types'
 
 export default class Login extends React.Component {
   state = {
@@ -80,4 +81,8 @@ export default class Login extends React.Component {
       </div>
     );
   }
+}
+
+Login.propTypes = {
+  history: PropTypes.object,
 }

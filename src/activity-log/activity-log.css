@@ -85,13 +85,13 @@ a {
     text-align: center;
 }
 
-.left {
-    display: grid;
+.default-form {
+    display: flex;
     margin: 1%;
-
+    flex-direction: column;
 }
 
-.left select, .left input {
+.default-form select, .default-form input {
     margin: 1%;
   
 }
@@ -102,12 +102,8 @@ a {
         margin-right: 20%;
 
     }
-    .right {
-        margin: 0;
-        width: 50%;
-    }
 
-    .left {
+    .default-form {
         margin-left: 10%;
         width: 50%;
     }

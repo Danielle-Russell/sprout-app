@@ -78,12 +78,9 @@ p {
 
 table, th, td {
     border: 1px solid black;
-   margin-left: 0;
    margin-top: 1%;
    width: 80%;
-   margin: auto;
-
-    
+   margin-left: 10%;
   }
   
   .grow {
@@ -180,9 +177,10 @@ table, th, td {
 
 
 table, th, td {
-    margin-left: 45%;
+    margin-top: 1%;
     width: 50%;  
-     margin: auto;
+    margin-left: 25%;
+    margin-bottom: 1%;
 
 }
     .act-chart {

@@ -9,6 +9,7 @@ import { Doughnut } from "react-chartjs-2";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 
 import SproutContext from "../SproutContext";
+import PropTypes from "prop-types";
 
 export default class Dashboard extends React.Component {
   static contextType = SproutContext;
@@ -329,7 +330,7 @@ export default class Dashboard extends React.Component {
                 <table>
                   <thead>
                     <tr>
-                      <th style={{fontStyle:"italic"}}>Time Period</th>
+                      <th style={{ fontStyle: "italic" }}>Time Period</th>
                       <th>Feeds</th>
                       <th>Diapers</th>
                       <th>Sleep</th>
@@ -431,7 +432,6 @@ export default class Dashboard extends React.Component {
         <div className="sidebar">
           <button className="home-btn" onClick={this.backSprouts}>
             <p>
-              
               <FontAwesomeIcon icon={faLongArrowAltLeft} /> Back To Sprouts
             </p>
           </button>
@@ -544,3 +544,8 @@ export default class Dashboard extends React.Component {
     );
   }
 }
+
+Dashboard.propTypes = {
+  history: PropTypes.object,
+  match: PropTypes.object,
+};

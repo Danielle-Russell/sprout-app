@@ -8,6 +8,7 @@ import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { faLongArrowAltLeft } from "@fortawesome/free-solid-svg-icons";
 import SproutContext from "../SproutContext";
 import config from "../config";
+import PropTypes from 'prop-types'
 
 export default class ActivityLog extends React.Component {
   state = {
@@ -124,7 +125,7 @@ export default class ActivityLog extends React.Component {
     const feeds = sortedArray.map((act, i) => {
       if (act.title === "Feed" && act.sproutid === Number(this.props.match.params.id)) {
         return (
-          <div key={act.sproutid}>
+          <div key={act.id}>
             <span  className="date">{act.date}</span>
 
             <li key={i}>
@@ -150,7 +151,7 @@ export default class ActivityLog extends React.Component {
     const diapers = sortedArray.map((act, i) => {
       if (act.title === "Diaper" && act.sproutid === Number(this.props.match.params.id)) {
         return (
-          <div key={act.sproutid} >
+          <div key={act.id} >
             <span  className="date">{act.date}</span>
             <br />
 
@@ -177,7 +178,7 @@ export default class ActivityLog extends React.Component {
     const sleep = sortedArray.map((act, i) => {
       if (act.title === "Sleep" && act.sproutid === Number(this.props.match.params.id)) {
         return (
-          <div key={act.sproutid}>
+          <div key={act.id}>
             <span  className="date">{act.date}</span>
             <li key={i}>
               <img
@@ -242,7 +243,7 @@ export default class ActivityLog extends React.Component {
         <main className="container">
         <h1>ACTIVITIES</h1>
           {this.state.formOpen ? (
-            <form className="left" onSubmit={this.handleSubmit}>
+            <form className="default-form" onSubmit={this.handleSubmit}>
               <h2>New Activity</h2>
               <fieldset>
 <legend><span className="act-title">TYPE</span></legend>
@@ -319,4 +320,9 @@ export default class ActivityLog extends React.Component {
       </div>
     );
   }
+}
+
+ActivityLog.propTypes = {
+  history: PropTypes.object,
+  match: PropTypes.object
 }

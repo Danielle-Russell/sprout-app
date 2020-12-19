@@ -7,6 +7,7 @@ import { faPrescriptionBottle } from "@fortawesome/free-solid-svg-icons";
 import { faLongArrowAltLeft } from "@fortawesome/free-solid-svg-icons";
 import SproutContext from "../SproutContext";
 import config from "../config";
+import PropTypes from "prop-types";
 
 export default class Health extends React.Component {
   state = {
@@ -228,7 +229,7 @@ export default class Health extends React.Component {
         <main className="height">
           <h1>HEALTH</h1>
           {this.state.formOpen ? (
-            <form className="left" onSubmit={this.handleSubmit}>
+            <form className="default-form" onSubmit={this.handleSubmit}>
               <h2> New Record </h2>
 
               <fieldset>
@@ -302,3 +303,8 @@ export default class Health extends React.Component {
     );
   }
 }
+
+Health.propTypes = {
+  history: PropTypes.object,
+  match: PropTypes.object,
+};

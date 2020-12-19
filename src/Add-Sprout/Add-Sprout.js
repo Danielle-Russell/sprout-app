@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLongArrowAltLeft } from "@fortawesome/free-solid-svg-icons";
 import config from "../config";
 import moment from "moment";
+import PropTypes from "prop-types";
 
 export default class AddSprout extends React.Component {
   constructor(props) {
@@ -81,7 +82,7 @@ return "Please select an image"
             <FontAwesomeIcon icon={faLongArrowAltLeft} /> <p>Back to Account</p>
           </button>
         </header>
-        <form className="left" onSubmit={this.handleSubmit}>
+        <form className="default-form" onSubmit={this.handleSubmit}>
           <button className="close" onClick={this.close}>
             X
           </button>
@@ -112,7 +113,8 @@ return "Please select an image"
               height={200}
               onCrop={this.onCrop}
             />
-            <img
+          </div>
+          <img
               src={
                 this.state.preview
                   ? this.state.preview
@@ -121,10 +123,13 @@ return "Please select an image"
               alt="Preview"
               className="preview"
             />
-          </div>
           <button disabled={this.validateImage()} className="sign-btn" type="submit">Submit</button>
         </form>
       </>
     );
   }
+}
+
+AddSprout.propTypes = {
+  history: PropTypes.object,
 }

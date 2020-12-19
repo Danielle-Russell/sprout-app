@@ -5,6 +5,8 @@ import "./welcome-page.css";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import AuthApiService from "../auth-api-service";
+import PropTypes from "prop-types";
+
 export default class WelcomePage extends React.Component {
   static contextType = SproutContext;
 
@@ -39,9 +41,9 @@ export default class WelcomePage extends React.Component {
       <>
         <header className="landing-header">
           <div className="right-header">
-          <FontAwesomeIcon icon={faUserCircle} />
+            <FontAwesomeIcon icon={faUserCircle} />
             <p>{localStorage.getItem("firstname")}</p>
-           
+
             <button className="submit" onClick={this.back}>
               Sign Out
             </button>
@@ -81,10 +83,10 @@ export default class WelcomePage extends React.Component {
               <button className="sign-btn"> Add Sprout</button>
             </NavLink>
           </div>
-          
+
           <div className="sprouts-right">
-          <h1>ACCOUNT INFORMATION</h1>
-          <br />
+            <h1>ACCOUNT INFORMATION</h1>
+            <br />
             <form className="delete" onSubmit={this.deleteUser}>
               <label htmlFor="first-name">First Name</label>
               <input
@@ -95,7 +97,7 @@ export default class WelcomePage extends React.Component {
               ></input>
               <label htmlFor="last-name">Last Name</label>
               <input
-              id="last-name"
+                id="last-name"
                 type="text"
                 defaultValue={localStorage.getItem("lastname")}
                 readOnly
@@ -122,3 +124,7 @@ export default class WelcomePage extends React.Component {
     );
   }
 }
+
+WelcomePage.propTypes = {
+  history: PropTypes.object,
+};

@@ -6,6 +6,7 @@ import AuthApiService from "../auth-api-service";
 import heightChart from "./heightChart.png";
 import recent from "./recent.png";
 import sprouts from "./sprouts.png";
+import PropTypes from "prop-types";
 
 export default class LandingPage extends React.Component {
   state = {
@@ -192,3 +193,7 @@ export default class LandingPage extends React.Component {
     );
   }
 }
+
+LandingPage.propTypes = {
+  history: PropTypes.object
+};
