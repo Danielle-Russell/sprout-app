@@ -66,7 +66,6 @@ export default class LandingPage extends React.Component {
           ) : null}
         </div>
         <div className={background}>
-          <nav>
             <ul className="nav">
               <li>
                 <a href="#landing-box-wrapper">Why Sprout</a>
@@ -81,7 +80,7 @@ export default class LandingPage extends React.Component {
                 </a>
               </li>
             </ul>
-          </nav>
+
           <div className="landing-body">
             <h1 id="landing-title">
               SPROUT <br /> Keep Track of Precious Moments
