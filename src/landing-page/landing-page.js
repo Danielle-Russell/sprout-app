@@ -3,9 +3,6 @@ import "./landing-page.css";
 import SproutContext from "../SproutContext";
 import Login from "../Login";
 import AuthApiService from "../auth-api-service";
-import heightChart from "./heightChart.png";
-import recent from "./recent.png";
-import sprouts from "./sprouts.png";
 import PropTypes from "prop-types";
 
 export default class LandingPage extends React.Component {
@@ -66,27 +63,14 @@ export default class LandingPage extends React.Component {
           ) : null}
         </div>
         <div className={background}>
-            <ul className="nav">
-              <li>
-                <a href="#landing-box-wrapper">Why Sprout</a>
-              </li>
-              <li>
-                <a href="#how-to-wrapper">How It Works</a>
-              </li>
-
-              <li>
-                <a href="#landing-body" onClick={this.demo}>
-                  Demo
-                </a>
-              </li>
-            </ul>
-
+          <header onClick={this.demo}>Demo</header>
           <div className="landing-body">
-            <h1 id="landing-title">
-              SPROUT <br /> Keep Track of Precious Moments
-            </h1>
-
-            <form id="landing-form" onSubmit={this.handleNewUser}>
+            <div id="landing-title">
+              <h1>SPROUT</h1>
+              <br />
+              <h2>Keep Track of Precious Moments</h2>
+            </div>
+            <form onSubmit={this.handleNewUser}>
               <b className="log"> Create Account</b>
               <br />
               <br />
@@ -143,7 +127,7 @@ export default class LandingPage extends React.Component {
               </button>
             </form>
           </div>
-
+          <hr />
           <div id="landing-box-wrapper">
             <div className="landing-box">
               <img
@@ -172,25 +156,6 @@ export default class LandingPage extends React.Component {
                 Have fast access to previous appointments and vaccinations, and
                 keep track of important medications
               </p>
-            </div>
-          </div>
-
-          <div id="how-to-wrapper">
-            <div className="landing-how-to">
-              <img src={sprouts} alt="sprout individual profiles example" />
-
-              <p>Make Unique Profiles for Each Child</p>
-            </div>
-            <div className="landing-how-to">
-              <p>
-                Track growth progress with logging and automatically generated
-                charts
-              </p>
-              <img src={heightChart} alt="sprout growth chart" />
-            </div>
-            <div className="landing-how-to">
-              <img src={recent} alt="log of sprout activities example" />
-              <p>Track daily activities</p>
             </div>
           </div>
         </div>

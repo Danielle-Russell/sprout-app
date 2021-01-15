@@ -24,9 +24,6 @@ export default class Growth extends React.Component {
   };
 
   goBack = () => {
-    setTimeout(function () {
-      window.location.reload();
-    }, 1000);
     this.setState({
       formOpen: false,
     });

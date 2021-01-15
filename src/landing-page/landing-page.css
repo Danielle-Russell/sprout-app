@@ -1,59 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Indie+Flower&display=swap');
+
+
 body,
 html {
   width: 100%;
   margin: 0;
   overflow-x: hidden;
+  background-color: #d8e2dc;
 }
 
-header, nav {
-  background-color: #8dc0c2;
+header {
+  background-color: #2f4655;
+  padding: 20px;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 12px;
 }
+
 #landing-title {
   margin: 20%;
-  font-size: 30px;
   color: black;
   font-weight: 300;
 }
 
-.nav {
-  border: none;
-  background-color: #8dc0c2;
+#landing-title h1 {
+  font-family: 'Indie Flower', cursive;
+  font-size: 30px;
+
 }
 
-.nav li,
-.nav li a {
-  border: none;
-  display: inline-block;
-  color: black;
-  text-transform: uppercase;
-  font-size: 15px;
-  font-weight: bold;
-  margin: 5px;
-  text-decoration: none;
-}
-
-.nav li:hover {
-  transform: scale(1.1);
-}
-
-h2 {
-  color: #3c403d;
+#landing-title h2 {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  font-size: 25px;
 }
 
 .link {
   text-decoration: none;
   float: none;
-}
-
-.link2 {
-  text-decoration: none;
-  margin-left: 10px;
-  border: solid;
-  color: black;
-  font-weight: 600;
-  font-family: "arial";
-  font-size: 18px;
-  padding: 10px;
 }
 
 .modal {
@@ -91,6 +78,7 @@ h2 {
   font-weight: bold;
   border: none;
   text-align: left;
+  background-color: inherit;
 }
 
 .close:hover,
@@ -103,28 +91,32 @@ h2 {
 .shown {
   filter: blur(5px) grayscale(90%);
   -webkit-filter: blur(5px) grayscale(90%);
-  background-color: #5a9c9f;
 }
 
 .closed {
-  background-color: #a8dadc;
+  background-color: #d8e2dc;
 }
 
 form {
-  border: 3px solid #f1f1f1;
-  padding: 10px;
-  background-color: #f1f1f1;
+  display: grid;
+border-radius: 5%;
+border-width: thin;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+padding: 5%;
+background-color: #ffffff;
+width: 80%;
+margin: auto;
+margin-top: 20px;
 }
 
 input[type="email"],
 input[type="password"],
 input[type="text"] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: flex;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
+  padding: 2%;
+  border: solid;
+  border-color: #e5e5e5;
+  border-radius: 5%;
+  margin: 2% 0 2% 0;
 }
 
 .sign-btn {
@@ -180,18 +172,11 @@ p {
 }
 
 .landing-body {
-  background-color: #a8dadc;
   height: 100%;
   padding: 5%;
   display: flex;
   top: 0;
   flex-direction: column;
-}
-
-.sign-form {
-  background-color: white;
-  margin: auto;
-  width: 80%;
 }
 
 header img {
@@ -218,47 +203,21 @@ header img {
 #landing-box-wrapper {
   display: flex;
   flex-direction: column;
-  background-color: #b2dfe2;
-
   text-align: center;
+  font-family: 'Indie Flower', cursive;
+
 }
 
 footer {
-  background-color: #a8dadc;
   text-align: center;
   padding: 50px;
   font-weight: bold;
   color: black;
-}
-.sign-form {
-  margin: auto;
-  padding: 0;
-  background-color: white;
+  background-color: inherit;
 }
 
 a {
   float: right;
-}
-
-.landing-how-to {
-  display: flex;
-  flex-direction: column;
-}
-.landing-how-to img {
-  height: 300px;
-  border: solid;
-  margin: auto;
-  margin-top: 10px;
-  width: 80%;
-}
-
-.landing-how-to p {
-  color: black;
-}
-#how-to-wrapper {
-  background-color: #a8dadc;
-  display: flex;
-  flex-direction: column;
 }
 
 @media all and (min-width: 800px) {
@@ -280,6 +239,7 @@ a {
   .sign-btn {
     padding: 10px;
   }
+  
 
   .modal-div {
     display: block;
@@ -291,10 +251,7 @@ a {
   b {
     text-align: center;
   }
-  form {
-    margin: auto;
-    height: 100%;
-  }
+
   .gallery {
     margin-left: 10%;
     border: 1px solid #ccc;
